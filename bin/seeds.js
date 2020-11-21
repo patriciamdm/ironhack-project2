@@ -41,7 +41,23 @@ const movies = [{
     release_date: "1972-03-14",
     vote_average: 8.7,
     popularity: 44.667
-    }]
+},
+{
+    title: "Whiplash",
+    poster_path: "/lIv1QinFqz4dlp5U4lQ6HaiskOZ.jpg",
+    overview: "Under the direction of a ruthless instructor, a talented young drummer begins to pursue perfection at any cost, even his humanity.",
+    release_date: "2014-10-10",
+    vote_average: 8.29,
+    popularity: 10.776056
+},
+{
+    title: "Spirited Away",
+    poster_path: "/lIv1QinFqz4dlp5U4lQ6HaiskOZ.jpg",
+    overview: "Spirited Away is an Oscar winning Japanese animated film about a ten year old girl who wanders away from her parents along a path that leads to a world ruled by strange and unusual monster-like animals. Her parents have been changed into pigs along with others inside a bathhouse full of these creatures. Will she ever see the world how it once was?",
+    release_date: "2001-07-20",
+    vote_average: 8.15,
+    popularity: 10.776056
+}]
 
 
 
@@ -53,24 +69,24 @@ Movie.create(movies)
     })
     .catch(err => console.log(err))
 
-   
-     
 
 
 
-    //   title: "Whiplash",
-    //       poster_path: "/lIv1QinFqz4dlp5U4lQ6HaiskOZ.jpg",
-    //       overview: "Under the direction of a ruthless instructor, a talented young drummer begins to pursue perfection at any cost, even his humanity.",
-    //       release_date: "2014-10-10",
-    //       vote_average: 8.29,
-    //       popularity: 10.776056
 
-    //   title: "Spirited Away",
-    //       poster_path: "/lIv1QinFqz4dlp5U4lQ6HaiskOZ.jpg",
-    //       overview:"Spirited Away is an Oscar winning Japanese animated film about a ten year old girl who wanders away from her parents along a path that leads to a world ruled by strange and unusual monster-like animals. Her parents have been changed into pigs along with others inside a bathhouse full of these creatures. Will she ever see the world how it once was?",
-    //       release_date: "2001-07-20",
-    //       vote_average: 8.15,
-    //       popularity: 10.776056
+
+// title: "Whiplash",
+//     poster_path: "/lIv1QinFqz4dlp5U4lQ6HaiskOZ.jpg",
+//         overview: "Under the direction of a ruthless instructor, a talented young drummer begins to pursue perfection at any cost, even his humanity.",
+//             release_date: "2014-10-10",
+//                 vote_average: 8.29,
+//                     popularity: 10.776056
+
+// title: "Spirited Away",
+//     poster_path: "/lIv1QinFqz4dlp5U4lQ6HaiskOZ.jpg",
+//         overview: "Spirited Away is an Oscar winning Japanese animated film about a ten year old girl who wanders away from her parents along a path that leads to a world ruled by strange and unusual monster-like animals. Her parents have been changed into pigs along with others inside a bathhouse full of these creatures. Will she ever see the world how it once was?",
+//             release_date: "2001-07-20",
+//                 vote_average: 8.15,
+//                     popularity: 10.776056
     //   title: "Spirited Away",
     //       poster_path: "/lIv1QinFqz4dlp5U4lQ6HaiskOZ.jpg",
     //       overview: "Spirited Away is an Oscar winning Japanese animated film about a ten year old girl who wanders away from her parents along a path that leads to a world ruled by strange and unusual monster-like animals. Her parents have been changed into pigs along with others inside a bathhouse full of these creatures. Will she ever see the world how it once was?",

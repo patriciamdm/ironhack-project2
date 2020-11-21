@@ -9,7 +9,7 @@ const User = require('../models/user.model')
 module.exports = app => {
 
     app.use(session({ secret: "ironhack-project-2", resave: true, saveUninitialized: true }))
-    
+
     passport.serializeUser((user, cb) => cb(null, user._id))
 
     passport.deserializeUser((id, cb) => {
@@ -27,7 +27,7 @@ module.exports = app => {
                 return next(err);
             }
             if (!user) {
-                return next(null, false, { message: "Uusario no registrado" })
+                return next(null, false, { message: "Usario no registrado" })
             }
             if (!bcrypt.compareSync(password, user.password)) {
                 return next(null, false, { message: "Contraseña incorrecta" })
