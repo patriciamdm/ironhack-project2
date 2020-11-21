@@ -28,14 +28,29 @@
 
 ### Models
 
-In `models` folder, we have the `user.model.js` with these properties:
+In `models` folder we have several mdeols to be used:
 
-```bash
-    - email,
-    - password: to be encrypted with bcrypt
-    - name,
-    - about,
-    - role: will be `guest` by default but can also be `admin`
-    - img: for the image source path
-    - timestamps
-```
+- The User with these properties:
+
+    ```bash
+        - email,
+        - password: to be encrypted with bcrypt
+        - name,
+        - about,
+        - role: will be `guest` by default but can also be `admin`
+        - img: will be the image src path
+        - timestamps
+    ```
+
+- The Movie with these properties:
+
+
+    ```bash
+        - title,
+        - overview: a small summary of the plot
+        - release_date,
+        - popularity,
+        - vote_average,
+        - poster_path: will be the image src path from the poster
+        - timestamps
+    ```
