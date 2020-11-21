@@ -1,6 +1,6 @@
 # ironhack-project2
 
-## ENDPOINTS 
+### Endpoints
 
  | Path        | Method           | JSON response  |
   | ------------- | ------------- | ------------- |
@@ -24,3 +24,18 @@
   | `/profile/likes` | GET | User's liked content index  |
   | `/profile/seen` | GET | User's seen content index  |
   | `/profile/watchlist` | GET | User's watchlist index  |
+
+
+### Models
+
+In `models` folder, we have the `user.model.js` with these properties:
+
+```bash
+    - email,
+    - password: to be encrypted with bcrypt
+    - name,
+    - about,
+    - role: will be `guest` by default but can also be `admin`
+    - img: for the image source path
+    - timestamps
+```
