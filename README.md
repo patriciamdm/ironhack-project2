@@ -6,21 +6,22 @@
 
 Our web app is created to provide a place were the user can have all their favourite movies, series, actors and directors information in one place. They will be able to add content to their Watchlist, to their Favourites list as well as give ratings and comments and send email recomendations to their friends.
 
-#### Authors
+#### Authors:
 
 Jordi Boronat & Patricia Muñoz
 
-#### Thanks to
+#### Thanks to:
 
-Teacher: Germán Alvarez
-TAs: Enrique Montaño & Jon
+- Teacher: Germán Alvarez
+- TAs: Belen Olias, Enrique Montaño & Jon
+- Project Manager: Unknown
 
-#### Technologies used
+#### Technologies used:
 
 - HTML & Handlebars, CSS & SASS
 - JavaScript (ES6)
 - Express:
-    - MongoDB, Mongoose, Bcrypt, Passport
+    MongoDB, Mongoose, Bcrypt, Passport
 
 
 ## Requirements
