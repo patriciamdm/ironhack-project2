@@ -2,22 +2,54 @@
     <article class="row justify-content-center">
         <div class="col-md-6">
 
-            <h2>Sign up!</h2>
+            <h2>Create an account:</h2>
             <br>
             <form action="/signup" method="POST">
+            
                 <div class="form-group">
-                    <label for="emailInput">Email address:</label>
-                    <input name="username" type="email" class="form-control" id="emailInput"
-                        aria-describedby="emailHelp">
+                    <label for="usernameInput"
+                    {{#if errorMsg1}}class="label-invalid"{{/if}}
+                    {{#if errorMsg2}}class="label-invalid"{{/if}}>Username:</label>
+                    <input name="username" type="text"
+                    class="form-control {{#if errorMsg1}}is-invalid{{/if}} {{#if errorMsg2}}is-invalid{{/if}}"
+                    id="usernameInput" aria-describedby="usernameHelp">
+                    <small id="usernameHelp" class="form-text text-muted">Required field.</small>
                 </div>
                 <div class="form-group">
-                    <label for="pswdInput">Password:</label>
-                    <input name="password" type="password" class="form-control" id="pswdInput">
+                    <label for="pswdInput" {{#if errorMsg1}}class="label-invalid"{{/if}}>Password:</label>
+                    <input name="password" type="password" class="form-control {{#if errorMsg1}}is-invalid{{/if}}" id="pswdInput" aria-describedby="passwordHelp">
+                    <small id="passwordHelp" class="form-text text-muted">Required field.</small>
                 </div>
-                <button type="submit" class="btn btn-info">Submit!</button>
+                <div class="form-group">
+                    <label for="emailInput">Email:</label>
+                    <input name="email" type="email" class="form-control" id="emailInput">
+                </div>
+                <div class="form-group">
+                    <label for="nameInput">Name:</label>
+                    <input name="name" type="text" class="form-control" id="nameInput">
+                </div>
+                <div class="form-group">
+                    <label for="aboutInput">About:</label>
+                    <input name="about" type="text" class="form-control" id="aboutInput">
+                </div>
+                <div class="form-group">
+                    <label for="imgInput">Profile picture:</label>
+                    <input name="img" type="text" class="form-control" id="imgInput" value="{{user.img}}" aria-describedby="imgHelp">
+                    <small id="imgHelp" class="form-text text-muted">Please, include the link to your preferred picture.</small>
+                </div>
 
+                <button type="submit" class="btn btn-info">Submit</button>
+
+                {{#if errorMsg1}}
+                <p style="margin-top: 10px; background: #dc3545; color: white; text-align: center; padding: 10px">
+                    {{errorMsg1}}</p>
+                {{/if}}
+                {{#if errorMsg2}}
+                <p style="margin-top: 10px; background: #dc3545; color: white; text-align: center; padding: 10px">
+                    {{errorMsg2}}</p>
+                {{/if}}
                 {{#if errorMsg}}
-                <p style="margin-top: 10px;background: red; color: white; text-align: center; padding: 10px">
+                <p style="margin-top: 10px; background: #dc3545; color: white; text-align: center; padding: 10px">
                     {{errorMsg}}</p>
                 {{/if}}
 

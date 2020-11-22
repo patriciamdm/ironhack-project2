@@ -9,16 +9,17 @@ const bcrypt = require('bcryptjs')
 const bcryptSalt = 10
 
 
+const isLogged = (req) => req.isAuthenticated() === true
 
 // CREAR CUENTA
 
 router.get('/signup', (req, res) => res.render('auth/sign-up'))
 
 router.post('/signup', (req, res, next) => {
-    const { username, password } = req.body
+    const { username, password, email, name, about, img } = req.body
 
     if (!username || !password) {
-        res.render('auth/sign-up', { errorMsg: 'Please, fill in all information' })
+        res.render('auth/sign-up', { errorMsg1: 'Please, fill in all required information' })
         return
     }
 
@@ -26,7 +27,7 @@ router.post('/signup', (req, res, next) => {
         .findOne({ username })
         .then(user => {
             if (user) {
-                res.render('auth/sign-up', { errorMsg: 'That email is already registered' })
+                res.render('auth/sign-up', { errorMsg2: 'That username is already registered' })
                 return
             }
 
@@ -34,13 +35,11 @@ router.post('/signup', (req, res, next) => {
             const hashPass = bcrypt.hashSync(password, salt)
 
             User
-                .create({ username, password: hashPass })
+                .create({ username, password: hashPass, email, name, about, img })
                 .then(() => res.redirect('/'))
                 .catch(() => res.render('auth/sign-up', { errorMsg: 'There was an error' }))
         })
 })
-
-
 
 
 
@@ -50,13 +49,14 @@ router.get('/login', (req, res) => res.render('auth/log-in', { errorMsg: req.fla
 
 router.post('/login', passport.authenticate('local', {
     successRedirect: '/profile',
-    failureRedirect: '/signup',
+    failureRedirect: '/login',
     failureFlash: true,
     passReqToCallback: true
 }))
 
 
 
+// CERRAR SESIÓN
 
 router.get('/logout', (req, res) => {
     req.logout()

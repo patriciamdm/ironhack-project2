@@ -1,23 +1,32 @@
 const express = require('express')
 const router = express.Router()
 
-
 const Movie = require('../models/movie.model')
-
 const TVshow = require('../models/TVshow.model.js')
 
 
-// MOVIES
+const isLogged = (req) => req.isAuthenticated() === true
 
-router.get('/', (req, res) => res.render('index'))
+
+
+// ENDPOINTS
+
+router.get('/', (req, res) => res.render('index', { isLogged: isLogged(req) }))
+
+
+
+
+// MOVIES
 
 router.get('/movies', (req, res, next) => {
 
     Movie
         .find()
-        .then(movies => res.render('data/movies', { movies }))
+        .then(movies => res.render('data/movies', { movies, isLogged: isLogged(req) }))
         .catch(err => next(err))
 })
+
+
 
 
 // TV SHOWS
@@ -26,16 +35,9 @@ router.get('/TVshows', (req, res, next) => {
 
     TVshow
         .find()
-        .then(TVshows => res.render('data/TVshows', { TVshows }))
+        .then(TVshows => res.render('data/TVshows', { TVshows, isLogged: isLogged(req) }))
         .catch(err => next(err))
 })
-
-
-router.get('/profile', (req, res) => {
-    // INCLUIR ID DE USUARIO
-    res.render('auth/user-profile', { user: req.user })
-})
-
 
 
 

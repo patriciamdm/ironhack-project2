@@ -8,4 +8,28 @@ main {
 hr {
   margin: 20px 0; }
 
+.label-invalid {
+  color: #dc3545;
+  font-weight: 400; }
+
+h5 {
+  font-weight: 100;
+  text-transform: uppercase; }
+
+h6 {
+  margin: 5px 0 15px 0; }
+
+a {
+  color: gray; }
+
+a:hover {
+  color: #17a2b8;
+  text-decoration: none; }
+
+.user-contents {
+  margin-top: 60px; }
+
+.user-columns {
+  text-align: center; }
+
 /*# sourceMappingURL=style.css.map */

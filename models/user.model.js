@@ -11,6 +11,7 @@ const userSch = new Schema({
         type: String,
         required: true
     },
+    email: String,
     name: String,
     about: String,
     role: {

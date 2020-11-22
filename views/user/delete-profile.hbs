@@ -1,0 +1,28 @@
+<section class="container">
+
+    <article class="row justify-content-center">
+
+        <div class="col-md-8 user">
+            <h2>Hey {{user.name}},</h2>
+            <p>Are you sure you want to delete your account?</p>
+        </div>
+
+    </article>
+
+    <article class="row justify-content-center">
+
+        <div class="col-md-4">
+            <form action="/profile" method="GET">
+                <button type="submit" class="btn btn-info btn-block">No, go back to my profile</button>
+            </form>
+        </div>
+
+        <div class="col-md-4">
+            <form action="/profile/delete?id={{user.id}}" method="POST">
+                <button type="submit" class="btn btn-info btn-block">Yes, delete my account</button>
+            </form>
+        </div>
+
+    </article>
+
+</section>
