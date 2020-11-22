@@ -15,15 +15,15 @@ const bcryptSalt = 10
 router.get('/signup', (req, res) => res.render('auth/sign-up'))
 
 router.post('/signup', (req, res, next) => {
-    const { email, password } = req.body
+    const { username, password } = req.body
 
-    if (!email || !password) {
+    if (!username || !password) {
         res.render('auth/sign-up', { errorMsg: 'Please, fill in all information' })
         return
     }
 
     User
-        .findOne({ email })
+        .findOne({ username })
         .then(user => {
             if (user) {
                 res.render('auth/sign-up', { errorMsg: 'That email is already registered' })
@@ -34,7 +34,7 @@ router.post('/signup', (req, res, next) => {
             const hashPass = bcrypt.hashSync(password, salt)
 
             User
-                .create({ email, password: hashPass })
+                .create({ username, password: hashPass })
                 .then(() => res.redirect('/'))
                 .catch(() => res.render('auth/sign-up', { errorMsg: 'There was an error' }))
         })

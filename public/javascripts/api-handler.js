@@ -1,3 +1,5 @@
+const axios = require('axios')
+
 class APIhandler {
     constructor() {
         console.log('API accessed successfully')
@@ -6,11 +8,12 @@ class APIhandler {
             baseURL: "https://api.themoviedb.org/3"
         })
     }
-    
+
     // const apiKey = process.env.APIkey
-    
+
     getTopRatedMovies() {
         this.axiosApp.get(`/movie/top_rated?api_key=${process.env.APIkey}`)
     }
 
 }
+
