@@ -1,13 +1,13 @@
 <section class="container">
-    <h2>Movies</h2>
+    <h2>Series</h2>
     <article class="row justify-content-center">
-        {{#each movies}}
+        {{#each series}}
         <div class="card" style="width: 15rem; margin: 25px;">
-            <img class="card-img-top" src='images/baby-driver-rory-hi-res.jpg' alt="serie image cap"
+            <img class="card-img-top" src='https://image.tmdb.org/t/p/w300{{poster_path}}' alt="serie image cap"
                 style="object-fit: cover; width: 100%;">
             <div class="card-body" style="text-align: center">
                 <h5 class="card-title">{{title}}</h5>
-                <a href="/movie?movie_id={{id}}" class="btn btn-primary"
+                <a href="/serie?serie_id={{id}}" class="btn btn-primary"
                     style="display: block; background-color:#18A2B8; border: none;">Details</a>
             </div>
         </div>

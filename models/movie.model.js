@@ -8,7 +8,8 @@ const movieSch = new Schema({
     genres: [String],
     release_date: Date,
     vote_average: Number,
-    popularity: Number
+    popularity: Number,
+    img: String
 }, { timestamps: true })
 
 module.exports = mongoose.model('Movie', movieSch)

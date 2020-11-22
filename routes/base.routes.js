@@ -4,33 +4,119 @@ const router = express.Router()
 
 const Movie = require('../models/movie.model')
 
-const TVshow = require('../models/TVshow.model.js')
+const Series = require('../models/series.model.js')
+const Person = require('../models/person.model.js')
+const { get } = require('mongoose')
 
 
-// MOVIES
+
 
 router.get('/', (req, res) => res.render('index'))
 
+// MOVIES
 router.get('/movies', (req, res, next) => {
 
     Movie
         .find()
+        .sort({ popularity: -1 })
         .then(movies => res.render('data/movies', { movies }))
         .catch(err => next(err))
 })
+// MOVIE DETAILS
 
+router.get('/movie', (req, res, next) => {
 
-// TV SHOWS
+    const movieId = req.query.movie_id
 
-router.get('/TVshows', (req, res, next) => {
-
-    TVshow
-        .find()
-        .then(TVshows => res.render('data/TVshows', { TVshows }))
+    Movie
+        .findById(movieId)
+        .then(movie => res.render('data/movie-detail', movie))
         .catch(err => next(err))
 })
 
 
+// SERIES
+
+router.get('/series', (req, res, next) => {
+
+    Series
+        .find()
+        .sort({ popularity: -1 })
+        .then(series => res.render('data/series', { series }))
+        .catch(err => next(err))
+})
+
+// SERIE DETAILS
+
+router.get('/serie', (req, res, next) => {
+
+    const serieId = req.query.serie_id
+
+    Series
+        .findById(serieId)
+        .then(serie => {
+            console.log(serie)
+            res.render('data/serie-detail', serie)
+        })
+        .catch(err => next(err))
+})
+
+
+//ACTORS
+
+router.get('/actors', (req, res, next) => {
+
+    Person
+        .find({ 'known_for_department': 'Acting' })
+        .sort({ popularity: -1 })
+        .then(allActors => {
+            res.render('data/actors', { allActors })
+        })
+        .catch(err => next(err))
+
+})
+
+//ACTOR DETAILS
+
+router.get('/actor', (req, res, next) => {
+
+    const actorId = req.query.actor_id
+    Person
+        .findById(actorId)
+        .then(actor => {
+            console.log(actor)
+            res.render('data/actor-details', actor)
+        })
+        .catch(err => next(err))
+})
+
+//DIRECTORS
+
+router.get('/directors', (req, res, next) => {
+
+    Person
+        .find({ 'known_for_department': 'Directing' })
+        .sort({ popularity: -1 })
+        .then(allDirectors => {
+            res.render('data/directors', { allDirectors })
+        })
+        .catch(err => next(err))
+
+})
+
+//DIRECTOR DETAILS
+
+router.get('/director', (req, res, next) => {
+
+    const directorId = req.query.director_id
+    Person
+        .findById(directorId)
+        .then(director => {
+            console.log(director)
+            res.render('data/director-details', director)
+        })
+        .catch(err => next(err))
+})
 router.get('/profile', (req, res) => {
     // INCLUIR ID DE USUARIO
     res.render('auth/user-profile', { user: req.user })

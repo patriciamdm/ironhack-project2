@@ -1,0 +1,21 @@
+<section class="container">
+    <h2>Directors</h2>
+
+    <article class="row justify-content-center">
+        {{#each allDirectors}}
+
+        <div class="card" style="width: 18rem; margin: 25px;">
+            <img class="card-img-top" src='https://image.tmdb.org/t/p/w300{{profile_path}}' alt="director image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{name}}</h5>
+                <a href="/director?director_id={{id}}" class="btn btn-dark"
+                    style="display: block; text-align; background-color:#18A2B8; border: none">Details</a>
+            </div>
+        </div>
+
+
+        {{/each}}
+
+    </article>
+
+</section>
