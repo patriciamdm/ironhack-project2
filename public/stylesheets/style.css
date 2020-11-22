@@ -32,4 +32,9 @@ a:hover {
 .user-columns {
   text-align: center; }
 
+.redirect {
+  font-weight: 100;
+  text-transform: uppercase;
+  margin: 0 20px 0 0; }
+
 /*# sourceMappingURL=style.css.map */

@@ -10,10 +10,12 @@ const bcryptSalt = 10
 
 
 const isLogged = (req) => req.isAuthenticated() === true
+const isNotLogged = (req) => req.isAuthenticated() === false
+
 
 // CREAR CUENTA
 
-router.get('/signup', (req, res) => res.render('auth/sign-up'))
+router.get('/signup', (req, res) => res.render('auth/sign-up', { isNotLogged: isNotLogged(req) }))
 
 router.post('/signup', (req, res, next) => {
     const { username, password, email, name, about, img } = req.body
@@ -45,7 +47,7 @@ router.post('/signup', (req, res, next) => {
 
 // INICIO DE SESIÓN
 
-router.get('/login', (req, res) => res.render('auth/log-in', { errorMsg: req.flash('error') }))
+router.get('/login', (req, res) => res.render('auth/log-in', { errorMsg: req.flash('error'), isNotLogged: isNotLogged(req) }))
 
 router.post('/login', passport.authenticate('local', {
     successRedirect: '/profile',

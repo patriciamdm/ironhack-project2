@@ -4,8 +4,9 @@ const router = express.Router()
 const User = require('../models/user.model')
 
 const checkLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.render('index', { loginErrorMessage: 'Please, log in or sign up to access' })
-const isLogged = (req) => req.isAuthenticated() === true
 
+const isLogged = (req) => req.isAuthenticated() === true
+const isNotLogged = (req) => req.isAuthenticated() === false
 
 
 
@@ -60,19 +61,32 @@ router.post('/profile/delete', checkLoggedIn, (req, res, next) => {
 
 
 
-// EDITAR PERFIL
+// VISUALIZE CONTENT
 
 router.get('/profile/watchlist', checkLoggedIn, (req, res, next) => {
-    res.render('user/watchlist')
+    User
+        .findById(req.query.id)
+        .populate('watchlist.movies', 'watchlist.series')
+        .then(user => res.render('user/user-watchlist', {user, isLogged: isLogged(req) }))
+        .catch(err => next(err))
 })
 
 
-
-
-// EDITAR PERFIL
-
 router.get('/profile/seen', checkLoggedIn, (req, res, next) => {
-    res.render('user/seen')
+    User
+        .findById(req.query.id)
+        .populate('seen.movies', 'seen.series')
+        .then(user => res.render('user/user-seen', {user, isLogged: isLogged(req) }))
+        .catch(err => next(err))
+})
+
+
+router.get('/profile/likes', checkLoggedIn, (req, res, next) => {
+    User
+        .findById(req.query.id)
+        .populate('likes.movies', 'likes.series')
+        .then(user => res.render('user/user-likes', {user, isLogged: isLogged(req) }))
+        .catch(err => next(err))
 })
 
 
