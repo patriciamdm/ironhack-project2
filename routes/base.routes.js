@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 
-
 const Movie = require('../models/movie.model')
 
 const Series = require('../models/series.model.js')
@@ -10,8 +9,22 @@ const { get } = require('mongoose')
 
 
 
+const TVshow = require('../models/TVshow.model.js')
 
-router.get('/', (req, res) => res.render('index'))
+
+const isLogged = (req) => req.isAuthenticated() === true
+const isNotLogged = (req) => req.isAuthenticated() === false
+
+
+
+// ENDPOINTS
+
+router.get('/', (req, res) => res.render('index', { isLogged: isLogged(req), isNotLogged: isNotLogged(req) }))
+
+
+
+
+// MOVIES
 
 // MOVIES
 router.get('/movies', (req, res, next) => {
@@ -20,6 +33,7 @@ router.get('/movies', (req, res, next) => {
         .find()
         .sort({ popularity: -1 })
         .then(movies => res.render('data/movies', { movies }))
+        .then(movies => res.render('data/movies', { movies, isLogged: isLogged(req) }))
         .catch(err => next(err))
 })
 // MOVIE DETAILS
@@ -36,6 +50,9 @@ router.get('/movie', (req, res, next) => {
 
 
 // SERIES
+
+
+// TV SHOWS
 
 router.get('/series', (req, res, next) => {
 
@@ -87,6 +104,7 @@ router.get('/actor', (req, res, next) => {
             console.log(actor)
             res.render('data/actor-details', actor)
         })
+        .then(TVshows => res.render('data/TVshows', { TVshows, isLogged: isLogged(req) }))
         .catch(err => next(err))
 })
 

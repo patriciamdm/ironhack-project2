@@ -2,10 +2,23 @@
 
     <article class="row justify-content-center">
 
-        <div class="col-md-6">
+        <div class="col-md-10 text-center">
 
             <h1>Welcome to {{siteTitle}}</h1>
+            <hr>
+            <h6>What would you like to do?</h6>
+            <br>
+            <div class="buttons">
+                <a href="/movies" class="btn btn-info">See all movies</a>
+                <a href="/series" class="btn btn-info">See all TV series</a>
+                <a href="/actors" class="btn btn-info">See all actors</a>
+                <a href="/directors" class="btn btn-info">See all directors</a>
+            </div>
 
+            {{#if isLogged}}
+            <a href="/profile" class="btn btn-info">Go to my profile</a>
+            {{/if}}
+            
         </div>
 
     </article>

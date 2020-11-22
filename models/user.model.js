@@ -11,6 +11,7 @@ const userSch = new Schema({
         type: String,
         required: true
     },
+    email: String,
     name: String,
     about: String,
     role: {
@@ -19,8 +20,31 @@ const userSch = new Schema({
         default: 'guest',
         required: true
     },
-    img: String
-
+    img: String,
+    watchlist: {
+        movies: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Movie'
+    }], series: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Movie'
+    }]},
+    seen: {
+        movies: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Movie'
+    }], series: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Movie'
+    }]},
+    likes: {
+        movies: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Movie'
+    }], series: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Movie'
+    }]}
 }, { timestamps: true })
 
 module.exports = mongoose.model('User', userSch)
