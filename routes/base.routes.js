@@ -59,21 +59,52 @@ router.get('/movies/:id', (req, res, next) => {
 
 
 router.post('/movies/:id', (req, res, next) => {
-    
-    User
-        .findById(req.user.id)
-        .then(user => {
-            if (req.query.add === 'watchlist') {
-                user.watchlist.movies.push(req.params.id)
-            } else if (req.query.add === 'likes') {
-                user.likes.movies.push(req.params.id)
-            } else if (req.query.add === 'seen') {
-                user.seen.movies.push(req.params.id)
-            }
-            console.log(user)
-            res.redirect(`/movies/${req.params.id}`)
-        })
-        .catch(err => next(err))
+    // User
+    //     .findById(req.user.id)
+    //     .then(user => {
+    //         if (req.query.add === 'watchlist') {
+    //             user.watchlist.movies.push(req.params.id)
+    //         } else if (req.query.add === 'likes') {
+    //             user.likes.movies.push(req.params.id)
+    //         } else if (req.query.add === 'seen') {
+    //             user.seen.movies.push(req.params.id)
+    //         }
+    //         console.log(user)
+    //         res.redirect(`/movies/${req.params.id}`)
+    //     })
+    //     .catch(err => next(err))
+                    
+    const userId = req.user.id
+    const newItem = req.params.id
+
+    if (req.query.add === 'watchlist') {
+        // User
+        //     .findByIdAndUpdate(userId, { "user.watchlist": { $push: { movies: req.params.id } } }, { new: true })
+        //     .then(user => console.log(user))
+        //     .catch(err => next(err))
+        
+        // Usern
+        //     .findById(userId)
+        //     .then(user => {
+                
+        //         const [newItem, ...movies] = req.user.watchlist.movies;
+                
+        //         console.log('The user then:', {movies},  user)
+        //     })
+        //     .catch(err => next(err))
+
+        console.log('NADA FUNCIONA', req.query.add, 'USER', req.user)
+
+    } else if (req.query.add === 'likes') {
+        console.log('sale el 2!', req.query.add)
+    } else if (req.query.add === 'seen') {
+        console.log('sale el 3!', req.query.add)
+    }
+
+
+
+
+
 })
 
 
