@@ -20,7 +20,7 @@ router.get('/signup', (req, res) => res.render('auth/sign-up', { isNotLogged: is
 router.post('/signup', (req, res) => {
     const { username, password, email, name, about, img } = req.body
 
-    if (!username || !password) {
+    if (!username || !password || !name) {
         res.render('auth/sign-up', { errorMsg1: 'Please, fill in all required information' })
         return
     }

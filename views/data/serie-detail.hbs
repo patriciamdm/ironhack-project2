@@ -1,20 +1,33 @@
 <section class="container">
     <article class="row justify-content-center">
+
         <div class="col-md-3 details">
-            <img class="card-img-top" src='https://image.tmdb.org/t/p/w300{{serie.poster_path}}' alt="serie image cap">
+            <img class="card-img-top" src='https://image.tmdb.org/t/p/w300{{thisSerie.poster_path}}' alt="serie image cap">
         </div>
+
         <div class="col-md-8">
             <div class="card" style="width: 100%">
                 <div class="card-body">
-                    <h2 class="card-title">{{serie.title}}</h2>
+                    <h2 class="card-title">{{thisSerie.title}}</h2>
                     <p class="card-text">Released: {{first_air_date.month}} {{first_air_date.day}},
                         {{first_air_date.year}}
                     </p>
-                    <p class="card-text">{{serie.overview}}</p>
+                    <p class="card-text">{{thisSerie.overview}}</p>
                 </div>
             </div>
-
         </div>
+        
+        {{!-- <div class="col-md-1">
+                    <button id="btn-watchlist" type="button" class="btn btn-info btn-block" data-toggle="button" aria-pressed="false">
+                        WL
+                    </button>
+                    <button id="btn-like" type="button" class="btn btn-info btn-block" data-toggle="button" aria-pressed="false">
+                        Like
+                    </button>
+                    <button id="btn-seen" type="button" class="btn btn-info btn-block" data-toggle="button" aria-pressed="false">
+                        Seen
+                    </button>
+                </div> --}}
 
     </article>
 

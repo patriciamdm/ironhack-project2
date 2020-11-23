@@ -11,16 +11,30 @@ const userSch = new Schema({
         type: String,
         required: true
     },
-    email: String,
-    name: String,
-    about: String,
+    email: {
+        type: String,
+        required: false,
+        default: 'username@email'
+    },
+    name: {
+        type: String,
+        required: true,
+    },
+    about: {
+        type: String,
+        required: false,
+        default: 'Something about you'
+    },
     role: {
         type: String,
         enum: ['admin', 'guest'],
         default: 'guest',
         required: true
     },
-    img: String,
+    img: {
+        type: String,
+        required: false,
+    },
     watchlist: {
         movies: [{
             type: Schema.Types.ObjectId,

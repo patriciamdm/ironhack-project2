@@ -1,16 +1,23 @@
 <section class="container">
+
     <h2>Series</h2>
+
     <article class="row justify-content-center">
-        {{#each series}}
-        <div class="card" style="width: 15rem; margin: 25px;">
-            <img class="card-img-top" src='https://image.tmdb.org/t/p/w300{{poster_path}}' alt="serie image cap"
-                style="object-fit: cover; width: 100%;">
-            <div class="card-body" style="text-align: center">
-                <h5 class="card-title">{{title}}</h5>
-                <a href="/serie?serie_id={{id}}" class="btn btn-primary"
-                    style="display: block; background-color:#18A2B8; border: none;">Details</a>
+
+        {{#each allSeries}}
+
+            <div class="card" style="width: 15rem; margin: 25px;">
+
+                <img class="card-img-top" src='https://image.tmdb.org/t/p/w300{{poster_path}}' alt="serie image cap" style="object-fit: cover; width: 100%;">
+               
+                <div class="card-body" style="text-align: center">
+
+                    <h5 class="card-title">{{title}}</h5>
+                    <a href="/series/{{id}}" class="btn btn-info btn-block">Details</a>
+                    
+                </div>
+
             </div>
-        </div>
 
         {{/each}}
 

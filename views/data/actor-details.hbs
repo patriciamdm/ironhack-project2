@@ -1,18 +1,18 @@
 <section class="container">
     <article class="row justify-content-center">
         <div class="col-md-3 details">
-            <img class="card-img" src='https://image.tmdb.org/t/p/w300{{actor.profile_path}}' alt="actor image cap">
+            <img class="card-img" src='https://image.tmdb.org/t/p/w300{{thisActor.profile_path}}' alt="actor image cap">
         </div>
         <div class="col-md-8">
             <div class="card" style="width: 100%">
                 <div class="card-body">
-                    <h2 class="card-title">{{actor.name}}</h2>
+                    <h2 class="card-title">{{thisActor.name}}</h2>
                     <p class="card-text">Born: {{birthday.month}} {{birthday.day}}, {{birthday.year}} in
-                        {{actor.place_of_birth}}</p>
+                        {{thisActor.place_of_birth}}</p>
                     {{#if deathday}}
                     <p class="card-text">Death: {{deathday.month}} {{deathday.day}}, {{deathday.year}}</p>
                     {{/if}}
-                    <p class="card-text">{{actor.biography}}</p>
+                    <p class="card-text">{{thisActor.biography}}</p>
 
                 </div>
             </div>

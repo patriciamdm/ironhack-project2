@@ -2,11 +2,12 @@ const express = require('express')
 const router = express.Router()
 
 const Movie = require('../models/movie.model')
-
 const Series = require('../models/series.model.js')
 const Person = require('../models/person.model.js')
-const { get } = require('mongoose')
+const User = require('../models/user.model')
 
+
+//const apiHandler = new APIhandler();
 
 
 
@@ -26,32 +27,59 @@ router.get('/', (req, res) => res.render('index', { isLogged: isLogged(req), isN
 // MOVIES
 router.get('/movies', (req, res, next) => {
 
+    // apiHandler
+    //     .getTopRatedMovies()
+    //     .then(allMovies => res.render('data/movies', { allMovies, isLogged: isLogged(req), isNotLogged: isNotLogged(req) }))
+    //     .catch(err => next(err))
+
     Movie
         .find()
         .sort({ popularity: -1 })
-        .then(movies => res.render('data/movies', { movies, isLogged: isLogged(req), isNotLogged: isNotLogged(req) }))
+        .then(allMovies => res.render('data/movies', { allMovies, isLogged: isLogged(req), isNotLogged: isNotLogged(req) }))
         .catch(err => next(err))
 })
+
 
 // MOVIE DETAILS
 
-router.get('/movie', (req, res, next) => {
-
-    const movieId = req.query.movie_id
-
+router.get('/movies/:id', (req, res, next) => {
     Movie
-        .findById(movieId)
-        .then(movie => {
+        .findById(req.params.id)
+        .then(thisMovie => {
             const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             const movieDate = {
-                day: movie.release_date.getDate(),
-                month: months[movie.release_date.getMonth()],
-                year: movie.release_date.getFullYear()
+                day: thisMovie.release_date.getDate(),
+                month: months[thisMovie.release_date.getMonth()],
+                year: thisMovie.release_date.getFullYear()
             }
-            res.render('data/movie-detail', { movie, release_date: movieDate, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
+            res.render('data/movie-detail', { thisMovie, release_date: movieDate, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
         })
         .catch(err => next(err))
 })
+
+
+router.post('/movies/:id', (req, res, next) => {
+    
+    User
+        .findById(req.user.id)
+        .then(user => {
+            if (req.query.add === 'watchlist') {
+                user.watchlist.movies.push(req.params.id)
+            } else if (req.query.add === 'likes') {
+                user.likes.movies.push(req.params.id)
+            } else if (req.query.add === 'seen') {
+                user.seen.movies.push(req.params.id)
+            }
+            console.log(user)
+            res.redirect(`/movies/${req.params.id}`)
+        })
+        .catch(err => next(err))
+})
+
+
+
+
+
 
 
 
@@ -61,28 +89,31 @@ router.get('/series', (req, res, next) => {
     Series
         .find()
         .sort({ popularity: -1 })
-        .then(series => {
-            res.render('data/series', { series, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
+        .then(allSeries => {
+            res.render('data/series', { allSeries, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
         })
         .catch(err => next(err))
 })
 
 // SERIE DETAILS
 
-router.get('/serie', (req, res, next) => {
+router.get('/series/:id', (req, res, next) => {
     Series
-        .findById(req.query.serie_id)
-        .then(serie => {
+        .findById(req.params.id)
+        .then(thisSerie => {
             const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             const serieDate = {
-                day: serie.first_air_date.getDate(),
-                month: months[serie.first_air_date.getMonth()],
-                year: serie.first_air_date.getFullYear()
+                day: thisSerie.first_air_date.getDate(),
+                month: months[thisSerie.first_air_date.getMonth()],
+                year: thisSerie.first_air_date.getFullYear()
             }
-            res.render('data/serie-detail', { serie, first_air_date: serieDate, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
+            res.render('data/serie-detail', { thisSerie, first_air_date: serieDate, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
         })
         .catch(err => next(err))
 })
+
+
+
 
 
 
@@ -103,25 +134,25 @@ router.get('/actors', (req, res, next) => {
 
 //ACTOR DETAILS
 
-router.get('/actor', (req, res, next) => {
+router.get('/actors/:id', (req, res, next) => {
     Person
-        .findById(req.query.actor_id)
-        .then(actor => {
+        .findById(req.params.id)
+        .then(thisActor => {
             const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             const birthDate = {
-                day: actor.birthday.getDate(),
-                month: months[actor.birthday.getMonth()],
-                year: actor.birthday.getFullYear()
+                day: thisActor.birthday.getDate(),
+                month: months[thisActor.birthday.getMonth()],
+                year: thisActor.birthday.getFullYear()
             }
-            if (actor.deathday) {
+            if (thisActor.deathday) {
                 const deathDate = {
-                    day: actor.deathday.getDate(),
-                    month: months[actor.deathday.getMonth()],
-                    year: actor.deathday.getFullYear()
+                    day: thisActor.deathday.getDate(),
+                    month: months[thisActor.deathday.getMonth()],
+                    year: thisActor.deathday.getFullYear()
                 }
-                res.render('data/actor-details', { actor, birthday: birthDate, deathday: deathDate, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
+                res.render('data/actor-details', { thisActor, birthday: birthDate, deathday: deathDate, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
             } else {
-                res.render('data/actor-details', { actor, birthday: birthDate, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
+                res.render('data/actor-details', { thisActor, birthday: birthDate, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
             }
         })
         .catch(err => next(err))
@@ -144,26 +175,26 @@ router.get('/directors', (req, res, next) => {
 
 //DIRECTOR DETAILS
 
-router.get('/director', (req, res, next) => {
+router.get('/directors/:id', (req, res, next) => {
     Person
-        .findById(req.query.director_id)
-        .then(director => {
+        .findById(req.params.id)
+        .then(thisDirector => {
 
             const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             const birthDate = {
-                day: director.birthday.getDate(),
-                month: months[director.birthday.getMonth()],
-                year: director.birthday.getFullYear()
+                day: thisDirector.birthday.getDate(),
+                month: months[thisDirector.birthday.getMonth()],
+                year: thisDirector.birthday.getFullYear()
             }
-            if (director.deathday) {
+            if (thisDirector.deathday) {
                 const deathDate = {
-                    day: director.deathday.getDate(),
-                    month: months[director.deathday.getMonth()],
-                    year: director.deathday.getFullYear()
+                    day: thisDirector.deathday.getDate(),
+                    month: months[thisDirector.deathday.getMonth()],
+                    year: thisDirector.deathday.getFullYear()
                 }
-                res.render('data/director-details', { director, birthday: birthDate, deathday: deathDate, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
+                res.render('data/director-details', { thisDirector, birthday: birthDate, deathday: deathDate, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
             } else {
-                res.render('data/director-details', { director, birthday: birthDate, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
+                res.render('data/director-details', { thisDirector, birthday: birthDate, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
             }
         })
         .catch(err => next(err))

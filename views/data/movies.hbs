@@ -1,16 +1,24 @@
 <section class="container">
+
     <h2>Movies</h2>
+
     <article class="row justify-content-center">
-        {{#each movies}}
-        <div class="card" style="width: 15rem; margin: 25px;">
-            <img class="card-img-top" src='images/baby-driver-rory-hi-res.jpg' alt="serie image cap"
-                style="object-fit: cover; width: 100%;">
-            <div class="card-body" style="text-align: center">
-                <h5 class="card-title">{{title}}</h5>
-                <a href="/movie?movie_id={{id}}" class="btn btn-primary"
-                    style="display: block; background-color:#18A2B8; border: none;">Details</a>
+
+        {{#each allMovies}}
+
+            <div class="card" style="width: 14rem; margin: 25px;">
+
+                <img class="card-img-top" src='images/baby-driver-rory-hi-res.jpg' alt="serie image cap"
+                    style="object-fit: cover; width: 100%;">
+
+                <div class="card-body" style="text-align: center">
+
+                    <h5 class="card-title">{{title}}</h5>
+                    <a href="/movies/{{id}}" class="btn btn-info btn-block">Details</a>
+                        
+                </div>
+
             </div>
-        </div>
 
         {{/each}}
 
