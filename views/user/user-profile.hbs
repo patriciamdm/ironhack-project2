@@ -17,31 +17,37 @@
         </div>
         <div class="col-md-3">
             <a href="/profile/edit?id={{user.id}}" class="btn btn-info btn-block">Edit profile</a>
-            
-            <a href="/profile/delete?id={{user.id}}" class="btn btn-info btn-block">Delete account</a>
+
+            <a href="/profile/delete?id={{user.id}}" class="btn btn-danger btn-block">Delete account</a>
         </div>
     </article>
 
     <article class="row justify-content-center user-contents">
         <div class="col-md-4 user-columns">
-            <a href="/profile/watchlist?id={{user.id}}"><h5>Watchlist</h5></a>
+            <a href="/profile/watchlist?id={{user.id}}">
+                <h5>Watchlist</h5>
+            </a>
             <hr>
             <div id="user-watchlist">
 
             </div>
         </div>
         <div class="col-md-4 user-columns">
-            <a href="/profile/likes?id={{user.id}}"><h5>Likes</h5></a>
+            <a href="/profile/likes?id={{user.id}}">
+                <h5>Likes</h5>
+            </a>
             <hr>
             <div id="user-likes">
-            
+
             </div>
         </div>
         <div class="col-md-4 user-columns">
-            <a href="/profile/seen?id={{user.id}}"><h5>Seen</h5></a>
+            <a href="/profile/seen?id={{user.id}}">
+                <h5>Seen</h5>
+            </a>
             <hr>
             <div id="user-seen">
-            
+
             </div>
         </div>
     </article>

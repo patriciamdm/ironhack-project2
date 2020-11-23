@@ -17,7 +17,7 @@ const isNotLogged = (req) => req.isAuthenticated() === false
 
 router.get('/signup', (req, res) => res.render('auth/sign-up', { isNotLogged: isNotLogged(req) }))
 
-router.post('/signup', (req, res, next) => {
+router.post('/signup', (req, res) => {
     const { username, password, email, name, about, img } = req.body
 
     if (!username || !password) {

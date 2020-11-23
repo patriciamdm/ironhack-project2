@@ -1,15 +1,15 @@
 <section class="container">
     <article class="row justify-content-center">
-        <div class="col-md-3">
-            <img class="card-img-top" src='images/baby-driver-rory-hi-res.jpg' alt="serie image cap"
-                style="object-fit: cover; width: 100%;">
+        <div class="col-md-3 details">
+            <img class="card-img-top" src='images/baby-driver-rory-hi-res.jpg' alt="serie image cap">
         </div>
         <div class="col-md-8">
             <div class="card" style="width: 100%">
                 <div class="card-body">
-                    <h2 class="card-title">{{title}}</h2>
-                    <p class="card-text">Released: {{release_date}}</p>
-                    <p class="card-text">{{overview}}</p>
+                    <h2 class="card-title">{{movie.title}}</h2>
+                    <p class="card-text">Released: {{release_date.month}} {{release_date.day}}, {{release_date.year}}
+                    </p>
+                    <p class="card-text">{{movie.overview}}</p>
 
                 </div>
             </div>

@@ -23,28 +23,31 @@ const userSch = new Schema({
     img: String,
     watchlist: {
         movies: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Movie'
-    }], series: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Movie'
-    }]},
+            type: Schema.Types.ObjectId,
+            ref: 'Movie'
+        }], series: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Series'
+        }]
+    },
     seen: {
         movies: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Movie'
-    }], series: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Movie'
-    }]},
+            type: Schema.Types.ObjectId,
+            ref: 'Movie'
+        }], series: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Series'
+        }]
+    },
     likes: {
         movies: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Movie'
-    }], series: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Movie'
-    }]}
+            type: Schema.Types.ObjectId,
+            ref: 'Movie'
+        }], series: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Series'
+        }]
+    }
 }, { timestamps: true })
 
 module.exports = mongoose.model('User', userSch)

@@ -1,15 +1,16 @@
 <section class="container">
     <article class="row justify-content-center">
-        <div class="col-md-3">
-            <img class="card-img-top" src='https://image.tmdb.org/t/p/w300{{poster_path}}' alt="serie image cap"
-                style="object-fit: cover; width: 100%;">
+        <div class="col-md-3 details">
+            <img class="card-img-top" src='https://image.tmdb.org/t/p/w300{{serie.poster_path}}' alt="serie image cap">
         </div>
         <div class="col-md-8">
             <div class="card" style="width: 100%">
                 <div class="card-body">
-                    <h2 class="card-title">{{title}}</h2>
-                    <p class="card-text">Released: {{first_air_date}}</p>
-                    <p class="card-text">{{overview}}</p>
+                    <h2 class="card-title">{{serie.title}}</h2>
+                    <p class="card-text">Released: {{first_air_date.month}} {{first_air_date.day}},
+                        {{first_air_date.year}}
+                    </p>
+                    <p class="card-text">{{serie.overview}}</p>
                 </div>
             </div>
 

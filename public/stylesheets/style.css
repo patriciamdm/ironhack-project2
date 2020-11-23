@@ -37,4 +37,8 @@ a:hover {
   text-transform: uppercase;
   margin: 0 20px 0 0; }
 
+.details {
+  object-fit: cover;
+  width: 100%; }
+
 /*# sourceMappingURL=style.css.map */
