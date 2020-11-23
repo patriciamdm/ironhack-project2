@@ -7,8 +7,8 @@ Movie credits: https://api.themoviedb.org/3/movie/<movie_ID>/credits?api_key=<Yo
 
 
 --TV SHOWS--
-Movie: https://api.themoviedb.org/3/tv/<tv_id>?api_key=<Your APIkey>
-Movie credits: https://api.themoviedb.org/3/tv/<tv_id>/credits?api_key=<Your APIkey>
+Serie: https://api.themoviedb.org/3/tv/<tv_id>?api_key=<Your APIkey>
+Serie credits: https://api.themoviedb.org/3/tv/<tv_id>/credits?api_key=<Your APIkey>
 
 
 --ACTORS & DIRECTORS--
