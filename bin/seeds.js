@@ -28,39 +28,84 @@ mongoose.connect(`mongodb://localhost/${dbName}`)
 //     .catch(err => console.log(err))
 
 const movies = [{
-    title: "Schindler's List",
-    poster_path: "/lIv1QinFqz4dlp5U4lQ6HaiskOZ.jpg",
-    overview: "The true story of how businessman Oskar Schindler saved over a thousand Jewish lives from the Nazis while they worked as slaves in his factory during World War II.",
-    release_date: "1993-11-30",
-    vote_average: 8.6,
-    popularity: 35.3,
-    img: 'baby-driver-rory-hi-res.jpg'
+    genres: ["Drama"],
+    overview: `A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground "fight clubs" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.`,
+    popularity: 46.667,
+    poster_path: "/2z8mFQrT0ESSytWZqro1jsCbvCC.jpg",
+    release_date: "1999-10-15",
+    tagline: "Mischief. Mayhem. Soap.",
+    title: "Fight Club",
+    vote_average: 8.4,
 }, {
-    title: "The Godfather",
-    poster_path: "/lIv1QinFqz4dlp5U4lQ6HaiskOZ.jpg",
+    genres: ["Drama", "Crime"],
     overview: "Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch, Vito Corleone barely survives an attempt on his life, his youngest son, Michael steps in to take care of the would-be killers, launching a campaign of bloody revenge.",
+    popularity: 35.997,
+    poster_path: "/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
     release_date: "1972-03-14",
+    tagline: "An offer you can't refuse.",
+    title: "The Godfather",
     vote_average: 8.7,
-    popularity: 44.667,
-    img: 'baby-driver-rory-hi-res.jpg'
 },
 {
-    title: "Whiplash",
-    poster_path: "/lIv1QinFqz4dlp5U4lQ6HaiskOZ.jpg",
-    overview: "Under the direction of a ruthless instructor, a talented young drummer begins to pursue perfection at any cost, even his humanity.",
-    release_date: "2014-10-10",
-    vote_average: 8.29,
-    popularity: 10.776056,
-    img: 'baby-driver-rory-hi-res.jpg'
+    genres: ["Drama", "History", "War"],
+    overview: "The true story of how businessman Oskar Schindler saved over a thousand Jewish lives from the Nazis while they worked as slaves in his factory during World War II.",
+    popularity: 29.275,
+    poster_path: "/c8Ass7acuOe4za6DhSattE359gr.jpg",
+    release_date: "1993-11-30",
+    tagline: "Whoever saves one life, saves the world entire.",
+    title: "Schindler's List",
+    vote_average: 8.6,
 },
 {
-    title: "Spirited Away",
-    poster_path: "/lIv1QinFqz4dlp5U4lQ6HaiskOZ.jpg",
-    overview: "Spirited Away is an Oscar winning Japanese animated film about a ten year old girl who wanders away from her parents along a path that leads to a world ruled by strange and unusual monster-like animals. Her parents have been changed into pigs along with others inside a bathhouse full of these creatures. Will she ever see the world how it once was?",
+    genres: ["Romance", "Animation", "Drama"],
+    overview: "High schoolers Mitsuha and Taki are complete strangers living separate lives. But one night, they suddenly switch places. Mitsuha wakes up in Taki’s body, and he in hers. This bizarre occurrence continues to happen randomly, and the two must adjust their lives around each other.",
+    popularity: 126.853,
+    poster_path: "/q719jXXEzOoYaps6babgKnONONX.jpg",
+    release_date: "2016-08-26",
+    tagline: "",
+    title: "Your Name.",
+    vote_average: 8.6,
+},
+{
+    genres: ["Animation", "Family", "Fantasy"],
+    overview: "A young girl, Chihiro, becomes trapped in a strange new world of spirits. When her parents undergo a mysterious transformation, she must call upon the courage she never knew she had to free her family.",
+    popularity: 54.698,
+    poster_path: "/eO4NHOsitcVpRw0kolJRLxXdxa2.jpg",
     release_date: "2001-07-20",
-    vote_average: 8.15,
-    popularity: 10.776056,
-    img: 'baby-driver-rory-hi-res.jpg'
+    tagline: "",
+    title: "Spirited Away",
+    vote_average: 8.5,
+},
+{
+    genres: ["Thriller", "Crime"],
+    overview: "A burger-loving hit man, his philosophical partner, a drug-addled gangster's moll and a washed-up boxer converge in this sprawling, comedic crime caper. Their adventures unfurl in three stories that ingeniously trip back and forth in time.",
+    popularity: 37.718,
+    poster_path: "/dRZpdpKLgN9nk57zggJCs1TjJb4.jpg",
+    release_date: "1994-09-10",
+    tagline: "Just because you are a character doesn't mean you have character.",
+    title: "Pulp Fiction",
+    vote_average: 8.5,
+},
+{
+    genres: ["Comedy", "Drama", "Romance"],
+    overview: "A man with a low IQ has accomplished great things in his life and been present during significant historic events—in each case, far exceeding what anyone imagined he could do. But despite all he has achieved, his one true love eludes him.",
+    popularity: 48.644,
+    poster_path: "/clolk7rB5lAjs41SD0Vt6IXYLMm.jpg",
+    release_date: "1994-07-06",
+    tagline: "Life is like a box of chocolates...you never know what you're gonna get.",
+    title: "Forrest Gump",
+    vote_average: 8.5,
+},
+{
+    genres: ["Adventure", "Fantasy", "Action"],
+    overview: "Aragorn is revealed as the heir to the ancient kings as he, Gandalf and the other members of the broken fellowship struggle to save Gondor from Sauron's forces. Meanwhile, Frodo and Sam take the ring closer to the heart of Mordor, the dark lord's realm.",
+    popularity: 48.865,
+    poster_path: "/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg",
+    release_date: "2003-12-01",
+    tagline: "The eye of the enemy is moving.",
+    title: "The Lord of the Rings: The Return of the King",
+    vote_average: 8.5,
+
 }]
 
 
@@ -77,31 +122,110 @@ Movie.create(movies)
 
 const Serie = require('../models/series.model')
 
-const series = [{
-    title: "Game of Thrones",
-    poster_path: "/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg",
-    overview: "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and icy horrors beyond.",
-    first_air_date: "2011-04-17",
-    vote_average: 4.8,
-    popularity: 369.59,
-    img: 'baby-driver-rory-hi-res.jpg'
-}, {
-    title: "Shark",
-    poster_path: "/pBUzdT8840AATvyZ7HdPz8Z9evt.jpg",
-    overview: "Notorious Los Angeles defense attorney Sebastian Stark becomes disillusioned with his career after his successful defense of a wife-abuser results in the wife's death. After more than a month trying to come to grips with his situation, he is invited by the Los Angeles district attorney to become a public prosecutor so he can apply his unorthodox-but-effective talents to putting guilty people away instead of putting them back on the street.",
-    first_air_date: "2006-09-21",
-    vote_average: 0,
-    popularity: 0,
-    img: 'baby-driver-rory-hi-res.jpg'
-}, {
-    title: "Hope and Glory",
-    poster_path: "/9pJfV7chUj5zyqfzfd9UHXBk1vJ.jpg",
-    overview: `Hope and Glory is a BBC television drama about a comprehensive school struggling with financial, staffing and disciplinary problems, and faced with closure. It starred Lenny Henry as maverick "Superhead" Ian George, enlisted to turn around the school's fortunes. It was created by Lucy Gannon, who had previously created Soldier Soldier, and was inspired by a real head teacher named William Atkinson.`,
-    release_date: "1972-03-14",
-    vote_average: 6.7,
-    popularity: 25.5,
-    img: 'baby-driver-rory-hi-res.jpg'
-}]
+const series = [
+    {
+        first_air_date: "2019-11-12",
+        genres: ["Sci-Fi & Fantasy", "Action & Adventure", "Western"],
+        name: "The Mandalorian",
+        number_of_episodes: 16,
+        number_of_seasons: 2,
+        overview: "After the fall of the Galactic Empire, lawlessness has spread throughout the galaxy. A lone gunfighter makes his way through the outer reaches, earning his keep as a bounty hunter.",
+        popularity: 1844.008,
+        poster_path: "/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg",
+        tagline: "Bounty hunting is a complicated profession.",
+        vote_average: 8.5
+    },
+    {
+        first_air_date: "2011-04-17",
+        genres: ["Sci-Fi & Fantasy", "Drama", "Action & Adventure", "Mystery"],
+        name: "Game of Thrones",
+        number_of_episodes: 73,
+        number_of_seasons: 8,
+        overview: "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and icy horrors beyond.",
+        popularity: 312.963,
+        poster_path: "/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg",
+        tagline: "Winter Is Coming",
+        vote_average: 8.3
+    },
+    {
+        first_air_date: "2017-01-26",
+        genres: ["Drama", "Mystery"],
+        name: "Riverdale",
+        number_of_episodes: 80,
+        number_of_seasons: 5,
+        overview: "Set in the present, the series offers a bold, subversive take on Archie, Betty, Veronica and their friends, exploring the surreality of small-town life, the darkness and weirdness bubbling beneath Riverdale’s wholesome facade.",
+        popularity: 334.118,
+        poster_path: "/4X7o1ssOEvp4BFLim1AZmPNcYbU.jpg",
+        tagline: "Small town. Big secrets.",
+        vote_average: 8.6,
+        vote_count: 6717
+    },
+
+    {
+        first_air_date: "1989-12-16",
+        genres: ["Animation", "Comedy", "Family", "Drama"],
+        name: "The Simpsons",
+        number_of_episodes: 694,
+        number_of_seasons: 32,
+        overview: "Set in Springfield, the average American town, the show focuses on the antics and everyday adventures of the Simpson family; Homer, Marge, Bart, Lisa and Maggie, as well as a virtual cast of thousands. Since the beginning, the series has been a pop culture icon, attracting hundreds of celebrities to guest star. The show has also made name for itself in its fearless satirical take on politics, media and American life in general.",
+        popularity: 337.656,
+        poster_path: "/2IWouZK4gkgHhJa3oyYuSWfSqbG.jpg",
+        tagline: "On your marks, get set, d'oh!",
+        vote_average: 7.7
+
+    },
+    {
+        first_air_date: "2014-01-08",
+        genres: ["Crime", "Drama"],
+        name: "Chicago P.D.",
+        number_of_episodes: 150,
+        number_of_seasons: 8,
+        overview: "A riveting police drama about the men and women of the Chicago Police Department's District 21 who put it all on the line to serve and protect their community. District 21 is made up of two distinctly different groups: the uniformed cops who patrol the beat and go head-to-head with the city's street crimes and the Intelligence Unit that combats the city's major offenses - organized crime, drug trafficking, high profile murders and beyond.",
+        popularity: 339.398,
+        poster_path: "/OlPR1kctwXzSUJQkZINDDhNlHV.jpg",
+        tagline: "Break the rules. Not the law.",
+        vote_average: 8.2,
+    },
+    {
+        first_air_date: "2019-07-25",
+        genres: ["Sci-Fi & Fantasy", "Action & Adventure"],
+        homepage: "https://www.amazon.com/dp/B0875L45GK",
+        name: "The Boys",
+        number_of_episodes: 16,
+        number_of_seasons: 2,
+        overview: "A group of vigilantes known informally as “The Boys” set out to take down corrupt superheroes with no more than blue-collar grit and a willingness to fight dirty.",
+        popularity: 437.488,
+        poster_path: "/mY7SeH4HFFxW1hiI6cWuwCRKptN.jpg",
+        tagline: "Never meet your heroes.",
+        vote_average: 8.4
+    },
+    {
+
+        first_air_date: "2020-10-23",
+        genres: ["Drama"],
+        name: "The Queen's Gambit",
+        number_of_episodes: 7,
+        number_of_seasons: 1,
+        overview: "In a Kentucky orphanage in the 1950s, a young girl discovers an astonishing talent for chess while struggling with addiction.",
+        popularity: 486.13,
+        poster_path: "/zU0htwkhNvBQdVSIKB9s6hgVeFK.jpg",
+        tagline: "",
+        vote_average: 8.8,
+
+    },
+    {
+        first_air_date: "2019-02-15",
+        genres: ["Action & Adventure", "Sci-Fi & Fantasy", "Comedy", "Drama"],
+        name: "The Umbrella Academy",
+        number_of_episodes: 20,
+        number_of_seasons: 2,
+        overview: "A dysfunctional family of superheroes comes together to solve the mystery of their father's death, the threat of the apocalypse and more.",
+        popularity: 364.209,
+        poster_path: "/scZlQQYnDVlnpxFTxaIv2g0BWnL.jpg",
+        tagline: "Super. Dysfunctional. Family.",
+        vote_average: 8.7,
+    }
+]
 
 
 Serie.create(series)
@@ -124,7 +248,6 @@ const people = [{
     place_of_birth: "Boston, Massachusetts, USA",
     popularity: 7.405,
     known_for_department: "Acting",
-    img: 'personimg.png'
 },
 {
     name: "Brad Pitt",
@@ -135,7 +258,6 @@ const people = [{
     place_of_birth: "Shawnee, Oklahoma, USA",
     popularity: 19.908,
     known_for_department: "Acting",
-    img: 'personimg.png'
 },
 {
     name: "Helena Bonham Carter",
@@ -146,7 +268,6 @@ const people = [{
     place_of_birth: "Golders Green, London, England, UK",
     popularity: 11.722,
     known_for_department: "Acting",
-    img: 'personimg.png'
 },
 {
     name: "Jared Leto",
@@ -157,8 +278,48 @@ const people = [{
     place_of_birth: "Bossier City, Louisiana, USA",
     popularity: 3.156,
     known_for_department: "Acting",
-    img: 'personimg.png'
 },
+{
+    biography: "Thomas Jeffrey Hanks (born July 9, 1956) is an American actor and filmmaker. Known for both his comedic and dramatic roles, Hanks is one of the most popular and recognizable film stars worldwide, and is widely regarded as an American cultural icon. Hanks made his breakthrough with leading roles in the comedies Splash (1984) and Big (1988). He won two consecutive Academy Awards for Best Actor for starring as a gay lawyer suffering from AIDS in Philadelphia (1993) and a young man with below-average IQ in Forrest Gump (1994). Hanks collaborated with film director Steven Spielberg on five films: Saving Private Ryan (1998), Catch Me If You Can (2002), The Terminal (2004), Bridge of Spies (2015), and The Post (2017), as well as the 2001 miniseries Band of Brothers, which launched him as a director, producer, and screenwriter. Hanks' other notable films include the romantic comedies Sleepless in Seattle (1993) and You've Got Mail (1998); the dramas Apollo 13 (1995), The Green Mile (1999), Cast Away (2000), Road to Perdition (2002), and Cloud Atlas (2012); and the biographical dramas Saving Mr. Banks (2013), Captain Phillips (2013), Sully (2016), and A Beautiful Day in the Neighborhood (2019). He has also appeared as the title character in the Robert Langdon film series, and has voiced Sheriff Woody in the Toy Story film series. Description above from the Wikipedia article Tom Hanks, licensed under CC-BY-SA, full list of contributors on Wikipedia.",
+    birthday: "1956-07-09",
+    deathday: null,
+    known_for_department: "Acting",
+    name: "Tom Hanks",
+    place_of_birth: "Concord, California, USA",
+    popularity: 17.864,
+    profile_path: "/xndWFsBlClOJFRdhSt4NBwiPq2o.jpg"
+},
+{
+    biography: "Robin Gayle Wright (born April 8, 1966) is an American actress. She is best known for her roles as Jenny Curran in Forrest Gump, as Buttercup in The Princess Bride, and as Mary Surratt in The Conspirator. She has also been credited as Robin Wright Penn.",
+    birthday: "1966-04-08",
+    deathday: null,
+    known_for_department: "Acting",
+    name: "Robin Wright",
+    place_of_birth: "Dallas, Texas, USA",
+    popularity: 7.146,
+    profile_path: "/3IvlZd2PpT3Tuxy8lr6ymWLyoNU.jpg"
+},
+{
+    biography: "Margot Elise Robbie (born 2 July 1990) is an Australian actress and film producer. She has received nominations for two Academy Awards and five BAFTA Awards. In 2017, Time magazine named her one of the 100 most influential people in the world and in 2019 she was ranked among the world's highest-paid actresses. Robbie studied drama at Somerset College and began her career in Australian independent films in the late 2000s, before working in the soap opera Neighbours (2008–2011). After moving to America, she starred in the ABC drama series Pan Am (2011–2012) and had her breakthrough role in Martin Scorsese's black comedy film The Wolf of Wall Street (2013). Robbie's profile continued to grow with starring roles as a grifter in Focus (2015), Jane Porter in The Legend of Tarzan (2016), and Harley Quinn in the DC Extended Universe, beginning with Suicide Squad (2016). Robbie gained critical praise and nominations for the BAFTA Award and Academy Award for Best Actress for portraying the disgraced figure skater Tonya Harding in the biopic I, Tonya (2017). This acclaim continued for her roles as Queen Elizabeth I in the period drama Mary Queen of Scots (2018), Sharon Tate in the comedy-drama Once Upon a Time in Hollywood (2019), and a fictional Fox News employee in the drama Bombshell (2019). She received BAFTA Award nominations for all three and a nomination for the Academy Award for Best Supporting Actress for the lattermost. Robbie is married to the filmmaker Tom Ackerley. They are among the founders of the production company LuckyChap Entertainment, under which she has produced some of her own films, as well as the television series Dollface (2019).",
+    birthday: "1990-07-02",
+    deathday: null,
+    known_for_department: "Acting",
+    name: "Margot Robbie",
+    place_of_birth: "Dalby, Queensland, Australia",
+    popularity: 19.193,
+    profile_path: "/pbSz7d1aURy88HGzFWng5EoFU81.jpg"
+},
+{
+    biography: `Willard Christopher "Will" Smith, Jr. (born September 25, 1968) is an American actor, film producer and pop rapper. He has enjoyed success in music, television and film. In April 2007, Newsweek called him the most powerful actor on the planet. Smith has been nominated for four Golden Globe Awards, two Academy Awards, and has won multiple Grammy Awards. In the late 1980s, Smith achieved modest fame as a rapper under the name The Fresh Prince. In 1990, his popularity increased dramatically when he starred in the popular television series The Fresh Prince of Bel-Air. The show ran for nearly six years (1990–1996) on NBC and has been syndicated consistently on various networks since then. In the mid-1990s, Smith transitioned from television to film, and ultimately starred in numerous blockbuster films that received broad box office success. In fact, he is the only actor in history to have eight consecutive films gross over $100 million in the domestic box office as well as being the only actor to have eight consecutive films in which he starred open at the #1 spot in the domestic box office tally. Fourteen of the 19 fiction films he has acted in have accumulated worldwide gross earnings of over $100 million, and 4 of them took in over $500 million in global box office receipts. His most financially successful films have been Bad Boys, Bad Boys II, Independence Day, Men in Black, Men in Black II, I, Robot, The Pursuit of Happyness, I Am Legend, Hancock, Wild Wild West, Enemy of the State, Shark Tale, Hitch, and Seven Pounds. He also earned critical praise for his performances in Six Degrees of Separation, Ali, and The Pursuit of Happyness, receiving Best Actor Oscar nominations for the latter two.`,
+    birthday: "1968-09-25",
+    deathday: null,
+    known_for_department: "Acting",
+    name: "Will Smith",
+    place_of_birth: "Philadelphia, Pennsylvania, USA ",
+    popularity: 29.338,
+    profile_path: "/eze9FO9VuryXLP0aF2cRqPCcibN.jpg"
+},
+//DIRECTORS
 {
     name: "David Fincher",
     profile_path: "/wdBeQXDNbbjkIKXHeEZtQShwSDM.jpg",
@@ -168,7 +329,7 @@ const people = [{
     place_of_birth: "Denver, Colorado, USA",
     popularity: 5.091,
     known_for_department: "Directing",
-    img: 'personimg.png'
+    job: 'director'
 },
 {
     name: "Stanley Kubrick",
@@ -179,19 +340,79 @@ const people = [{
     place_of_birth: "Manhattan, New York, USA",
     popularity: 3.41,
     known_for_department: "Directing",
-    img: 'personimg.png'
+    job: 'director'
+
 },
 {
-    name: "D. A. Pennebaker",
-    profile_path: "/ck0VifZWw8Z0mOR7Usx3LlmuSX9.jpg",
-    birthday: "1904-11-12",
-    deathday: "1977-12-19",
-    biography: "Donn Alan Pennebaker (July 15, 1925 – August 1, 2019) was an American documentary filmmaker.",
-    place_of_birth: "Evanston, Illinois, USA",
-    popularity: 1.456,
+    biography: `Robert Lee Zemeckis (born May 14, 1952) is an American film director, producer and screenwriter. Zemeckis first came to public attention in the 1980s as the director of the comedic time-travel Back to the Future film series, as well as the Academy Award-winning live-action/animation epic Who Framed Roger Rabbit (1988), though in the 1990s he diversified into more dramatic fare, including 1994's Forrest Gump, for which he won an Academy Award for Best Director. His films are characterized by an interest in state-of-the-art special effects, including the early use of match moving in Back to the Future Part II (1989) and the pioneering performance capture techniques seen in The Polar Express (2004), Beowulf (2007) and A Christmas Carol (2009). Though Zemeckis has often been pigeonholed as a director interested only in effects, his work has been defended by several critics, including David Thomson, who wrote that "No other contemporary director has used special effects to more dramatic and narrative purpose.`,
+    birthday: "1952-05-14",
+    deathday: null,
     known_for_department: "Directing",
-    img: 'personimg.png'
+    name: "Robert Zemeckis",
+    place_of_birth: "Chicago, Illinois, USA ",
+    popularity: 1.985,
+    profile_path: "/lPYDQ5LYNJ12rJZENtyASmVZ1Ql.jpg",
+    job: 'director'
 },
+{
+
+    biography: `Frank Darabont (born January 28, 1959) is a Hungarian-American film director, screenwriter and producer who has been nominated for three Academy Awards and a Golden Globe. He was born in France by Hungarian parents who fled Budapest during the 1956 uprising, but the family moved to Los Angeles while he was still an infant. He has directed the films The Shawshank Redemption, The Green Mile, and The Mist, all based on stories by Stephen King. In 2010 he developed and executive produced the first season of the AMC network television series The Walking Dead. Description above from the Wikipedia article Frank Darabont, licensed under CC-BY-SA, full list of contributors on Wikipedia.`,
+    birthday: "1959-01-28",
+    deathday: null,
+    known_for_department: "Directing",
+    name: "Frank Darabont",
+    place_of_birth: "Montbéliard, Doubs, France",
+    popularity: 3.689,
+    profile_path: "/wmUGB2vPuYQKPWNrK24SonBtyJY.jpg",
+    job: 'director'
+},
+{
+    biography: "James Cameron was born in Kapuskasing, Ontario, Canada, on August 16, 1954. He moved to the USA in 1971. The son of an engineer, he majored in physics at California State University but, after graduating, drove a truck to support his screen-writing ambition. He landed his first professional film job as art director, miniature-set builder, and process-projection supervisor on Roger Corman's Battle Beyond the Stars (1980) and debuted as a director with Piranha Part Two: The Spawning (1981) the following year. In 1984, he wrote and directed The Terminator (1984), a futuristic action-thriller starring Arnold Schwarzenegger, Michael Biehn, and Linda Hamilton. It was a huge success. After this came a string of successful science-fiction action films such as Aliens (1986) and Terminator 2: Judgment Day (1991). Cameron is now one of the most sought-after directors in Hollywood. He was formerly married to producer Gale Anne Hurd, who produced several of his films. He married Kathryn Bigelow in 1989.",
+    birthday: "1954-08-16",
+    deathday: null,
+    known_for_department: "Directing",
+    name: "James Cameron",
+    place_of_birth: "Kapuskasing, Ontario, Canada",
+    popularity: 3.166,
+    profile_path: "/9NAZnTjBQ9WcXAQEzZpKy4vdQto.jpg",
+    job: 'director'
+},
+{
+    biography: "Quentin Jerome Tarantino (born March 27, 1963) is an American film director, screenwriter, producer, cinematographer and actor. In the early 1990s he was an independent filmmaker whose films used nonlinear storylines and aestheticization of violence. His films have earned him a variety of Academy Award, Golden Globe, BAFTA and Palme d'Or Awards and he has been nominated for Emmy and Grammy Awards. In 2007, Total Film named him the 12th-greatest director of all time. Tarantino was born in Knoxville, Tennessee, the son of Connie McHugh Tarantino Zastoupil, a health care executive and nurse born in Knoxville, and Tony Tarantino, an actor and amateur musician born in Queens, New York. Tarantino's mother allowed him to quit school at age 17, to attend an acting class full time. Tarantino gave up acting while attending the acting school, saying that he admired directors more than actors. Tarantino also worked in a video rental store before becoming a filmmaker, paid close attention to the types of films people liked to rent, and has cited that experience as inspiration for his directorial career. Tarantino has been romantically linked with numerous entertainers, including actress Mira Sorvino, directors Allison Anders and Sofia Coppola, actresses Julie Dreyfus and Shar Jackson and comedians Kathy Griffin and Margaret Cho. He has never married and has no children. Description above from the Wikipedia article Quentin Tarantino, licensed under CC-BY-SA, full list of contributors on Wikipedia.",
+    birthday: "1963-03-27",
+    deathday: null,
+    known_for_department: "Directing",
+    name: "Quentin Tarantino",
+    place_of_birth: "Knoxville, Tennessee, USA",
+    popularity: 8.093,
+    profile_path: "/1gjcpAa99FAOWGnrUvHEXXsRs7o.jpg",
+    job: 'director'
+},
+{
+    biography: "David Ayer (born January 18, 1968) is an American film director, producer and screenwriter. He is best known for being the writer of Training Day (2001) and the director of Harsh Times (2005), Street Kings (2008), End of Watch (2012), Sabotage (2014), Fury (2014), Suicide Squad (2016) and Bright (2017). Description above from the Wikipedia article  David Ayer, licensed under CC-BY-SA, full list of contributors on Wikipedia.",
+    birthday: "1968-01-18",
+    deathday: null,
+    known_for_department: "Directing",
+    name: "David Ayer",
+    place_of_birth: "Champaign, Illinois, USA",
+    popularity: 1.31,
+    profile_path: "/2oBT2jQbsV8IWPMr3Cm87YBJxGu.jpg",
+    job: 'director'
+},
+{
+    biography: `Alejandro González Iñárritu (American Spanish: [aleˈxandɾo gonˈsales iˈɲaritu]; credited since 2014 as Alejandro G. Iñárritu; born August 15, 1963) is a Mexican film director, producer and screenwriter. He is the first Mexican director to be nominated for the Academy Award for Best Director and the Directors Guild of America Award for Outstanding Directing, for Babel (2007). Iñárritu's six feature films—Amores perros (2000), 21 Grams (2003), Babel (2006) (comprising the "Death Trilogy"), Biutiful (2010), Birdman or (The Unexpected Virtue of Ignorance) (2014), and The Revenant (2015)—have garnered critical acclaim and numerous accolades, including Academy Award nominations and wins. In 2015, Iñárritu won the Academy Award for Best Director, Best Original Screenplay, and Best Picture for Birdman. The following year, he won the Academy Award for Best Director for The Revenant, making him the third director to win back to back Academy Awards, and the first since 1950. He is friends with fellow Mexican directors Guillermo del Toro and Alfonso Cuarón, collectively known as "The Three Amigos of Cinema."`,
+    birthday: "1963-08-15",
+    deathday: null,
+    gender: 2,
+    known_for_department: "Directing",
+    name: "Alejandro González Iñárritu",
+    place_of_birth: "Mexico City, Distrito Federal, Mexico",
+    popularity: 1.824,
+    profile_path: "/qWrltG9e0ssM3Y9pF86EAgteKHu.jpg",
+    job: 'director'
+}
+
+
 ]
 
 

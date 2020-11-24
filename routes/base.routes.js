@@ -5,9 +5,11 @@ const Movie = require('../models/movie.model')
 const Series = require('../models/series.model.js')
 const Person = require('../models/person.model.js')
 const User = require('../models/user.model')
+const axios = require('axios')
 
-
-//const apiHandler = new APIhandler();
+const apiHandler = axios.create({
+    baseURL: "https://api.themoviedb.org/3"
+})
 
 
 
@@ -28,8 +30,8 @@ router.get('/', (req, res) => res.render('index', { isLogged: isLogged(req), isN
 router.get('/movies', (req, res, next) => {
 
     // apiHandler
-    //     .getTopRatedMovies()
-    //     .then(allMovies => res.render('data/movies', { allMovies, isLogged: isLogged(req), isNotLogged: isNotLogged(req) }))
+    //     .get(`/movie/top_rated?api_key=95ad659b54a1464fdb415db2270f7402`)
+    //     .then(allMovies => console.log(allMovies.data.results))
     //     .catch(err => next(err))
 
     Movie
@@ -59,6 +61,7 @@ router.get('/movies/:id', (req, res, next) => {
 
 
 router.post('/movies/:id', (req, res, next) => {
+
     // User
     //     .findById(req.user.id)
     //     .then(user => {
@@ -73,7 +76,7 @@ router.post('/movies/:id', (req, res, next) => {
     //         res.redirect(`/movies/${req.params.id}`)
     //     })
     //     .catch(err => next(err))
-                    
+
     const userId = req.user.id
     const newItem = req.params.id
 
@@ -82,13 +85,13 @@ router.post('/movies/:id', (req, res, next) => {
         //     .findByIdAndUpdate(userId, { "user.watchlist": { $push: { movies: req.params.id } } }, { new: true })
         //     .then(user => console.log(user))
         //     .catch(err => next(err))
-        
+
         // Usern
         //     .findById(userId)
         //     .then(user => {
-                
+
         //         const [newItem, ...movies] = req.user.watchlist.movies;
-                
+
         //         console.log('The user then:', {movies},  user)
         //     })
         //     .catch(err => next(err))

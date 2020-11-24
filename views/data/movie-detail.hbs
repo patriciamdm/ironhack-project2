@@ -1,9 +1,9 @@
 <section class="container">
     <article class="row justify-content-center">
         <div class="col-md-3 details">
-            <img class="card-img-top" src="#" alt="serie image cap" 
-                style="object-fit: cover; width: 100%;">
-                {{!-- src="images/{{thisMovie.img}}" --}}
+            <img class="card-img-top" src='https://image.tmdb.org/t/p/w300{{thisMovie.poster_path}}'
+                alt="serie image cap" style="object-fit: cover; width: 100%;">
+            {{!-- src="images/{{thisMovie.img}}" --}}
         </div>
         <div class="col-md-8">
             <div class="card" style="width: 100%">
@@ -16,24 +16,24 @@
         </div>
 
         {{#if isLogged}}
-            <div class="col-md-1">
-            
-                <form action="/movies/{{thisMovie.id}}?add=watchlist" method="POST">
-                    <button id="btn-watchlist" type="submit" class="btn btn-info btn-block" data-toggle="button"
-                        aria-pressed="false">WL</button>
-                </form>
-                <br>
-                <form action="/movies/{{thisMovie.id}}?add=likes" method="POST">
-                    <button id="btn-like" type="submit" class="btn btn-info btn-block" data-toggle="button"
-                        aria-pressed="false">Like</button>
-                </form>
-                <br>
-                <form action="/movies/{{thisMovie.id}}?add=seen" method="POST">
-                    <button id="btn-seen" type="submit" class="btn btn-info btn-block" data-toggle="button"
-                        aria-pressed="false">Seen</button>
-                </form>
-            
-            </div>
+        <div class="col-md-1">
+
+            <form action="/movies/{{thisMovie.id}}?add=watchlist" method="POST">
+                <button id="btn-watchlist" type="submit" class="btn btn-info btn-block" data-toggle="button"
+                    aria-pressed="false">WL</button>
+            </form>
+            <br>
+            <form action="/movies/{{thisMovie.id}}?add=likes" method="POST">
+                <button id="btn-like" type="submit" class="btn btn-info btn-block" data-toggle="button"
+                    aria-pressed="false">Like</button>
+            </form>
+            <br>
+            <form action="/movies/{{thisMovie.id}}?add=seen" method="POST">
+                <button id="btn-seen" type="submit" class="btn btn-info btn-block" data-toggle="button"
+                    aria-pressed="false">Seen</button>
+            </form>
+
+        </div>
         {{/if}}
     </article>
 

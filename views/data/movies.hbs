@@ -6,19 +6,19 @@
 
         {{#each allMovies}}
 
-            <div class="card" style="width: 14rem; margin: 25px;">
+        <div class="card" style="width: 14rem; margin: 25px;">
 
-                <img class="card-img-top" src='images/baby-driver-rory-hi-res.jpg' alt="serie image cap"
-                    style="object-fit: cover; width: 100%;">
+            <img class="card-img-top" src='https://image.tmdb.org/t/p/w300{{poster_path}}' alt="serie image cap"
+                style="object-fit: cover; width: 100%;">
 
-                <div class="card-body" style="text-align: center">
+            <div class="card-body" style="text-align: center">
 
-                    <h5 class="card-title">{{title}}</h5>
-                    <a href="/movies/{{id}}" class="btn btn-info btn-block">Details</a>
-                        
-                </div>
+                <h5 class="card-title">{{title}}</h5>
+                <a href="/movies/{{id}}" class="btn btn-info btn-block">Details</a>
 
             </div>
+
+        </div>
 
         {{/each}}
 

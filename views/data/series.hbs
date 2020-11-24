@@ -6,18 +6,19 @@
 
         {{#each allSeries}}
 
-            <div class="card" style="width: 15rem; margin: 25px;">
+        <div class="card" style="width: 14rem; margin: 25px;">
 
-                <img class="card-img-top" src='https://image.tmdb.org/t/p/w300{{poster_path}}' alt="serie image cap" style="object-fit: cover; width: 100%;">
-               
-                <div class="card-body" style="text-align: center">
+            <img class="card-img-top" src='https://image.tmdb.org/t/p/w300{{poster_path}}' alt="serie image cap"
+                style="object-fit: cover; width: 100%;">
 
-                    <h5 class="card-title">{{title}}</h5>
-                    <a href="/series/{{id}}" class="btn btn-info btn-block">Details</a>
-                    
-                </div>
+            <div class="card-body" style="text-align: center">
+
+                <h5 class="card-title">{{title}}</h5>
+                <a href="/series/{{id}}" class="btn btn-info btn-block">Details</a>
 
             </div>
+
+        </div>
 
         {{/each}}
 
