@@ -30,17 +30,26 @@
             </div>
         </div>
 
-        {{!-- <div class="col-md-1">
-                    <button id="btn-watchlist" type="button" class="btn btn-info btn-block" data-toggle="button" aria-pressed="false">
-                        WL
-                    </button>
-                    <button id="btn-like" type="button" class="btn btn-info btn-block" data-toggle="button" aria-pressed="false">
-                        Like
-                    </button>
-                    <button id="btn-seen" type="button" class="btn btn-info btn-block" data-toggle="button" aria-pressed="false">
-                        Seen
-                    </button>
-                </div> --}}
+        {{#if isLogged}}
+        <div class="col-md-1">
+
+            <form action="/series/{{thisSerie.id}}?add=watchlist" method="POST">
+                <button id="btn-watchlist" type="submit" class="btn btn-info btn-block" data-toggle="button"
+                    aria-pressed="false"><i class="fas fa-plus"></i></button>
+            </form>
+            <br>
+            <form action="/series/{{thisSerie.id}}?add=likes" method="POST">
+                <button id="btn-like" type="submit" class="btn btn-info btn-block" data-toggle="button"
+                    aria-pressed="false"><i class="far fa-heart"></i></button>
+            </form>
+            <br>
+            <form action="/series/{{thisSerie.id}}?add=seen" method="POST">
+                <button id="btn-seen" type="submit" class="btn btn-info btn-block" data-toggle="button"
+                    aria-pressed="false"><i class="fas fa-check"></button>
+            </form>
+
+        </div>
+        {{/if}}
 
     </article>
 

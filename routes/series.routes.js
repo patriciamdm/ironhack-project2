@@ -1,12 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
-const Movie = require('../models/movie.model')
 const Series = require('../models/series.model.js')
-const Person = require('../models/person.model.js')
 const User = require('../models/user.model')
-const axios = require('axios')
 
+const axios = require('axios')
 const apiHandler = axios.create({
     baseURL: "https://api.themoviedb.org/3"
 })
@@ -17,7 +15,10 @@ const isLogged = (req) => req.isAuthenticated() === true
 const isNotLogged = (req) => req.isAuthenticated() === false
 
 
-// SERIES
+
+
+
+// ALL SERIES INDEX
 
 router.get('/', (req, res, next) => {
 
@@ -36,7 +37,10 @@ router.get('/', (req, res, next) => {
     //     .catch(err => next(err))
 })
 
-// SERIE DETAILS
+
+
+
+// INDIVIDUAL SERIES DETAILS
 
 router.get('/:id', (req, res, next) => {
 
@@ -91,7 +95,40 @@ router.get('/:id', (req, res, next) => {
 
 
 
+// ADD SERIES TO USER'S LISTS
+
+router.post('/:id', (req, res, next) => {
+    const seriesWL = req.user.watchlist.series
+    const seriesSN = req.user.seen.series
+    const seriesLK = req.user.likes.series
+
+    if (req.query.add === 'watchlist') {
+        let newList = [...seriesWL, req.params.id]
+
+        User
+            .findByIdAndUpdate(req.user.id, { "watchlist.series": newList })
+            .then(() => res.redirect('/series'))
+            .catch(err => next(err))
+        
+    } else if (req.query.add === 'seen') {
+        let newList = [...seriesSN, req.params.id]
+
+        User
+            .findByIdAndUpdate(req.user.id, { "seen.series": newList })
+            .then(() => res.redirect('/series'))
+            .catch(err => next(err))
+        
+    } else if (req.query.add === 'likes') {
+        let newList = [...seriesLK, req.params.id]
+
+        User
+            .findByIdAndUpdate(req.user.id, { "likes.series": newList })
+            .then(() => res.redirect('/series'))
+            .catch(err => next(err))
+    }
+})
+
+
 
 
 module.exports = router
-
