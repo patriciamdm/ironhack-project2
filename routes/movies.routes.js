@@ -2,11 +2,9 @@ const express = require('express')
 const router = express.Router()
 
 const Movie = require('../models/movie.model')
-const Series = require('../models/series.model.js')
-const Person = require('../models/person.model.js')
 const User = require('../models/user.model')
-const axios = require('axios')
 
+const axios = require('axios')
 const apiHandler = axios.create({
     baseURL: "https://api.themoviedb.org/3"
 })
@@ -19,12 +17,8 @@ const isNotLogged = (req) => req.isAuthenticated() === false
 
 
 
+// ALL MOVIES INDEX
 
-
-
-
-
-// MOVIES
 router.get('/', (req, res, next) => {
 
     // apiHandler
@@ -40,7 +34,9 @@ router.get('/', (req, res, next) => {
 })
 
 
-// MOVIE DETAILS
+
+
+// INDIVIDUAL MOVIE DETAILS
 
 router.get('/:id', (req, res, next) => {
     Movie
@@ -58,59 +54,40 @@ router.get('/:id', (req, res, next) => {
 })
 
 
-router.post('/:movie_id', (req, res, next) => {
 
-    // User
-    //     .findById(req.user.id)
-    //     .then(user => {
-    //         if (req.query.add === 'watchlist') {
-    //             user.watchlist.movies.push(req.params.movie_id)
-    //         } else if (req.query.add === 'likes') {
-    //             user.likes.movies.push(req.params.movie_id)
-    //         } else if (req.query.add === 'seen') {
-    //             user.seen.movies.push(req.params.movie_id)
-    //         }
-    //         console.log(user)
-    //         res.redirect(`/movies/${req.params.movie_id}`)
-    //     })
-    //     .catch(err => next(err))
 
-    const userId = req.user.id
-    const newItem = req.params.movie_id
+// ADD MOVIE TO USER'S LISTS
+
+router.post('/:id', (req, res, next) => {
+    const moviesWL = req.user.watchlist.movies
+    const moviesSN = req.user.seen.movies
+    const moviesLK = req.user.likes.movies
 
     if (req.query.add === 'watchlist') {
-        // User
-        //     .findByIdAndUpdate(userId, { "user.watchlist": { $push: { movies: req.params.id } } }, { new: true })
-        //     .then(user => console.log(user))
-        //     .catch(err => next(err))
+        let newList = [...moviesWL, req.params.id]
 
-        // Usern
-        //     .findById(userId)
-        //     .then(user => {
-
-        //         const [newItem, ...movies] = req.user.watchlist.movies;
-
-        //         console.log('The user then:', {movies},  user)
-        //     })
-        //     .catch(err => next(err))
-
-        console.log('NADA FUNCIONA', req.query.add, 'USER', req.user)
-
-    } else if (req.query.add === 'likes') {
-        console.log('sale el 2!', req.query.add)
+        User
+            .findByIdAndUpdate(req.user.id, { "watchlist.movies": newList })
+            .then(() => res.redirect('/movies'))
+            .catch(err => next(err))
+        
     } else if (req.query.add === 'seen') {
-        console.log('sale el 3!', req.query.add)
+        let newList = [...moviesSN, req.params.id]
+
+        User
+            .findByIdAndUpdate(req.user.id, { "seen.movies": newList })
+            .then(() => res.redirect('/movies'))
+            .catch(err => next(err))
+        
+    } else if (req.query.add === 'likes') {
+        let newList = [...moviesLK, req.params.id]
+
+        User
+            .findByIdAndUpdate(req.user.id, { "likes.movies": newList })
+            .then(() => res.redirect('/movies'))
+            .catch(err => next(err))
     }
-
-
-
-
-
 })
-
-
-
-
 
 
 

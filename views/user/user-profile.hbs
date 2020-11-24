@@ -5,51 +5,110 @@
             {{!-- <figure>
                 <img src="{{user.img}}" alt="{{user.name}} profile picture">
             </figure> --}}
-            <h2>Welcome {{user.name}}</h2>
+            <h2>Welcome {{theUser.name}}</h2>
             <hr>
         </div>
     </article>
 
     <article class="row justify-content-center">
         <div class="col-md-9">
-            <h6>{{user.email}}</h6>
-            <p>{{user.about}}</p>
+            <h6>{{theUser.email}}</h6>
+            <p>{{theUser.about}}</p>
         </div>
         <div class="col-md-3">
-            <a href="/profile/edit?id={{user.id}}" class="btn btn-info btn-block">Edit profile</a>
+            <a href="/profile/edit?id={{theUser.id}}" class="btn btn-info btn-block">Edit profile</a>
 
-            <a href="/profile/delete?id={{user.id}}" class="btn btn-danger btn-block">Delete account</a>
+            <a href="/profile/delete?id={{theUser.id}}" class="btn btn-danger btn-block">Delete account</a>
         </div>
     </article>
 
+    {{#if moviesListEmpty}}
+    <article class="row justify-content-right">
+        <div class="col-2">
+            <a href="/movies" class="btn btn-info btn-block">Add new movies</a>
+        </div>
+    </article>
+    {{/if}}
+    {{#if seriesListEmpty}}
+    <article class="row justify-content-rigth">
+        <div class="col-2">
+            <a href="/series" class="btn btn-info btn-block">Add new series</a>
+        </div>
+    </article>
+    {{/if}}
+
     <article class="row justify-content-center user-contents">
+
         <div class="col-md-4 user-columns">
-            <a href="/profile/watchlist?id={{user.id}}">
+            <a href="/profile/watchlist?id={{theUser.id}}">
+                <h6><i>Last added to</i></h6>
                 <h5>Watchlist</h5>
             </a>
             <hr>
-            <div id="user-watchlist">
-
+            <div id="user-watchlist" class="row">
+                <div class="col-md-6">
+                    <img src="https://image.tmdb.org/t/p/w300{{theUser.watchlist.movies.0.poster_path}}"
+                        alt="{{theUser.watchlist.movies.0.title}}">
+                    <a href="/movies/{{theUser.watchlist.movies.0.id}}">
+                        <h6>{{theUser.watchlist.movies.0.title}}</h6>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <img src="https://image.tmdb.org/t/p/w300{{theUser.watchlist.series.0.poster_path}}"
+                        alt="{{theUser.watchlist.series.0.title}}">
+                    <a href="/series/{{theUser.watchlist.series.0.id}}">
+                        <h6>{{theUser.watchlist.series.0.title}}</h6>
+                    </a>
+                </div>
             </div>
         </div>
+
         <div class="col-md-4 user-columns">
-            <a href="/profile/likes?id={{user.id}}">
+            <a href="/profile/likes?id={{theUser.id}}">
+                <h6><i>Last added to</i></h6>
                 <h5>Likes</h5>
             </a>
             <hr>
-            <div id="user-likes">
-
+            <div id="user-likes" class="row">
+                <div class="col-md-6">
+                    <img src="https://image.tmdb.org/t/p/w300{{theUser.likes.movies.0.poster_path}}"
+                        alt="{{theUser.likes.movies.0.title}}">
+                    <a href="/movies/{{theUser.likes.movies.0.id}}">
+                        <h6>{{theUser.likes.movies.0.title}}</h6>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <img src="https://image.tmdb.org/t/p/w300{{theUser.likes.series.0.poster_path}}" alt="{{theUser.likes.series.0.title}}">
+                    <a href="/series/{{theUser.likes.series.0.id}}">
+                        <h6>{{theUser.likes.series.0.title}}</h6>
+                    </a>
+                </div>
             </div>
         </div>
+
         <div class="col-md-4 user-columns">
-            <a href="/profile/seen?id={{user.id}}">
+            <a href="/profile/seen?id={{theUser.id}}">
+                <h6><i>Last added to</i></h6>
                 <h5>Seen</h5>
             </a>
             <hr>
-            <div id="user-seen">
-
+            <div id="user-seen" class="row">
+                <div class="col-md-6">
+                    <img src="https://image.tmdb.org/t/p/w300{{theUser.seen.movies.0.poster_path}}"
+                        alt="{{theUser.seen.movies.0.title}}">
+                    <a href="/movies/{{theUser.seen.movies.0.id}}">
+                        <h6>{{theUser.seen.movies.0.title}}</h6>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <img src="https://image.tmdb.org/t/p/w300{{theUser.seen.series.0.poster_path}}" alt="{{theUser.seen.series.0.title}}">
+                    <a href="/series/{{theUser.seen.series.0.id}}">
+                        <h6>{{theUser.seen.series.0.title}}</h6>
+                    </a>
+                </div>
             </div>
         </div>
+
     </article>
 
 </section>

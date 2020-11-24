@@ -7,6 +7,11 @@ body {
 //   font-weight: 200;
 // }
 
+img {
+  object-fit: cover;
+  width: 100%;
+}
+
 main {
   margin-top: 100px;
 }
@@ -55,4 +60,9 @@ a:hover {
 .details {
   object-fit: cover;
   width: 100%;
+}
+
+.card {
+  width: 13rem;
+  margin: 0;
 }

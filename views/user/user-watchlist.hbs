@@ -1,10 +1,10 @@
 <section class="container">
     <article class="row">
         <div class="col user">
-            <h2>Welcome to your watchlist, {{user.name}}</h2>
+            <h2>Welcome to your watchlist, {{theUser.name}}</h2>
             <br>
-            <a href="/profile/likes?id={{user.id}}" class="redirect">Likes</a>
-            <a href="/profile/seen?id={{user.id}}" class="redirect">Seen</a>
+            <a href="/profile/likes?id={{theUser.id}}" class="redirect">Likes</a>
+            <a href="/profile/seen?id={{theUser.id}}" class="redirect">Seen</a>
             <a href="/profile" class="redirect">Profile</a>
             <hr>
             {{!-- <a href="">Show all</a>
@@ -13,11 +13,26 @@
         </div>
     </article>
     <article class="row">
-        {{#each user.watchslist}}
-        <div class="col-md-3">
-            <img src="{{this.poster_path}}" alt="{{this.title}} poster">
-            <h6>{{this.title}}</h6>
+        <div class="col-md-6">
+            {{#each theUser.watchlist.movies}}
+            <div class="card">
+                <img class="card-img-top" src="https://image.tmdb.org/t/p/w300{{this.poster_path}}" alt="{{this.title}} poster">
+                <h6 class="card-body">{{this.title}}</h6>
+            </div>
+            {{/each}}
         </div>
-        {{/each}}
+        <div class="col-md-6">
+            {{#each theUser.watchlist.series}}
+            <div class="card">
+                <img class="card-img-top" src="https://image.tmdb.org/t/p/w300{{this.poster_path}}" alt="{{this.title}} poster">
+                <h6 class="card-body">{{this.title}}</h6>
+            </div>
+            {{/each}}
+            </div>
+        </div>
     </article>
 </section>
+
+
+
+
