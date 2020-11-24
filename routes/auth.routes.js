@@ -32,12 +32,22 @@ router.post('/signup', (req, res) => {
                 res.render('auth/sign-up', { errorMsg2: 'That username is already registered' })
                 return
             }
-
             const salt = bcrypt.genSaltSync(bcryptSalt)
             const hashPass = bcrypt.hashSync(password, salt)
+            const newUser = {
+                username,
+                password: hashPass,
+                email,
+                name,
+                about,
+                img,
+                watchlist: { movies: [], series: [] },
+                likes: { movies: [], series: [] },
+                seen: { movies: [], series: [] }
+            }
 
             User
-                .create({ username, password: hashPass, email, name, about, img })
+                .create(newUser)
                 .then(() => res.redirect('/'))
                 .catch(() => res.render('auth/sign-up', { errorMsg: 'There was an error' }))
         })
