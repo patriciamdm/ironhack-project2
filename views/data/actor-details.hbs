@@ -1,11 +1,18 @@
 <section class="container">
+
     <article class="row justify-content-center">
+
         <div class="col-md-3 details">
+
             <img class="card-img" src='https://image.tmdb.org/t/p/w300{{thisActor.profile_path}}' alt="actor image cap">
+
         </div>
         <div class="col-md-8">
+
             <div class="card" style="width: 100%">
+
                 <div class="card-body">
+
                     <h2 class="card-title">{{thisActor.name}}</h2>
                     <p class="card-text">Born: {{birthday.month}} {{birthday.day}}, {{birthday.year}} in
                         {{thisActor.place_of_birth}}</p>
@@ -19,6 +26,31 @@
 
         </div>
 
+    </article>
+    <hr>
+    <article class="row justify-content-center">
+
+        {{#each topPopularMovies}}
+
+        <div class="col-sm-6 col-md-3" style="padding: 30px;">
+
+            <div class="card" style="width: 100%;">
+
+                <img class="card-img-top" src='https://image.tmdb.org/t/p/w300{{poster_path}}' alt="actor image cap">
+
+                <div class="card-body">
+
+                    <h5 class="card-title">{{name}}</h5>
+                    <a href="/movies/{{id}}" class="btn btn-info btn-block">Details</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        {{/each}}
     </article>
 
 </section>

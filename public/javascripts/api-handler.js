@@ -35,6 +35,7 @@ class APIhandler {
     //Popular: List of the current popular movies on IMDB
     getPopularMovies = () => this.axiosApp.get(`/movie/popular?api_key=95ad659b54a1464fdb415db2270f7402`)
     getPopularSeries = () => this.axiosApp.get(`/tv/popular?api_key=95ad659b54a1464fdb415db2270f7402`)
+    getPopularSeries = () => this.axiosApp.get(`/person/popular?api_key=95ad659b54a1464fdb415db2270f7402`)
 
     //Top rated movies/series
     getTopRatedMovies = () => this.axiosApp.get(`/movie/top_rated?api_key=95ad659b54a1464fdb415db2270f7402`)
