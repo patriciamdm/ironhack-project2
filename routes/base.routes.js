@@ -60,25 +60,25 @@ router.get('/movies/:id', (req, res, next) => {
 })
 
 
-router.post('/movies/:id', (req, res, next) => {
+router.post('/movies/:movie_id', (req, res, next) => {
 
     // User
     //     .findById(req.user.id)
     //     .then(user => {
     //         if (req.query.add === 'watchlist') {
-    //             user.watchlist.movies.push(req.params.id)
+    //             user.watchlist.movies.push(req.params.movie_id)
     //         } else if (req.query.add === 'likes') {
-    //             user.likes.movies.push(req.params.id)
+    //             user.likes.movies.push(req.params.movie_id)
     //         } else if (req.query.add === 'seen') {
-    //             user.seen.movies.push(req.params.id)
+    //             user.seen.movies.push(req.params.movie_id)
     //         }
     //         console.log(user)
-    //         res.redirect(`/movies/${req.params.id}`)
+    //         res.redirect(`/movies/${req.params.movie_id}`)
     //     })
     //     .catch(err => next(err))
 
     const userId = req.user.id
-    const newItem = req.params.id
+    const newItem = req.params.movie_id
 
     if (req.query.add === 'watchlist') {
         // User

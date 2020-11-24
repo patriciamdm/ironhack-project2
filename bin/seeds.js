@@ -3,7 +3,9 @@ const Movie = require('../models/movie.model')
 
 const dbName = 'ironhack-project2'
 
-mongoose.connect(`mongodb://localhost/${dbName}`)
+// mongoose.connect(`mongodb://localhost/${dbName}`)
+
+mongoose.connect(process.env.DB_REMOTE)
 
 // const baseUsers = [{
 //     email: 'patrimdm96@gmail.com',
