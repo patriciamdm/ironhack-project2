@@ -18,6 +18,6 @@ require('./configs/views.configs')(app)
 require('./configs/locals.config')(app)
 
 // Routes index
-require('./routes')(app)
+require('./backup_routes')(app)
 
 module.exports = app

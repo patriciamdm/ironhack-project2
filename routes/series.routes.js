@@ -131,34 +131,6 @@ router.post('/:id', (req, res, next) => {
             console.log('LA SERIE:', theSeries, 'NUEVO OBJETO', newObj)
         })
         .catch(err => next(new Error(err)))
-    // const seriesWL = req.user.seedslists.watchlist.series
-    // const seriesSN = req.user.seedslists.seen.series
-    // const seriesLK = req.user.seedslists.likes.series
-
-    // if (req.query.add === 'watchlist') {
-    //     let newList = [...seriesWL, req.params.id]
-
-    //     User
-    //         .findByIdAndUpdate(req.user.id, { "seedslists.watchlist.series": newList })
-    //         .then(() => res.redirect('/series'))
-    //         .catch(err => next(err))
-
-    // } else if (req.query.add === 'seen') {
-    //     let newList = [...seriesSN, req.params.id]
-
-    //     User
-    //         .findByIdAndUpdate(req.user.id, { "seedslists.seen.series": newList })
-    //         .then(() => res.redirect('/series'))
-    //         .catch(err => next(err))
-
-    // } else if (req.query.add === 'likes') {
-    //     let newList = [...seriesLK, req.params.id]
-
-    //     User
-    //         .findByIdAndUpdate(req.user.id, { "seedslists.likes.series": newList })
-    //         .then(() => res.redirect('/series'))
-    //         .catch(err => next(err))
-    // }
 })
 
 
