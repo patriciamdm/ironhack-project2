@@ -39,6 +39,7 @@
 
     <article class="row justify-content-center user-contents">
 
+        {{#if seedsData}}
         <div class="col-md-4 user-columns">
             <a href="/profile/watchlist?id={{theUser.id}}">
                 <h6><i>Last added to</i></h6>
@@ -47,17 +48,17 @@
             <hr>
             <div id="user-watchlist" class="row">
                 <div class="col-md-6">
-                    <img src="https://image.tmdb.org/t/p/w300{{theUser.watchlist.movies.0.poster_path}}"
-                        alt="{{theUser.watchlist.movies.0.title}}">
-                    <a href="/movies/{{theUser.watchlist.movies.0.id}}">
-                        <h6>{{theUser.watchlist.movies.0.title}}</h6>
+                    <img src="https://image.tmdb.org/t/p/w300{{theUser.seedslists.watchlist.movies.0.poster_path}}"
+                        alt="{{theUser.seedslists.watchlist.movies.0.title}}">
+                    <a href="/movies/{{theUser.seedslists.watchlist.movies.0.id}}">
+                        <h6>{{theUser.seedslists.watchlist.movies.0.title}}</h6>
                     </a>
                 </div>
                 <div class="col-md-6">
-                    <img src="https://image.tmdb.org/t/p/w300{{theUser.watchlist.series.0.poster_path}}"
-                        alt="{{theUser.watchlist.series.0.title}}">
-                    <a href="/series/{{theUser.watchlist.series.0.id}}">
-                        <h6>{{theUser.watchlist.series.0.title}}</h6>
+                    <img src="https://image.tmdb.org/t/p/w300{{theUser.seedslists.watchlist.series.0.poster_path}}"
+                        alt="{{theUser.seedslists.watchlist.series.0.title}}">
+                    <a href="/series/{{theUser.seedslists.watchlist.series.0.id}}">
+                        <h6>{{theUser.seedslists.watchlist.series.0.title}}</h6>
                     </a>
                 </div>
             </div>
@@ -71,16 +72,17 @@
             <hr>
             <div id="user-likes" class="row">
                 <div class="col-md-6">
-                    <img src="https://image.tmdb.org/t/p/w300{{theUser.likes.movies.0.poster_path}}"
-                        alt="{{theUser.likes.movies.0.title}}">
-                    <a href="/movies/{{theUser.likes.movies.0.id}}">
-                        <h6>{{theUser.likes.movies.0.title}}</h6>
+                    <img src="https://image.tmdb.org/t/p/w300{{theUser.seedslists.likes.movies.0.poster_path}}"
+                        alt="{{theUser.seedslists.likes.movies.0.title}}">
+                    <a href="/movies/{{theUser.seedslists.likes.movies.0.id}}">
+                        <h6>{{theUser.seedslists.likes.movies.0.title}}</h6>
                     </a>
                 </div>
                 <div class="col-md-6">
-                    <img src="https://image.tmdb.org/t/p/w300{{theUser.likes.series.0.poster_path}}" alt="{{theUser.likes.series.0.title}}">
-                    <a href="/series/{{theUser.likes.series.0.id}}">
-                        <h6>{{theUser.likes.series.0.title}}</h6>
+                    <img src="https://image.tmdb.org/t/p/w300{{theUser.seedslists.likes.series.0.poster_path}}"
+                        alt="{{theUser.seedslists.likes.series.0.title}}">
+                    <a href="/series/{{theUser.seedslists.likes.series.0.id}}">
+                        <h6>{{theUser.seedslists.likes.series.0.title}}</h6>
                     </a>
                 </div>
             </div>
@@ -94,20 +96,90 @@
             <hr>
             <div id="user-seen" class="row">
                 <div class="col-md-6">
-                    <img src="https://image.tmdb.org/t/p/w300{{theUser.seen.movies.0.poster_path}}"
-                        alt="{{theUser.seen.movies.0.title}}">
-                    <a href="/movies/{{theUser.seen.movies.0.id}}">
-                        <h6>{{theUser.seen.movies.0.title}}</h6>
+                    <img src="https://image.tmdb.org/t/p/w300{{theUser.seedslists.seen.movies.0.poster_path}}"
+                        alt="{{theUser.seedslists.seen.movies.0.title}}">
+                    <a href="/movies/{{theUser.seedslists.seen.movies.0.id}}">
+                        <h6>{{theUser.seedslists.seen.movies.0.title}}</h6>
                     </a>
                 </div>
                 <div class="col-md-6">
-                    <img src="https://image.tmdb.org/t/p/w300{{theUser.seen.series.0.poster_path}}" alt="{{theUser.seen.series.0.title}}">
-                    <a href="/series/{{theUser.seen.series.0.id}}">
-                        <h6>{{theUser.seen.series.0.title}}</h6>
+                    <img src="https://image.tmdb.org/t/p/w300{{theUser.seedslists.seen.series.0.poster_path}}"
+                        alt="{{theUser.seedslists.seen.series.0.title}}">
+                    <a href="/series/{{theUser.seedslists.seen.series.0.id}}">
+                        <h6>{{theUser.seedslists.seen.series.0.title}}</h6>
                     </a>
                 </div>
             </div>
         </div>
+        {{/if}}
+
+        {{#if apiData}}
+        <div class="col-md-4 user-columns">
+            <a href="/profile/watchlist?id={{theUser.id}}">
+                <h6><i>Last added to</i></h6>
+                <h5>Watchlist</h5>
+            </a>
+            <hr>
+            <div id="user-watchlist" class="row">
+                <div class="col-md-6">
+                    <img src="https://image.tmdb.org/t/p/w300{{lastMovieWL.poster_path}}" alt="{{lastMovieWL.title}}">
+                    <a href="/movies/{{lastMovieWL.id}}">
+                        <h6>{{lastMovieWL.title}}</h6>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <img src="https://image.tmdb.org/t/p/w300{{lastSeriesWL.poster_path}}" alt="{{lastSeriesWL.title}}">
+                    <a href="/series/{{lastSeriesWL.id}}">
+                        <h6>{{lastSeriesWL.title}}</h6>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 user-columns">
+            <a href="/profile/likes?id={{theUser.id}}">
+                <h6><i>Last added to</i></h6>
+                <h5>Likes</h5>
+            </a>
+            <hr>
+            <div id="user-likes" class="row">
+                <div class="col-md-6">
+                    <img src="https://image.tmdb.org/t/p/w300{{lastMovieLK.poster_path}}" alt="{{lastMovieLK.title}}">
+                    <a href="/movies/{{lastMovieLK.id}}">
+                        <h6>{{lastMovieLK.title}}</h6>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <img src="https://image.tmdb.org/t/p/w300{{lastSeriesLK.poster_path}}" alt="{{lastSeriesLK.title}}">
+                    <a href="/series/{{lastSeriesLK.id}}">
+                        <h6>{{lastSeriesLK.title}}</h6>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 user-columns">
+            <a href="/profile/seen?id={{theUser.id}}">
+                <h6><i>Last added to</i></h6>
+                <h5>Seen</h5>
+            </a>
+            <hr>
+            <div id="user-seen" class="row">
+                <div class="col-md-6">
+                    <img src="https://image.tmdb.org/t/p/w300{{lastMovieSN.poster_path}}" alt="{{lastMovieSN.title}}">
+                    <a href="/movies/{{lastMovieSN.id}}">
+                        <h6>{{lastMovieSN.title}}</h6>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <img src="https://image.tmdb.org/t/p/w300{{lastSeriesSN.poster_path}}" alt="{{lastSeriesSN.title}}">
+                    <a href="/series/{{lastSeriesSN.id}}">
+                        <h6>{{lastSeriesSN.title}}</h6>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {{/if}}
 
     </article>
 
