@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 
-const Series = require('../models/series.model.js')
 const User = require('../models/user.model')
 
 const axios = require('axios')
@@ -27,13 +26,27 @@ router.get('/', (req, res, next) => {
         .then(allSeries => res.render('data/series', { allSeries: allSeries.data.results, isLogged: isLogged(req), isNotLogged: isNotLogged(req) }))
         .catch(err => next(err))
 
-    // Series
-    //     .find()
-    //     .sort({ popularity: -1 })
-    //     .then(allSeries => {
-    //         res.render('data/series', { allSeries, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
-    //     })
-    //     .catch(err => next(err))
+
+})
+
+
+//SEARCH
+router.post('/', (req, res, next) => {
+
+    const { search } = req.body
+    const searchCleaned = search.replace(/\s/g, '%20')
+    console.log(searchCleaned)
+
+
+    apiHandler
+        .get(`/search/tv?api_key=95ad659b54a1464fdb415db2270f7402&query=${searchCleaned}`)
+        .then(search => {
+            const searchResults = search.data.results
+
+            res.render('data/series', { searchResults, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
+        })
+        .catch(err => next(err))
+
 })
 
 
@@ -77,18 +90,6 @@ router.get('/:id', (req, res, next) => {
         })
         .catch(err => next(err))
 
-    // Series
-    //     .findById(req.params.id)
-    //     .then(thisSerie => {
-    //         const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    //         const serieDate = {
-    //             day: thisSerie.first_air_date.getDate(),
-    //             month: months[thisSerie.first_air_date.getMonth()],
-    //             year: thisSerie.first_air_date.getFullYear()
-    //         }
-    //         res.render('data/serie-detail', { thisSerie, first_air_date: serieDate, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
-    //     })
-    //     .catch(err => next(err))
 })
 
 
@@ -97,7 +98,7 @@ router.get('/:id', (req, res, next) => {
 // ADD SERIES TO USER'S LISTS
 
 router.post('/:id', (req, res, next) => {
-    
+
     apiHandler
         .get(`/tv/${req.params.id}?api_key=95ad659b54a1464fdb415db2270f7402`)
         .then(theSeries => {
@@ -112,14 +113,14 @@ router.post('/:id', (req, res, next) => {
                     .findByIdAndUpdate(req.user.id, { "apilists.watchlist.series": newList })
                     .then(() => res.redirect('/series'))
                     .catch(err => next(err))
-                
+
             } else if (req.query.add === 'seen') {
                 let newList = [...seriesSN, newObj]
                 User
                     .findByIdAndUpdate(req.user.id, { "apilists.seen.series": newList })
                     .then(() => res.redirect('/series'))
                     .catch(err => next(err))
-                
+
             } else if (req.query.add === 'likes') {
                 let newList = [...seriesLK, newObj]
                 User
@@ -141,7 +142,7 @@ router.post('/:id', (req, res, next) => {
     //         .findByIdAndUpdate(req.user.id, { "seedslists.watchlist.series": newList })
     //         .then(() => res.redirect('/series'))
     //         .catch(err => next(err))
-        
+
     // } else if (req.query.add === 'seen') {
     //     let newList = [...seriesSN, req.params.id]
 
@@ -149,7 +150,7 @@ router.post('/:id', (req, res, next) => {
     //         .findByIdAndUpdate(req.user.id, { "seedslists.seen.series": newList })
     //         .then(() => res.redirect('/series'))
     //         .catch(err => next(err))
-        
+
     // } else if (req.query.add === 'likes') {
     //     let newList = [...seriesLK, req.params.id]
 
