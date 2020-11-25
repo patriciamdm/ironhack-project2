@@ -48,16 +48,16 @@
             <hr>
             <div id="user-watchlist" class="row">
                 <div class="col-md-6">
-                    <img src="https://image.tmdb.org/t/p/w300{{theUser.seedslists.watchlist.movies.0.poster_path}}"
-                        alt="{{theUser.seedslists.watchlist.movies.0.title}}">
                     <a href="/movies/{{theUser.seedslists.watchlist.movies.0.id}}">
+                        <img src="https://image.tmdb.org/t/p/w300{{theUser.seedslists.watchlist.movies.0.poster_path}}"
+                            alt="{{theUser.seedslists.watchlist.movies.0.title}}">
                         <h6>{{theUser.seedslists.watchlist.movies.0.title}}</h6>
                     </a>
                 </div>
                 <div class="col-md-6">
-                    <img src="https://image.tmdb.org/t/p/w300{{theUser.seedslists.watchlist.series.0.poster_path}}"
-                        alt="{{theUser.seedslists.watchlist.series.0.title}}">
                     <a href="/series/{{theUser.seedslists.watchlist.series.0.id}}">
+                        <img src="https://image.tmdb.org/t/p/w300{{theUser.seedslists.watchlist.series.0.poster_path}}"
+                            alt="{{theUser.seedslists.watchlist.series.0.title}}">
                         <h6>{{theUser.seedslists.watchlist.series.0.title}}</h6>
                     </a>
                 </div>
@@ -72,16 +72,16 @@
             <hr>
             <div id="user-likes" class="row">
                 <div class="col-md-6">
-                    <img src="https://image.tmdb.org/t/p/w300{{theUser.seedslists.likes.movies.0.poster_path}}"
-                        alt="{{theUser.seedslists.likes.movies.0.title}}">
                     <a href="/movies/{{theUser.seedslists.likes.movies.0.id}}">
+                        <img src="https://image.tmdb.org/t/p/w300{{theUser.seedslists.likes.movies.0.poster_path}}"
+                            alt="{{theUser.seedslists.likes.movies.0.title}}">
                         <h6>{{theUser.seedslists.likes.movies.0.title}}</h6>
                     </a>
                 </div>
                 <div class="col-md-6">
-                    <img src="https://image.tmdb.org/t/p/w300{{theUser.seedslists.likes.series.0.poster_path}}"
-                        alt="{{theUser.seedslists.likes.series.0.title}}">
                     <a href="/series/{{theUser.seedslists.likes.series.0.id}}">
+                        <img src="https://image.tmdb.org/t/p/w300{{theUser.seedslists.likes.series.0.poster_path}}"
+                            alt="{{theUser.seedslists.likes.series.0.title}}">
                         <h6>{{theUser.seedslists.likes.series.0.title}}</h6>
                     </a>
                 </div>
@@ -96,16 +96,16 @@
             <hr>
             <div id="user-seen" class="row">
                 <div class="col-md-6">
-                    <img src="https://image.tmdb.org/t/p/w300{{theUser.seedslists.seen.movies.0.poster_path}}"
-                        alt="{{theUser.seedslists.seen.movies.0.title}}">
                     <a href="/movies/{{theUser.seedslists.seen.movies.0.id}}">
+                        <img src="https://image.tmdb.org/t/p/w300{{theUser.seedslists.seen.movies.0.poster_path}}"
+                            alt="{{theUser.seedslists.seen.movies.0.title}}">
                         <h6>{{theUser.seedslists.seen.movies.0.title}}</h6>
                     </a>
                 </div>
                 <div class="col-md-6">
-                    <img src="https://image.tmdb.org/t/p/w300{{theUser.seedslists.seen.series.0.poster_path}}"
-                        alt="{{theUser.seedslists.seen.series.0.title}}">
                     <a href="/series/{{theUser.seedslists.seen.series.0.id}}">
+                        <img src="https://image.tmdb.org/t/p/w300{{theUser.seedslists.seen.series.0.poster_path}}"
+                            alt="{{theUser.seedslists.seen.series.0.title}}">
                         <h6>{{theUser.seedslists.seen.series.0.title}}</h6>
                     </a>
                 </div>
@@ -122,15 +122,17 @@
             <hr>
             <div id="user-watchlist" class="row">
                 <div class="col-md-6">
-                    <img src="https://image.tmdb.org/t/p/w300{{lastMovieWL.poster_path}}" alt="{{lastMovieWL.title}}">
-                    <a href="/movies/{{lastMovieWL.id}}">
+                    <a href="/movies/{{lastMovieWL.db_id}}">
+                        <img src="https://image.tmdb.org/t/p/w300{{lastMovieWL.poster_path}}"
+                            alt="{{lastMovieWL.title}}">
                         <h6>{{lastMovieWL.title}}</h6>
                     </a>
                 </div>
                 <div class="col-md-6">
-                    <img src="https://image.tmdb.org/t/p/w300{{lastSeriesWL.poster_path}}" alt="{{lastSeriesWL.title}}">
-                    <a href="/series/{{lastSeriesWL.id}}">
-                        <h6>{{lastSeriesWL.title}}</h6>
+                    <a href="/series/{{lastSeriesWL.db_id}}">
+                        <img src="https://image.tmdb.org/t/p/w300{{lastSeriesWL.poster_path}}"
+                            alt="{{lastSeriesWL.name}}">
+                        <h6>{{lastSeriesWL.name}}</h6>
                     </a>
                 </div>
             </div>
@@ -144,15 +146,17 @@
             <hr>
             <div id="user-likes" class="row">
                 <div class="col-md-6">
-                    <img src="https://image.tmdb.org/t/p/w300{{lastMovieLK.poster_path}}" alt="{{lastMovieLK.title}}">
-                    <a href="/movies/{{lastMovieLK.id}}">
+                    <a href="/movies/{{lastMovieLK.db_id}}">
+                        <img src="https://image.tmdb.org/t/p/w300{{lastMovieLK.poster_path}}"
+                            alt="{{lastMovieLK.title}}">
                         <h6>{{lastMovieLK.title}}</h6>
                     </a>
                 </div>
                 <div class="col-md-6">
-                    <img src="https://image.tmdb.org/t/p/w300{{lastSeriesLK.poster_path}}" alt="{{lastSeriesLK.title}}">
-                    <a href="/series/{{lastSeriesLK.id}}">
-                        <h6>{{lastSeriesLK.title}}</h6>
+                    <a href="/series/{{lastSeriesLK.db_id}}">
+                        <img src="https://image.tmdb.org/t/p/w300{{lastSeriesLK.poster_path}}"
+                            alt="{{lastSeriesLK.name}}">
+                        <h6>{{lastSeriesLK.name}}</h6>
                     </a>
                 </div>
             </div>
@@ -166,15 +170,17 @@
             <hr>
             <div id="user-seen" class="row">
                 <div class="col-md-6">
-                    <img src="https://image.tmdb.org/t/p/w300{{lastMovieSN.poster_path}}" alt="{{lastMovieSN.title}}">
-                    <a href="/movies/{{lastMovieSN.id}}">
+                    <a href="/movies/{{lastMovieSN.db_id}}">
+                        <img src="https://image.tmdb.org/t/p/w300{{lastMovieSN.poster_path}}"
+                            alt="{{lastMovieSN.title}}">
                         <h6>{{lastMovieSN.title}}</h6>
                     </a>
                 </div>
                 <div class="col-md-6">
-                    <img src="https://image.tmdb.org/t/p/w300{{lastSeriesSN.poster_path}}" alt="{{lastSeriesSN.title}}">
-                    <a href="/series/{{lastSeriesSN.id}}">
-                        <h6>{{lastSeriesSN.title}}</h6>
+                    <a href="/series/{{lastSeriesSN.db_id}}">
+                        <img src="https://image.tmdb.org/t/p/w300{{lastSeriesSN.poster_path}}"
+                            alt="{{lastSeriesSN.name}}">
+                        <h6>{{lastSeriesSN.name}}</h6>
                     </a>
                 </div>
             </div>
