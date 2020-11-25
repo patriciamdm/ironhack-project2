@@ -1,34 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
-const Movie = require('../models/movie.model')
-const Series = require('../models/series.model.js')
+
 const Person = require('../models/person.model.js')
-const User = require('../models/user.model')
-const axios = require('axios')
-
-const apiHandler = axios.create({
-    baseURL: "https://api.themoviedb.org/3"
-})
-
-//PARTIALS
-// const hbs = require('hbs');
-// const path = require('path');
-
-
-// const app = express();
-// app.use(express.static('public'))
-
-// hbs.registerPartials(`${__dirname}/views/partials`)
-
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'hbs');
-
-
-// app.use(express.static(path.join(__dirname, 'public')));
-
-
-
 
 
 const isLogged = (req) => req.isAuthenticated() === true
@@ -46,7 +20,7 @@ router.get('/', (req, res, next) => {
         .then(allActors => {
             res.render('data/actors', { allActors, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
         })
-        .catch(err => next(err))
+        .catch(err => next(new Error(err)))
 
 })
 
@@ -56,7 +30,6 @@ router.post('/', (req, res, next) => {
 
     const { search } = req.body
     const searchCleaned = search.replace(/\s/g, '%20')
-    console.log(searchCleaned)
 
     Person
         .find({ 'known_for_department': 'Acting', 'name': search })
@@ -64,7 +37,7 @@ router.post('/', (req, res, next) => {
         .then(allActors => {
             res.render('data/actors', { allActors, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
         })
-        .catch(err => next(err))
+        .catch(err => next(new Error(err)))
 
 })
 
@@ -93,7 +66,7 @@ router.get('/:id', (req, res, next) => {
                 res.render('data/actor-details', { thisActor, birthday: birthDate, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
             }
         })
-        .catch(err => next(err))
+        .catch(err => next(new Error(err)))
 })
 
 

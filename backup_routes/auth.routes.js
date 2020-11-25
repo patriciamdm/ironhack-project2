@@ -44,12 +44,12 @@ router.post('/signup', (req, res) => {
                 apilists: { watchlist: { movies: [], series: [] }, seen: { movies: [], series: [] }, likes: { movies: [], series: [] } },
                 seedslists: { watchlist: { movies: [], series: [] }, seen: { movies: [], series: [] }, likes: { movies: [], series: [] } }
             }
-
             User
                 .create(newUser)
                 .then(() => res.redirect('/'))
                 .catch(() => res.render('auth/sign-up', { errorMsg: 'There was an error' }))
         })
+        .catch(err => next(new Error(err)))
 })
 
 

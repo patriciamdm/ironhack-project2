@@ -9,8 +9,6 @@ const isNotLogged = (req) => req.isAuthenticated() === false
 
 
 
-
-
 // ALL MOVIES INDEX
 
 router.get('/', (req, res, next) => {
@@ -19,9 +17,8 @@ router.get('/', (req, res, next) => {
         .find()
         .sort({ popularity: -1 })
         .then(allMovies => res.render('data/movies', { allMovies, isLogged: isLogged(req), isNotLogged: isNotLogged(req) }))
-        .catch(err => next(err))
+        .catch(err => next(new Error(err)))
 })
-
 
 
 // SEARCH BAR
@@ -29,19 +26,15 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
 
     const { search } = req.body
-    const searchCleaned = search.replace(/\s/g, '%20')
-    console.log(search)
 
-    console.log(regex)
     Movie
-        .find({ title: regex })
+        .find({ title: search })
         .sort({ popularity: -1 })
         .then(searchResults => {
             res.render('data/movies', { searchResults, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
         })
-        .catch(err => next(err))
+        .catch(err => next(new Error(err)))
 })
-
 
 
 
@@ -61,7 +54,7 @@ router.get('/:id', (req, res, next) => {
             }
             res.render('data/movie-detail', { thisMovie, release_date: movieDate, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
         })
-        .catch(err => next(err))
+        .catch(err => next(new Error(err)))
 })
 
 
@@ -73,14 +66,14 @@ router.post('/:id', (req, res, next) => {
     const moviesWL = req.user.seedslists.watchlist.movies
     const moviesSN = req.user.seedslists.seen.movies
     const moviesLK = req.user.seedslists.likes.movies
-    
+
     if (req.query.add === 'watchlist') {
         let newList = [...moviesWL, req.params.id]
 
         User
             .findByIdAndUpdate(req.user.id, { "seedslists.watchlist.movies": newList })
             .then(() => res.redirect('/movies'))
-            .catch(err => next(err))
+            .catch(err => next(new Error(err)))
 
     } else if (req.query.add === 'seen') {
         let newList = [...moviesSN, req.params.id]
@@ -88,7 +81,7 @@ router.post('/:id', (req, res, next) => {
         User
             .findByIdAndUpdate(req.user.id, { "seedslists.seen.movies": newList })
             .then(() => res.redirect('/movies'))
-            .catch(err => next(err))
+            .catch(err => next(new Error(err)))
 
     } else if (req.query.add === 'likes') {
         let newList = [...moviesLK, req.params.id]
@@ -96,7 +89,7 @@ router.post('/:id', (req, res, next) => {
         User
             .findByIdAndUpdate(req.user.id, { "seedslists.likes.movies": newList })
             .then(() => res.redirect('/movies'))
-            .catch(err => next(err))
+            .catch(err => next(new Error(err)))
     }
 })
 

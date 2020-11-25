@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 
-const Movie = require('../models/movie.model')
 const User = require('../models/user.model')
 
 const axios = require('axios')
@@ -10,11 +9,8 @@ const apiHandler = axios.create({
 })
 
 
-
 const isLogged = (req) => req.isAuthenticated() === true
 const isNotLogged = (req) => req.isAuthenticated() === false
-
-
 
 
 // ALL MOVIES INDEX
@@ -24,7 +20,7 @@ router.get('/', (req, res, next) => {
     apiHandler
         .get(`/movie/popular?api_key=95ad659b54a1464fdb415db2270f7402`)
         .then(allMovies => res.render('data/movies', { allMovies: allMovies.data.results, isLogged: isLogged(req), isNotLogged: isNotLogged(req) }))
-        .catch(err => next(err))
+        .catch(err => next(new Error(err)))
 
 })
 
@@ -35,8 +31,6 @@ router.post('/', (req, res, next) => {
 
     const { search } = req.body
     const searchCleaned = search.replace(/\s/g, '%20')
-    console.log(searchCleaned)
-
 
     apiHandler
         .get(`/search/movie?api_key=95ad659b54a1464fdb415db2270f7402&query=${searchCleaned}`)
@@ -45,50 +39,42 @@ router.post('/', (req, res, next) => {
 
             res.render('data/movies', { searchResults, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
         })
-        .catch(err => next(err))
+        .catch(err => next(new Error(err)))
 
 })
-
-
 
 
 // INDIVIDUAL MOVIE DETAILS
 
 router.get('/:id', (req, res, next) => {
 
+    let thisMovie
+
     apiHandler
         .get(`/movie/${req.params.id}?api_key=95ad659b54a1464fdb415db2270f7402`)
-        .then(movie => {
-            apiHandler
-                .get(`/movie/${req.params.id}/credits?api_key=95ad659b54a1464fdb415db2270f7402`)
-                .then(movieCredits => {
-                    const credits = movieCredits.data.cast
-                    const orderedCredits = credits.sort((a, b) => {
-                        if (a.popularity > b.popularity) {
-                            return -1
-                        }
-                        if (a.popularity < b.popularity) {
-                            return 1
-                        }
-                        return 0
-                    })
-                    const topPopularActors = orderedCredits.splice(0, 10)
-                    const thisMovie = movie.data
-                    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-                    const date = thisMovie.release_date
-                    const movieDate = {
-                        day: date.slice(8),
-                        month: months[parseInt(date.slice(5, 7), 10)],
-                        year: date.slice(0, 4)
-                    }
-                    console.log(topPopularActors)
+        .then(movie => thisMovie = movie.data)
+        .then(() => apiHandler.get(`/movie/${req.params.id}/credits?api_key=95ad659b54a1464fdb415db2270f7402`))
+        .then(movieCredits => {
 
-                    res.render('data/movie-detail', { thisMovie, topPopularActors, release_date: movieDate, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
-                })
-                .catch(err => next(err))
+            const credits = movieCredits.data.cast
+            const orderedCredits = credits.sort((a, b) => {
+                a.popularity > b.popularity ? -1 : null
+                a.popularity < b.popularity ? 1 : null
+                return 0
+            })
+            const topPopularActors = orderedCredits.splice(0, 10)
 
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            const date = thisMovie.release_date
+            const movieDate = {
+                day: date.slice(8),
+                month: months[parseInt(date.slice(5, 7), 10)],
+                year: date.slice(0, 4)
+            }
+
+            res.render('data/movie-detail', { thisMovie, topPopularActors, release_date: movieDate, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
         })
-        .catch(err => next(err))
+        .catch(err => next(new Error(err)))
 
 })
 
@@ -130,7 +116,7 @@ router.post('/:id', (req, res, next) => {
             }
         })
         .catch(err => next(new Error(err)))
-    
+
 })
 
 

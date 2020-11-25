@@ -9,11 +9,8 @@ const apiHandler = axios.create({
 })
 
 
-
 const isLogged = (req) => req.isAuthenticated() === true
 const isNotLogged = (req) => req.isAuthenticated() === false
-
-
 
 
 
@@ -24,7 +21,7 @@ router.get('/', (req, res, next) => {
     apiHandler
         .get(`/tv/popular?api_key=95ad659b54a1464fdb415db2270f7402`)
         .then(allSeries => res.render('data/series', { allSeries: allSeries.data.results, isLogged: isLogged(req), isNotLogged: isNotLogged(req) }))
-        .catch(err => next(err))
+        .catch(err => next(new Error(err)))
 
 
 })
@@ -35,17 +32,14 @@ router.post('/', (req, res, next) => {
 
     const { search } = req.body
     const searchCleaned = search.replace(/\s/g, '%20')
-    console.log(searchCleaned)
-
 
     apiHandler
         .get(`/search/tv?api_key=95ad659b54a1464fdb415db2270f7402&query=${searchCleaned}`)
         .then(search => {
             const searchResults = search.data.results
-
             res.render('data/series', { searchResults, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
         })
-        .catch(err => next(err))
+        .catch(err => next(new Error(err)))
 
 })
 
@@ -56,39 +50,34 @@ router.post('/', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
 
-    console.log(req.params.id)
+    let thisSerie
     apiHandler
         .get(`/tv/${req.params.id}?api_key=95ad659b54a1464fdb415db2270f7402`)
-        .then(serie => {
-            apiHandler
-                .get(`/tv/${req.params.id}/credits?api_key=95ad659b54a1464fdb415db2270f7402`)
-                .then(serieCredits => {
-                    const credits = serieCredits.data.cast
-                    const orderedCredits = credits.sort((a, b) => {
-                        if (a.popularity > b.popularity) {
-                            return -1
-                        }
-                        if (a.popularity < b.popularity) {
-                            return 1
-                        }
-                        return 0
-                    })
-                    const topPopularActors = orderedCredits.splice(0, 10)
-                    const thisSerie = serie.data
-                    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-                    const date = thisSerie.first_air_date
-                    const serieDate = {
-                        day: date.slice(8),
-                        month: months[date.slice(5, 7)],
-                        year: date.slice(0, 4)
-                    }
-                    console.log(serie.data)
+        .then(serie => thisSerie = serie.data)
+        .then(() => apiHandler.get(`/tv/${req.params.id}/credits?api_key=95ad659b54a1464fdb415db2270f7402`))
+        .then(serieCredits => {
 
-                    res.render('data/serie-detail', { thisSerie, topPopularActors, first_air_date: serieDate, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
-                })
+            const credits = serieCredits.data.cast
+            const orderedCredits = credits.sort((a, b) => {
+                a.popularity > b.popularity ? -1 : null
+                a.popularity < b.popularity ? 1 : null
+                return 0
+            })
+            const topPopularActors = orderedCredits.splice(0, 10)
 
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            const date = thisSerie.first_air_date
+            const serieDate = {
+                day: date.slice(8),
+                month: months[date.slice(5, 7)],
+                year: date.slice(0, 4)
+            }
+
+            res.render('data/serie-detail', { thisSerie, topPopularActors, first_air_date: serieDate, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
         })
-        .catch(err => next(err))
+        .catch(err => next(new Error(err)))
+
+
 
 })
 
@@ -128,7 +117,7 @@ router.post('/:id', (req, res, next) => {
                     .then(() => res.redirect('/series'))
                     .catch(err => next(err))
             }
-            console.log('LA SERIE:', theSeries, 'NUEVO OBJETO', newObj)
+
         })
         .catch(err => next(new Error(err)))
 })

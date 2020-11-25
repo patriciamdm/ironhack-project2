@@ -50,6 +50,7 @@ router.post('/signup', (req, res) => {
                 .then(() => res.redirect('/'))
                 .catch(() => res.render('auth/sign-up', { errorMsg: 'There was an error' }))
         })
+        .catch(err => next(new Error(err)))
 })
 
 

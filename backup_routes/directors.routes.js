@@ -1,15 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
-const Movie = require('../models/movie.model')
-const Series = require('../models/series.model.js')
-const Person = require('../models/person.model.js')
-const User = require('../models/user.model')
-const axios = require('axios')
 
-const apiHandler = axios.create({
-    baseURL: "https://api.themoviedb.org/3"
-})
+const Person = require('../models/person.model.js')
 
 
 
@@ -27,7 +20,7 @@ router.get('/', (req, res, next) => {
         .then(allDirectors => {
             res.render('data/directors', { allDirectors, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
         })
-        .catch(err => next(err))
+        .catch(err => next(new Error(err)))
 })
 
 //DIRECTOR DETAILS
@@ -54,7 +47,7 @@ router.get('/:id', (req, res, next) => {
                 res.render('data/director-details', { thisDirector, birthday: birthDate, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
             }
         })
-        .catch(err => next(err))
+        .catch(err => next(new Error(err)))
 })
 
 

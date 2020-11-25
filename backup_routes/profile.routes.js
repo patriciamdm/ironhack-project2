@@ -13,7 +13,7 @@ const apiHandler = axios.create({
 const isLogged = (req) => req.isAuthenticated() === true
 const isNotLogged = (req) => req.isAuthenticated() === false
 
-const seedsData = (yes) => yes 
+const seedsData = (yes) => yes
 
 const moviesListEmpty = (req) => (req.user.seedslists.watchlist.movies.length === 0 || req.user.seedslists.likes.movies.length === 0 || req.user.seedslists.seen.movies.length === 0) ? true : null
 const seriesListEmpty = (req) => (req.user.seedslists.watchlist.series.length === 0 || req.user.seedslists.likes.series.length === 0 || req.user.seedslists.seen.series.length === 0) ? true : null
@@ -24,7 +24,7 @@ const lastIndex = (array) => array.length - 1;
 // USER PROFILE PAGE
 
 router.get('/', (req, res, next) => {
-    
+
     User
         .findById(req.user.id)
         .populate('seedslists.watchlist.movies')
@@ -56,7 +56,7 @@ router.get('/edit', (req, res, next) => {
 
     User.findById(userId)
         .then(user => res.render('user/edit-profile', { user, isLogged: isLogged(req) }))
-        .catch(err => next(err))
+        .catch(err => next(new Error(err)))
 })
 
 // SEND EDIT USER PROFILE FORM
@@ -67,7 +67,7 @@ router.post('/edit', (req, res, next) => {
 
     User.findByIdAndUpdate(userId, { name, email, about, img })
         .then(user => res.render('user/user-profile', { user, isLogged: isLogged(req) }))
-        .catch(err => next(err))
+        .catch(err => next(new Error(err)))
 })
 
 
@@ -80,7 +80,7 @@ router.get('/delete', (req, res, next) => {
 
     User.findById(userId)
         .then(user => res.render('user/delete-profile', { user, isLogged: isLogged(req) }))
-        .catch(err => next(err))
+        .catch(err => next(new Error(err)))
 })
 
 // CONFIRM DELETE USER
@@ -90,7 +90,7 @@ router.post('/delete', (req, res, next) => {
 
     User.findByIdAndDelete(userId)
         .then(() => res.redirect('/'))
-        .catch(err => next(err))
+        .catch(err => next(new Error(err)))
 })
 
 
@@ -104,7 +104,7 @@ router.get('/watchlist', (req, res, next) => {
         .populate('seedslists.watchlist.movies')
         .populate('seedslists.watchlist.series')
         .then(theUser => res.render('user/user-watchlist', { theUser, seedsData: seedsData(true), isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
-        .catch(err => next(err))
+        .catch(err => next(new Error(err)))
 })
 
 
@@ -116,7 +116,7 @@ router.get('/seen', (req, res, next) => {
         .populate('seedslists.seen.movies')
         .populate('seedslists.seen.series')
         .then(theUser => res.render('user/user-seen', { theUser, seedsData: seedsData(true), isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
-        .catch(err => next(err))
+        .catch(err => next(new Error(err)))
 })
 
 
@@ -128,7 +128,7 @@ router.get('/likes', (req, res, next) => {
         .populate('seedslists.likes.movies')
         .populate('seedslists.likes.series')
         .then(theUser => res.render('user/user-likes', { theUser, seedsData: seedsData(true), isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
-        .catch(err => next(err))
+        .catch(err => next(new Error(err)))
 })
 
 
