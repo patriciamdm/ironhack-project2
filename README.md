@@ -13,7 +13,7 @@ Jordi Boronat & Patricia Muñoz
 #### Thanks to:
 
 - Teacher: Germán Alvarez
-- TAs: Belen Olias, Enrique Montaño & Jon
+- TAs: Belen Olias, Enrique Montaño & Jon Arechalde
 - Project Manager: Unknown
 
 #### Technologies used:
