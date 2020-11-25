@@ -97,36 +97,41 @@ router.get('/:id', (req, res, next) => {
 
 // ADD MOVIE TO USER'S LISTS
 
-// router.post('/:id', (req, res, next) => {
-// const moviesWL = req.user.watchlist.movies
-// const moviesSN = req.user.seen.movies
-// const moviesLK = req.user.likes.movies
+router.post('/:id', (req, res, next) => {
 
-// if (req.query.add === 'watchlist') {
-//     let newList = [...moviesWL, req.params.id]
+    apiHandler
+        .get(`/movie/${req.params.id}?api_key=95ad659b54a1464fdb415db2270f7402`)
+        .then(theMovie => {
+            const moviesWL = req.user.apilists.watchlist.movies
+            const moviesSN = req.user.apilists.seen.movies
+            const moviesLK = req.user.apilists.likes.movies
+            const newObj = { db_id: theMovie.data.id, title: theMovie.data.title, poster_path: theMovie.data.poster_path }
 
-//     User
-//         .findByIdAndUpdate(req.user.id, { "watchlist.movies": newList })
-//         .then(() => res.redirect('/movies'))
-//         .catch(err => next(err))
+            if (req.query.add === 'watchlist') {
+                let newList = [...moviesWL, newObj]
+                User
+                    .findByIdAndUpdate(req.user.id, { "apilists.watchlist.movies": newList })
+                    .then(() => res.redirect('/movies'))
+                    .catch(err => next(err))
 
-// } else if (req.query.add === 'seen') {
-//     let newList = [...moviesSN, req.params.id]
+            } else if (req.query.add === 'seen') {
+                let newList = [...moviesSN, newObj]
+                User
+                    .findByIdAndUpdate(req.user.id, { "apilists.seen.movies": newList })
+                    .then(() => res.redirect('/movies'))
+                    .catch(err => next(err))
 
-//     User
-//         .findByIdAndUpdate(req.user.id, { "seen.movies": newList })
-//         .then(() => res.redirect('/movies'))
-//         .catch(err => next(err))
-
-// } else if (req.query.add === 'likes') {
-//     let newList = [...moviesLK, req.params.id]
-
-//     User
-//         .findByIdAndUpdate(req.user.id, { "likes.movies": newList })
-//         .then(() => res.redirect('/movies'))
-//         .catch(err => next(err))
-// }
-// })
+            } else if (req.query.add === 'likes') {
+                let newList = [...moviesLK, newObj]
+                User
+                    .findByIdAndUpdate(req.user.id, { "apilists.likes.movies": newList })
+                    .then(() => res.redirect('/movies'))
+                    .catch(err => next(err))
+            }
+        })
+        .catch(err => next(new Error(err)))
+    
+})
 
 
 
