@@ -1,0 +1,18 @@
+<div class="card" style="width: 14rem; margin: 25px;">
+
+    {{#if this.profile_path}}
+    <img class="card-img-top" src='https://image.tmdb.org/t/p/w300{{this.profile_path}}' alt="actor image cap">
+    {{/if}}
+
+    {{#unless profile_path}}
+    <img class="card-img-top" src='/images/personimg.png' alt="actor image cap">
+    {{/unless}}
+
+    <div class="card-body" style="text-align: center">
+
+        <h5 class="card-title">{{this.name}}</h5>
+        <a href="/actors/{{this.id}}" class="btn btn-info btn-block">Details</a>
+
+    </div>
+
+</div>
