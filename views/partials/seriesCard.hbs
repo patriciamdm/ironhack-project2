@@ -1,0 +1,22 @@
+<div class="col-md-3 data-card">
+
+    <figure class="card-img">
+
+        {{#if poster_path}}
+        <img src='https://image.tmdb.org/t/p/w300{{this.poster_path}}' alt="{{this.name}}">
+        {{/if}}
+
+        {{#unless poster_path}}
+        <img src='/images/noimage.png' alt="{{this.name}}">
+        {{/unless}}
+
+    </figure>
+
+    <div class="card-text">
+
+        <h5>{{this.name}}</h5>
+
+    </div>
+
+    <a href="/series/{{this.id}}" class="btn btn-info">Details</a>
+</div>

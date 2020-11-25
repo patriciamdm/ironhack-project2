@@ -1,19 +1,19 @@
+$shadow: 5px 5px 8px #b3b3b3;
+$border-radius: 5px;
+
 body {
   font-family: sans-serif;
   font-weight: 100;
 }
 
-// h1, h2, h3, h4, h5 {
-//   font-weight: 200;
-// }
-
 img {
   object-fit: cover;
   width: 100%;
+  border-radius: $border-radius;
 }
 
 main {
-  margin-top: 100px;
+  margin: 100px 0;
 }
 
 hr {
@@ -27,42 +27,97 @@ hr {
 
 h5 {
   font-weight: 100;
-  text-transform: uppercase;
 }
 
-h6 {
-  margin: 5px 0 15px 0;
-}
 
 a {
   color: gray;
+
+  &:hover {
+    color: #17a2b8;
+    text-decoration: none;
+  }
 }
 
-a:hover {
-  color: #17a2b8;
-  text-decoration: none;
-}
+// .user-contents{
+//   margin-top: 60px;
+// }
 
-.user-contents{
-  margin-top: 60px;
-}
+// .user-columns {
+//   text-align: center;
+// }
 
-.user-columns {
+// .redirect {
+//   font-weight: 100;
+//   text-transform: uppercase;
+//   margin: 0 20px 0 0;
+// }
+
+.data-card {
   text-align: center;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .btn {
+    margin: 10px 0;
+  }
+
+  img {
+    box-shadow: $shadow;
+    margin-bottom: 5px;
+  }
 }
 
-.redirect {
-  font-weight: 100;
-  text-transform: uppercase;
-  margin: 0 20px 0 0;
+.details-card {
+  border: 1px solid #b3b3b3;
+  padding: 15px 20px;
+  border-radius: $border-radius;
+
+  h2 {
+    font-weight: 100;
+    margin-bottom: 10px;
+  }
+  
+  h6 {
+    font-weight: 100;
+    
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+
+  p {
+    margin-right: 15px;
+  }
+
+  .emphasis1 {
+    display: flex;
+    text-transform: uppercase;
+    font-size: .9rem;
+    font-weight: 500;
+  }
+
+  .emphasis2 {
+    display: flex;
+  }
+  
 }
 
-.details {
-  object-fit: cover;
-  width: 100%;
-}
+.rel-data-card {
+  text-align: center;
+  margin-top: 40px;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-.card {
-  width: 13rem;
-  margin: 0;
-}
+  .btn {
+    margin: 10px 0;
+  }
+
+  img {
+    box-shadow: $shadow;
+    margin-bottom: 5px;
+  }
+} 

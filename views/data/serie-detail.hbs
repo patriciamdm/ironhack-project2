@@ -1,33 +1,41 @@
 <section class="container">
+
     <article class="row justify-content-center">
 
-        <div class="col-md-3 details">
-            <img class="card-img-top" src='https://image.tmdb.org/t/p/w300{{thisSerie.poster_path}}'
-                alt="serie image cap">
+        <div class="col-md-3">
+
+            {{#if thisSerie.poster_path}}
+            <img src='https://image.tmdb.org/t/p/w300{{thisSerie.poster_path}}' alt="{{thisSerie.name}}">
+            {{/if}}
+
+            {{#unless thisSerie.poster_path}}
+            <img src='/images/noimage.png' alt="{{thisSerie.name}}">
+            {{/unless}}
+
         </div>
 
-        <div class="col-md-8">
-            <div class="card" style="width: 100%">
-                <div class="card-body">
-                    <h2 class="card-title">{{thisSerie.name}}</h2>
-                    {{#if thisSerie.tagline}}
-                    <p>{{thisSerie.tagline}}</p>
-                    {{/if}}
+        <div class="col-md-8 details-card">
 
-                    <p class="card-text">
-                        {{#each thisSerie.genres}}
-                        {{name}} |
-                        {{/each}}
-                    </p>
+            <h2>{{thisSerie.name}}</h2>
 
-                    <p class="card-text">Released: {{first_air_date.month}} {{first_air_date.day}},
-                        {{first_air_date.year}}
-                    </p>
-                    <p class="card-text">{{thisSerie.overview}}</p>
-                    <p class="card-text">Seasons: {{thisSerie.number_of_seasons}} | Episodes:
-                        {{thisSerie.number_of_episodes}}</p>
-                </div>
+            {{#if thisSerie.tagline}}
+            <h6>{{thisSerie.tagline}}</h6>
+            {{/if}}
+
+            <div class="emphasis1">
+                {{#each thisSerie.genres}}
+                <p>{{name}}</p>
+                {{/each}}
             </div>
+
+            <p><b> Released:</b> {{first_air_date.month}} {{first_air_date.day}}, {{first_air_date.year}}</p>
+            <p>{{thisSerie.overview}}</p>
+
+            <div class="emphasis2">
+                <p><b>Seasons:</b> {{thisSerie.number_of_seasons}}</p>
+                <p><b>Episodes:</b> {{thisSerie.number_of_episodes}}</p>
+            </div>
+
         </div>
 
         {{#if isLogged}}
@@ -53,32 +61,13 @@
 
     </article>
 
-    <hr>
+    <br>
+
     <article class="row justify-content-center">
 
         {{#each topPopularActors}}
 
-        <div class="col-sm-6 col-md-3" style="padding: 30px;">
-
-            <div class="card" style="width: 100%;">
-                {{#if profile_path}}
-                <img class="card-img-top" src='https://image.tmdb.org/t/p/w300{{profile_path}}' alt="actor image cap">
-                {{/if}}
-                {{#unless profile_path}}
-                <img class="card-img-top" src='/images/personimg.png' alt="actor image cap">
-                {{/unless}}
-                <div class="card-body">
-
-                    <h5 class="card-title">{{name}}</h5>
-                    <p class="card-text">{{character}}</p>
-                    <a href="/actors/{{id}}" class="btn btn-info btn-block">Details</a>
-
-                </div>
-
-            </div>
-
-        </div>
-
+        {{>relActorCard}}
 
         {{/each}}
 

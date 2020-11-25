@@ -2,55 +2,46 @@
 
     <article class="row justify-content-center">
 
-        <div class="col-md-3 details">
+        <div class="col-md-3">
 
-            <img class="card-img" src='https://image.tmdb.org/t/p/w300{{thisActor.profile_path}}' alt="actor image cap">
+            {{#if thisActor.profile_path}}
+            <img src='https://image.tmdb.org/t/p/w300{{thisActor.profile_path}}' alt="{{thisActor.name}}">
+            {{/if}}
+
+            {{#unless thisActor.profile_path}}
+            <img src='/images/personimg.png' alt="{{thisActor.name}}">
+            {{/unless}}
+
 
         </div>
-        <div class="col-md-8">
 
-            <div class="card" style="width: 100%">
+        <div class="col-md-8 details-card">
 
-                <div class="card-body">
+            <h2>{{thisActor.name}}</h2>
 
-                    <h2 class="card-title">{{thisActor.name}}</h2>
-                    <p class="card-text">Born: {{birthday.month}} {{birthday.day}}, {{birthday.year}} in
-                        {{thisActor.place_of_birth}}</p>
-                    {{#if deathday}}
-                    <p class="card-text">Death: {{deathday.month}} {{deathday.day}}, {{deathday.year}}</p>
-                    {{/if}}
-                    <p class="card-text">{{thisActor.biography}}</p>
+            <p><b> Born:</b> {{birthday.month}} {{birthday.day}}, {{birthday.year}} in {{thisActor.place_of_birth}}</p>
 
-                </div>
-            </div>
+            {{#if deathday}}
+            <p><b> Death:</b> {{deathday.month}} {{deathday.day}}, {{deathday.year}}</p>
+            {{/if}}
+
+
+            <p>{{thisActor.biography}}</p>
 
         </div>
 
     </article>
-    <hr>
+
+    <br>
+
     <article class="row justify-content-center">
 
         {{#each topPopularMovies}}
 
-        <div class="col-sm-6 col-md-3" style="padding: 30px;">
-
-            <div class="card" style="width: 100%;">
-
-                <img class="card-img-top" src='https://image.tmdb.org/t/p/w300{{poster_path}}' alt="actor image cap">
-
-                <div class="card-body">
-
-                    <h5 class="card-title">{{title}}</h5>
-                    <a href="/movies/{{id}}" class="btn btn-info btn-block">Details</a>
-
-                </div>
-
-            </div>
-
-        </div>
-
+        {{>relMovieCard}}
 
         {{/each}}
+
     </article>
 
 </section>

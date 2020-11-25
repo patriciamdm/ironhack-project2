@@ -1,4 +1,4 @@
-<div class="col-md-3 data-card">
+<div class="col-md-3 com-sm-6 rel-data-card">
 
     <figure class="card-img">
 
@@ -6,7 +6,7 @@
         <img src='https://image.tmdb.org/t/p/w300{{this.profile_path}}' alt="{{this.name}}">
         {{/if}}
 
-        {{#unless this.profile_path}}
+        {{#unless profile_path}}
         <img src='/images/personimg.png' alt="{{this.name}}">
         {{/unless}}
 
@@ -14,6 +14,7 @@
 
     <div class="card-text">
         <h5>{{this.name}}</h5>
+        <p>{{this.character}}</p>
     </div>
 
     <a href="/actors/{{this.id}}" class="btn btn-info">Details</a>

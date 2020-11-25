@@ -6,18 +6,7 @@
 
         {{#each allDirectors}}
 
-        <div class="card" style="width: 14rem; margin: 25px;">
-
-            <img class="card-img-top" src='https://image.tmdb.org/t/p/w300{{profile_path}}' alt="director image cap">
-
-            <div class="card-body">
-
-                <h5 class="card-title">{{name}}</h5>
-                <a href="/directors/{{id}}" class="btn btn-info btn-block">Details</a>
-
-            </div>
-
-        </div>
+        {{>directorCard}}
 
         {{/each}}
 
