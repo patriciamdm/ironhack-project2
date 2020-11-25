@@ -11,6 +11,24 @@ const apiHandler = axios.create({
     baseURL: "https://api.themoviedb.org/3"
 })
 
+//PARTIALS
+// const hbs = require('hbs');
+// const path = require('path');
+
+
+// const app = express();
+// app.use(express.static('public'))
+
+// hbs.registerPartials(`${__dirname}/views/partials`)
+
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'hbs');
+
+
+// app.use(express.static(path.join(__dirname, 'public')));
+
+
+
 
 
 const isLogged = (req) => req.isAuthenticated() === true
@@ -27,8 +45,34 @@ router.get('/', (req, res, next) => {
         .get(`/person/popular?api_key=95ad659b54a1464fdb415db2270f7402`)
         .then(popularActors => {
             const allActors = popularActors.data.results
-            console.log(popularActors.data.results)
             res.render('data/actors', { allActors, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
+        })
+        .catch(err => next(err))
+    // Person
+    //     .find({ 'known_for_department': 'Acting' })
+    //     .sort({ popularity: -1 })
+    //     .then(allActors => {
+    //         res.render('data/actors', { allActors, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
+    //     })
+    //     .catch(err => next(err))
+
+})
+
+
+//SEARCH
+router.post('/', (req, res, next) => {
+
+    const { search } = req.body
+    const searchCleaned = search.replace(/\s/g, '%20')
+    console.log(searchCleaned)
+
+
+    apiHandler
+        .get(`/search/person?api_key=95ad659b54a1464fdb415db2270f7402&query=${searchCleaned}`)
+        .then(search => {
+            const searchResults = search.data.results
+            console.log(searchResults)
+            res.render('data/actors', { searchResults, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
         })
         .catch(err => next(err))
     // Person
