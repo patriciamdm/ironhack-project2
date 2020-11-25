@@ -6,7 +6,7 @@
         <img src='https://image.tmdb.org/t/p/w300{{this.profile_path}}' alt="{{this.name}}">
         {{/if}}
 
-        {{#unless this.profile_path}}
+        {{#unless profile_path}}
         <img src='/images/personimg.png' alt="{{this.name}}">
         {{/unless}}
 
@@ -16,5 +16,5 @@
         <h5>{{this.name}}</h5>
     </div>
 
-    <a href="/actors/{{this.id}}" class="btn btn-info">Details</a>
+    <a href="/directors/{{this.id}}" class="btn btn-info">Details</a>
 </div>

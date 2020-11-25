@@ -47,20 +47,11 @@
             </a>
             <hr>
             <div id="user-watchlist" class="row">
-                <div class="col-md-6">
-                    <a href="/movies/{{lastMovieWL.id}}">
-                        <img src="https://image.tmdb.org/t/p/w300{{lastMovieWL.poster_path}}"
-                            alt="{{lastMovieWL.title}}">
-                        <h6>{{lastMovieWL.title}}</h6>
-                    </a>
-                </div>
-                <div class="col-md-6">
-                    <a href="/series/{{lastSeriesWL.id}}">
-                        <img src="https://image.tmdb.org/t/p/w300{{lastSeriesWL.poster_path}}"
-                            alt="{{lastSeriesWL.name}}">
-                        <h6>{{lastSeriesWL.name}}</h6>
-                    </a>
-                </div>
+
+                {{>listMovieCardSeed list=lastMovieWL}}
+
+                {{>listSeriesCardSeed list=lastSeriesWL}}
+
             </div>
         </div>
 
@@ -71,20 +62,11 @@
             </a>
             <hr>
             <div id="user-likes" class="row">
-                <div class="col-md-6">
-                    <a href="/movies/{{lastMovieLk.id}}">
-                        <img src="https://image.tmdb.org/t/p/w300{{lastMovieLK.poster_path}}"
-                            alt="{{lastMovieLK.title}}">
-                        <h6>{{lastMovieLK.title}}</h6>
-                    </a>
-                </div>
-                <div class="col-md-6">
-                    <a href="/series/{{lastSeriesLK.id}}">
-                        <img src="https://image.tmdb.org/t/p/w300{{lastSeriesLK.poster_path}}"
-                            alt="{{lastSeriesLK.name}}">
-                        <h6>{{lastSeriesLK.name}}</h6>
-                    </a>
-                </div>
+
+                {{>listMovieCardSeed list=lastMovieLK}}
+
+                {{>listSeriesCardSeed list=lastSeriesLK}}
+
             </div>
         </div>
 
@@ -95,20 +77,11 @@
             </a>
             <hr>
             <div id="user-seen" class="row">
-                <div class="col-md-6">
-                    <a href="/movies/{{lastMovieSN.id}}">
-                        <img src="https://image.tmdb.org/t/p/w300{{lastMovieSN.poster_path}}"
-                            alt="{{lastMovieSN.title}}">
-                        <h6>{{lastMovieSN.title}}</h6>
-                    </a>
-                </div>
-                <div class="col-md-6">
-                    <a href="/series/{{lastSeriesSN.id}}">
-                        <img src="https://image.tmdb.org/t/p/w300{{lastSeriesSN.poster_path}}"
-                            alt="{{lastSeriesSN.name}}">
-                        <h6>{{lastSeriesSN.name}}</h6>
-                    </a>
-                </div>
+
+                {{>listMovieCardSeed list=lastMovieSN}}
+
+                {{>listSeriesCardSeed list=lastSeriesSN}}
+
             </div>
         </div>
         {{/if}}
@@ -121,20 +94,11 @@
             </a>
             <hr>
             <div id="user-watchlist" class="row">
-                <div class="col-md-6">
-                    <a href="/movies/{{lastMovieWL.db_id}}">
-                        <img src="https://image.tmdb.org/t/p/w300{{lastMovieWL.poster_path}}"
-                            alt="{{lastMovieWL.title}}">
-                        <h6>{{lastMovieWL.title}}</h6>
-                    </a>
-                </div>
-                <div class="col-md-6">
-                    <a href="/series/{{lastSeriesWL.db_id}}">
-                        <img src="https://image.tmdb.org/t/p/w300{{lastSeriesWL.poster_path}}"
-                            alt="{{lastSeriesWL.name}}">
-                        <h6>{{lastSeriesWL.name}}</h6>
-                    </a>
-                </div>
+
+                {{>listMovieCardAPI list=lastMovieWL}}
+
+                {{>listSeriesCardAPI list=lastSeriesWL}}
+
             </div>
         </div>
 
@@ -145,20 +109,11 @@
             </a>
             <hr>
             <div id="user-likes" class="row">
-                <div class="col-md-6">
-                    <a href="/movies/{{lastMovieLK.db_id}}">
-                        <img src="https://image.tmdb.org/t/p/w300{{lastMovieLK.poster_path}}"
-                            alt="{{lastMovieLK.title}}">
-                        <h6>{{lastMovieLK.title}}</h6>
-                    </a>
-                </div>
-                <div class="col-md-6">
-                    <a href="/series/{{lastSeriesLK.db_id}}">
-                        <img src="https://image.tmdb.org/t/p/w300{{lastSeriesLK.poster_path}}"
-                            alt="{{lastSeriesLK.name}}">
-                        <h6>{{lastSeriesLK.name}}</h6>
-                    </a>
-                </div>
+
+                {{>listMovieCardAPI list=lastMovieLK}}
+
+                {{>listSeriesCardAPI list=lastSeriesLK}}
+
             </div>
         </div>
 
@@ -169,20 +124,11 @@
             </a>
             <hr>
             <div id="user-seen" class="row">
-                <div class="col-md-6">
-                    <a href="/movies/{{lastMovieSN.db_id}}">
-                        <img src="https://image.tmdb.org/t/p/w300{{lastMovieSN.poster_path}}"
-                            alt="{{lastMovieSN.title}}">
-                        <h6>{{lastMovieSN.title}}</h6>
-                    </a>
-                </div>
-                <div class="col-md-6">
-                    <a href="/series/{{lastSeriesSN.db_id}}">
-                        <img src="https://image.tmdb.org/t/p/w300{{lastSeriesSN.poster_path}}"
-                            alt="{{lastSeriesSN.name}}">
-                        <h6>{{lastSeriesSN.name}}</h6>
-                    </a>
-                </div>
+
+                {{>listMovieCardAPI list=lastMovieSN}}
+
+                {{>listSeriesCardAPI list=lastSeriesSN}}
+
             </div>
         </div>
         {{/if}}

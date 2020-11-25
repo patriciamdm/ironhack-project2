@@ -1,53 +1,42 @@
 <section class="container">
 
     <h2>Movies</h2>
-    <form action="/movies" method="POST" class="form-inline active-cyan-3 active-cyan-4">
-        <input class="form-control form-control-sm ml-5 w-75" type="text" placeholder="Search" aria-label="Search"
-            name="search">
+    <br>
+
+    <form action="/movies" method="POST" class="input-group mb-3">
+        <input name="search" type="text" class="form-control" placeholder="Search a movie..."
+            aria-describedby="search-movie">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" id="search-movie">Search</button>
+        </div>
     </form>
+
+
     {{#if searchResults}}
-    <h3>Search result:</h3>
-    <article class="row justify-content-center" id="movieSearch">
+    <br>
+    <hr>
+    <h4>Search results:</h4>
+
+    <article class="row justify-content-center">
 
         {{#each searchResults}}
-        <div class="card" style="width: 14rem; margin: 25px;">
-            {{#if poster_path}}
-            <img class="card-img-top" src='https://image.tmdb.org/t/p/w300{{poster_path}}' alt="actor image cap">
-            {{/if}}
-            {{#unless poster_path}}
-            <img class="card-img-top" src='/images/noimage.png' alt="actor image cap">
-            {{/unless}}
 
-            <div class="card-body" style="text-align: center">
+        {{>movieCard}}
 
-                <h5 class="card-title">{{title}}</h5>
-                <a href="/movies/{{id}}" class="btn btn-info btn-block">Details</a>
-
-            </div>
-
-        </div>
         {{/each}}
+
     </article>
+
     {{/if}}
+
+
 
     {{#if allMovies}}
     <article class="row justify-content-center">
 
         {{#each allMovies}}
 
-        <div class="card" style="width: 14rem; margin: 25px;">
-
-            <img class="card-img-top" src='https://image.tmdb.org/t/p/w300{{poster_path}}' alt="serie image cap"
-                style="object-fit: cover; width: 100%;">
-
-            <div class="card-body" style="text-align: center">
-
-                <h5 class="card-title">{{title}}</h5>
-                <a href="/movies/{{id}}" class="btn btn-info btn-block">Details</a>
-
-            </div>
-
-        </div>
+        {{>movieCard}}
 
         {{/each}}
 

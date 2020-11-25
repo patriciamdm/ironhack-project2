@@ -1,32 +1,39 @@
 <section class="container">
+
     <article class="row justify-content-center">
-        <div class="col-md-3 details">
-            <img class="card-img-top" src='https://image.tmdb.org/t/p/w300{{thisMovie.poster_path}}'
-                alt="serie image cap">
+
+        <div class="col-md-3">
+
+            {{#if thisMovie.poster_path}}
+            <img src='https://image.tmdb.org/t/p/w300{{thisMovie.poster_path}}' alt="{{thisMovie.title}}">
+            {{/if}}
+
+            {{#unless thisMovie.poster_path}}
+            <img src='/images/noimage.png' alt="{{thisMovie.title}}">
+            {{/unless}}
+
+
         </div>
 
-        <div class="col-md-8">
-            <div class="card" style="width: 100%">
-                <div class="card-body">
-                    <h2 class="card-title">{{thisMovie.title}}</h2>
-                    {{#if thisMovie.tagline}}
-                    <p>{{thisMovie.tagline}}</p>
-                    {{/if}}
+        <div class="col-md-8 details-card">
 
-                    <p class="card-text">
-                        {{#each thisMovie.genres}}
-                        {{name}} |
-                        {{/each}}
-                    </p>
+            <h2>{{thisMovie.title}}</h2>
 
-                    <p class="card-text">Released: {{release_date.month}} {{release_date.day}},
-                        {{release_date.year}}
-                    </p>
-                    <p class="card-text">{{thisMovie.overview}}</p>
+            {{#if thisMovie.tagline}}
+            <h6>{{thisMovie.tagline}}</h6>
+            {{/if}}
 
-                </div>
+            <div class="emphasis1">
+                {{#each thisMovie.genres}}
+                <p>{{name}}</p>
+                {{/each}}
             </div>
+
+            <p><b> Released:</b> {{release_date.month}} {{release_date.day}}, {{release_date.year}}</p>
+            <p>{{thisMovie.overview}}</p>
+
         </div>
+
         {{#if isLogged}}
         <div class="col-md-1">
 
@@ -65,36 +72,21 @@
 
         </div>
         {{/if}}
+
     </article>
-    <hr>
+
+    <br>
+
     <article class="row justify-content-center">
 
         {{#each topPopularActors}}
 
-        <div class="col-sm-6 col-md-3" style="padding: 30px;">
-
-            <div class="card" style="width: 100%;">
-                {{#if profile_path}}
-                <img class="card-img-top" src='https://image.tmdb.org/t/p/w300{{profile_path}}' alt="actor image cap">
-                {{/if}}
-                {{#unless profile_path}}
-                <img class="card-img-top" src='/images/personimg.png' alt="actor image cap">
-                {{/unless}}
-                <div class="card-body">
-
-                    <h5 class="card-title">{{name}}</h5>
-                    <p class="card-text">{{character}}</p>
-                    <a href="/actors/{{id}}" class="btn btn-info btn-block">Details</a>
-
-                </div>
-
-            </div>
-
-        </div>
-
+        {{>relActorCard}}
 
         {{/each}}
+
     </article>
+
 </section>
 
 {{!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
