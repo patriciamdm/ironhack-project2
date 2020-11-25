@@ -8,6 +8,9 @@ const isLogged = (req) => req.isAuthenticated() === true
 const isNotLogged = (req) => req.isAuthenticated() === false
 
 
+
+
+
 // ALL MOVIES INDEX
 
 router.get('/', (req, res, next) => {
@@ -19,7 +22,10 @@ router.get('/', (req, res, next) => {
         .catch(err => next(err))
 })
 
-//SEARCH
+
+
+// SEARCH BAR
+
 router.post('/', (req, res, next) => {
 
     const { search } = req.body
@@ -35,6 +41,8 @@ router.post('/', (req, res, next) => {
         })
         .catch(err => next(err))
 })
+
+
 
 
 // INDIVIDUAL MOVIE DETAILS
@@ -61,36 +69,36 @@ router.get('/:id', (req, res, next) => {
 
 // ADD MOVIE TO USER'S LISTS
 
-// router.post('/:id', (req, res, next) => {
-// const moviesWL = req.user.watchlist.movies
-// const moviesSN = req.user.seen.movies
-// const moviesLK = req.user.likes.movies
+router.post('/:id', (req, res, next) => {
+    const moviesWL = req.user.seedslists.watchlist.movies
+    const moviesSN = req.user.seedslists.seen.movies
+    const moviesLK = req.user.seedslists.likes.movies
+    
+    if (req.query.add === 'watchlist') {
+        let newList = [...moviesWL, req.params.id]
 
-// if (req.query.add === 'watchlist') {
-//     let newList = [...moviesWL, req.params.id]
+        User
+            .findByIdAndUpdate(req.user.id, { "seedslists.watchlist.movies": newList })
+            .then(() => res.redirect('/movies'))
+            .catch(err => next(err))
 
-//     User
-//         .findByIdAndUpdate(req.user.id, { "watchlist.movies": newList })
-//         .then(() => res.redirect('/movies'))
-//         .catch(err => next(err))
+    } else if (req.query.add === 'seen') {
+        let newList = [...moviesSN, req.params.id]
 
-// } else if (req.query.add === 'seen') {
-//     let newList = [...moviesSN, req.params.id]
+        User
+            .findByIdAndUpdate(req.user.id, { "seedslists.seen.movies": newList })
+            .then(() => res.redirect('/movies'))
+            .catch(err => next(err))
 
-//     User
-//         .findByIdAndUpdate(req.user.id, { "seen.movies": newList })
-//         .then(() => res.redirect('/movies'))
-//         .catch(err => next(err))
+    } else if (req.query.add === 'likes') {
+        let newList = [...moviesLK, req.params.id]
 
-// } else if (req.query.add === 'likes') {
-//     let newList = [...moviesLK, req.params.id]
-
-//     User
-//         .findByIdAndUpdate(req.user.id, { "likes.movies": newList })
-//         .then(() => res.redirect('/movies'))
-//         .catch(err => next(err))
-// }
-// })
+        User
+            .findByIdAndUpdate(req.user.id, { "seedslists.likes.movies": newList })
+            .then(() => res.redirect('/movies'))
+            .catch(err => next(err))
+    }
+})
 
 
 
