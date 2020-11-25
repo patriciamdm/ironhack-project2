@@ -26,11 +26,14 @@ router.get('/', (req, res, next) => {
         .then(allMovies => res.render('data/movies', { allMovies: allMovies.data.results, isLogged: isLogged(req), isNotLogged: isNotLogged(req) }))
         .catch(err => next(err))
 
+    // Movie
+    //     .find()
+    //     .sort({ popularity: -1 })
+    //     .then(allMovies => res.render('data/movies', { allMovies, isLogged: isLogged(req), isNotLogged: isNotLogged(req) }))
+    //     .catch(err => next(err))
 })
 
-
-// SEARCH
-
+//SEARCH
 router.post('/', (req, res, next) => {
 
     const { search } = req.body
@@ -47,6 +50,11 @@ router.post('/', (req, res, next) => {
         })
         .catch(err => next(err))
 
+    // Movie
+    //     .find()
+    //     .sort({ popularity: -1 })
+    //     .then(allMovies => res.render('data/movies', { allMovies, isLogged: isLogged(req), isNotLogged: isNotLogged(req) }))
+    //     .catch(err => next(err))
 })
 
 
@@ -90,6 +98,19 @@ router.get('/:id', (req, res, next) => {
         })
         .catch(err => next(err))
 
+
+    // Movie
+    //     .findById(req.params.id)
+    //     .then(thisMovie => {
+    //         const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    //         const movieDate = {
+    //             day: thisMovie.release_date.getDate(),
+    //             month: months[thisMovie.release_date.getMonth()],
+    //             year: thisMovie.release_date.getFullYear()
+    //         }
+    //         res.render('data/movie-detail', { thisMovie, release_date: movieDate, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
+    //     })
+    //     .catch(err => next(err))
 })
 
 
