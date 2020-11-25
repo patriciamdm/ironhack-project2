@@ -13,8 +13,35 @@
         </div>
     </article>
     <article class="row">
+
+        {{#if apiData}}
         <div class="col-md-6">
-            {{#each theUser.seen.movies}}
+            {{#each moviesSN}}
+            <div class="card">
+                <a href="/movies/{{this.db_id}}">
+                    <img class="card-img-top" src="https://image.tmdb.org/t/p/w300{{this.poster_path}}"
+                        alt="{{this.title}} poster">
+                    <h6 class="card-body">{{this.title}}</h6>
+                </a>
+            </div>
+            {{/each}}
+        </div>
+        <div class="col-md-6">
+            {{#each seriesSN}}
+            <div class="card">
+                <a href="/tv/{{this.db_id}}">
+                    <img class="card-img-top" src="https://image.tmdb.org/t/p/w300{{this.poster_path}}"
+                        alt="{{this.name}} poster">
+                    <h6 class="card-body">{{this.name}}</h6>
+                </a>
+            </div>
+            {{/each}}
+        </div>
+        {{/if}}
+
+        {{#if seedsData}}
+        <div class="col-md-6">
+            {{#each theUser.watchlist.movies}}
             <div class="card">
                 <img class="card-img-top" src="https://image.tmdb.org/t/p/w300{{this.poster_path}}"
                     alt="{{this.title}} poster">
@@ -23,7 +50,7 @@
             {{/each}}
         </div>
         <div class="col-md-6">
-            {{#each theUser.seen.series}}
+            {{#each theUser.watchlist.series}}
             <div class="card">
                 <img class="card-img-top" src="https://image.tmdb.org/t/p/w300{{this.poster_path}}"
                     alt="{{this.title}} poster">
@@ -31,6 +58,7 @@
             </div>
             {{/each}}
         </div>
-        </div>
+        {{/if}}
     </article>
+
 </section>

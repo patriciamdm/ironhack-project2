@@ -13,12 +13,12 @@ const apiHandler = axios.create({
 const isLogged = (req) => req.isAuthenticated() === true
 const isNotLogged = (req) => req.isAuthenticated() === false
 
-const apiData = (yes) => yes 
-const seedsData = (yes) => yes 
+const apiData = (yes) => yes
 
 const moviesListEmpty = (req) => (req.user.apilists.watchlist.movies.length === 0 || req.user.apilists.likes.movies.length === 0 || req.user.apilists.seen.movies.length === 0) ? true : null
 const seriesListEmpty = (req) => (req.user.apilists.watchlist.series.length === 0 || req.user.apilists.likes.series.length === 0 || req.user.apilists.seen.series.length === 0) ? true : null
 
+const lastIndex = (array) => array.length - 1;
 
 
 // USER PROFILE PAGE
@@ -29,12 +29,12 @@ router.get('/', (req, res, next) => {
     .findById(req.user.id)
         .then(theUser => {
 
-            const lastMovieWL = theUser.apilists.watchlist.movies[0]
-            const lastMovieLK = theUser.apilists.likes.movies[0]
-            const lastMovieSN = theUser.apilists.seen.movies[0]
-            const lastSeriesWL = theUser.apilists.watchlist.series[0]
-            const lastSeriesLK = theUser.apilists.likes.series[0]
-            const lastSeriesSN = theUser.apilists.seen.series[0]
+            const lastMovieWL = theUser.apilists.watchlist.movies[lastIndex(theUser.apilists.watchlist.movies)]
+            const lastMovieLK = theUser.apilists.likes.movies[lastIndex(theUser.apilists.likes.movies)]
+            const lastMovieSN = theUser.apilists.seen.movies[lastIndex(theUser.apilists.seen.movies)]
+            const lastSeriesWL = theUser.apilists.watchlist.series[lastIndex(theUser.apilists.watchlist.series)]
+            const lastSeriesLK = theUser.apilists.likes.series[lastIndex(theUser.apilists.likes.series)]
+            const lastSeriesSN = theUser.apilists.seen.series[lastIndex(theUser.apilists.seen.series)]
             
             res.render('user/user-profile', { theUser, lastMovieWL, lastMovieLK, lastMovieSN, lastSeriesWL, lastSeriesLK, lastSeriesSN, apiData: apiData(true), isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) })
             
@@ -165,15 +165,8 @@ router.post('/delete', (req, res, next) => {
 router.get('/watchlist', (req, res, next) => {
     User
         .findById(req.query.id)
-        .then(theUser => res.render('user/user-watchlist', { theUser, isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
+        .then(theUser => res.render('user/user-watchlist', { theUser, moviesWL: theUser.apilists.watchlist.movies, seriesWL: theUser.apilists.watchlist.series, apiData: apiData(true), isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
         .catch(err => next(err))
-
-    // User
-    //     .findById(req.query.id)
-    //     .populate('seedslists.watchlist.movies')
-    //     .populate('seedslists.watchlist.series')
-    //     .then(theUser => res.render('user/user-watchlist', { theUser, isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
-    //     .catch(err => next(err))
 })
 
 
@@ -182,9 +175,8 @@ router.get('/watchlist', (req, res, next) => {
 router.get('/seen', (req, res, next) => {
     User
         .findById(req.query.id)
-        .then(theUser => res.render('user/user-watchlist', { theUser, isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
+        .then(theUser => res.render('user/user-seen', { theUser, moviesSN: theUser.apilists.seen.movies, seriesSN: theUser.apilists.seen.series, apiData: apiData(true), isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
         .catch(err => next(err))
-
 })
 
 
@@ -193,9 +185,8 @@ router.get('/seen', (req, res, next) => {
 router.get('/likes', (req, res, next) => {
     User
         .findById(req.query.id)
-        .then(theUser => res.render('user/user-watchlist', { theUser, isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
+        .then(theUser => res.render('user/user-likes', { theUser, moviesLK: theUser.apilists.likes.movies, seriesLK: theUser.apilists.likes.series, apiData: apiData(true), isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
         .catch(err => next(err))
-
 })
 
 
