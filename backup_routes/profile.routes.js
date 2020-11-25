@@ -13,15 +13,12 @@ const apiHandler = axios.create({
 const isLogged = (req) => req.isAuthenticated() === true
 const isNotLogged = (req) => req.isAuthenticated() === false
 
-const apiData = (yes) => yes 
 const seedsData = (yes) => yes 
 
-const moviesListEmpty = (req) => (req.user.apilists.watchlist.movies.length === 0 || req.user.apilists.likes.movies.length === 0 || req.user.apilists.seen.movies.length === 0) ? true : null
-const seriesListEmpty = (req) => (req.user.apilists.watchlist.series.length === 0 || req.user.apilists.likes.series.length === 0 || req.user.apilists.seen.series.length === 0) ? true : null
-//const moviesListEmpty = (req) => (req.user.seedslists.watchlist.movies.length === 0 || req.user.seedslists.likes.movies.length === 0 || req.user.seedslists.seen.movies.length === 0) ? true : null
-//const seriesListEmpty = (req) => (req.user.seedslists.watchlist.series.length === 0 || req.user.seedslists.likes.series.length === 0 || req.user.seedslists.seen.series.length === 0) ? true : null
+const moviesListEmpty = (req) => (req.user.seedslists.watchlist.movies.length === 0 || req.user.seedslists.likes.movies.length === 0 || req.user.seedslists.seen.movies.length === 0) ? true : null
+const seriesListEmpty = (req) => (req.user.seedslists.watchlist.series.length === 0 || req.user.seedslists.likes.series.length === 0 || req.user.seedslists.seen.series.length === 0) ? true : null
 
-
+const lastIndex = (array) => array.length - 1;
 
 
 // USER PROFILE PAGE
@@ -29,99 +26,22 @@ const seriesListEmpty = (req) => (req.user.apilists.watchlist.series.length === 
 router.get('/', (req, res, next) => {
     
     User
-    .findById(req.user.id)
+        .findById(req.user.id)
+        .populate('seedslists.watchlist.movies')
+        .populate('seedslists.watchlist.series')
+        .populate('seedslists.likes.movies')
+        .populate('seedslists.likes.series')
+        .populate('seedslists.seen.movies')
+        .populate('seedslists.seen.series')
         .then(theUser => {
+            const lastMovieWL = theUser.seedslists.watchlist.movies[lastIndex(theUser.seedslists.watchlist.movies)]
+            const lastMovieLK = theUser.seedslists.likes.movies[lastIndex(theUser.seedslists.likes.movies)]
+            const lastMovieSN = theUser.seedslists.seen.movies[lastIndex(theUser.seedslists.seen.movies)]
+            const lastSeriesWL = theUser.seedslists.watchlist.series[lastIndex(theUser.seedslists.watchlist.series)]
+            const lastSeriesLK = theUser.seedslists.likes.series[lastIndex(theUser.seedslists.likes.series)]
+            const lastSeriesSN = theUser.seedslists.seen.series[lastIndex(theUser.seedslists.seen.series)]
 
-            const lastMovieWL = theUser.apilists.watchlist.movies[0]
-            const lastMovieLK = theUser.apilists.likes.movies[0]
-            const lastMovieSN = theUser.apilists.seen.movies[0]
-            const lastSeriesWL = theUser.apilists.watchlist.series[0]
-            const lastSeriesLK = theUser.apilists.likes.series[0]
-            const lastSeriesSN = theUser.apilists.seen.series[0]
-            
-            res.render('user/user-profile', { theUser, lastMovieWL, lastMovieLK, lastMovieSN, lastSeriesWL, lastSeriesLK, lastSeriesSN, apiData: apiData(true), isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) })
-            
-
-
-
-
-            // apiHandler
-            //     .get(`/tv/${theUser.apilists.watchlist.series[0]}?api_key=95ad659b54a1464fdb415db2270f7402`)
-            //     .then(response => {
-            //         let data = response.data
-            //         console.log(data)
-            //         res.render('user/user-profile', { theUser, lastSeriesWL: data, apiData: apiData(true), isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) })
-            //     })
-            //     .catch(err => next(new Error(err)))
-                
-            
-
-
-
-
-            // let lastMovieWL, lastMovieLK, lastMovieSN, lastSeriesWL, lastSeriesLK, lastSeriesSN;
-
-            // if (theUser.apilists.watchlist.movies.length != 0) {
-            //     apiHandler
-            //         .get(`/movies/${theUser.apilists.watchlist.movies[0]}?api_key=95ad659b54a1464fdb415db2270f7402`)
-            //         .then(response => lastMovieWL = response.data)
-            //         .catch(err => next(new Error(err)))
-            //     return lastMovieWL
-            // }
-            // if (theUser.apilists.likes.movies.length != 0) {
-            //     apiHandler
-            //         .get(`/movies/${theUser.apilists.likes.movies[0]}?api_key=95ad659b54a1464fdb415db2270f7402`)
-            //         .then(response => lastMovieLK = response.data)
-            //         .catch(err => next(new Error(err)))
-            //     return lastMovieLK
-            // }
-            // if (theUser.apilists.seen.movies.length != 0) {
-            //     apiHandler
-            //         .get(`/movies/${theUser.apilists.seen.movies[0]}?api_key=95ad659b54a1464fdb415db2270f7402`)
-            //         .then(response => lastMovieSN = response.data)
-            //         .catch(err => next(new Error(err)))
-            //     return lastMovieSN
-            // }
-            // if (theUser.apilists.watchlist.series.length != 0) {
-            //     apiHandler
-            //         .get(`/tv/${theUser.apilists.watchlist.series[0]}?api_key=95ad659b54a1464fdb415db2270f7402`)
-            //         .then(response => lastSeriesWL = response.data)
-            //         .catch(err => next(new Error(err)))
-            //     return lastSeriesWL
-            // }
-            // if (theUser.apilists.likes.series.length != 0) {
-            //     apiHandler
-            //         .get(`/tv/${theUser.apilists.likes.series[0]}?api_key=95ad659b54a1464fdb415db2270f7402`)
-            //         .then(response => lastSeriesLK = response.data)
-            //         .catch(err => next(new Error(err)))
-            //     return lastSeriesLK
-            // }
-            // if (theUser.apilists.seen.series.length != 0) {
-            //     apiHandler
-            //         .get(`/tv/${theUser.apilists.seen.series[0]}?api_key=95ad659b54a1464fdb415db2270f7402`)
-            //         .then(response => lastSeriesSN = response.data)
-            //         .catch(err => next(new Error(err)))
-            //     return lastSeriesSN
-            // }
-            
-
-
-
-
-
-            // const lastMovieLKprom = apiHandler.get(`/movies/${theUser.apilists.likes.movies[0]}?api_key=95ad659b54a1464fdb415db2270f7402`)
-            // const lastMovieSNprom = apiHandler.get(`/movies/${theUser.apilists.seen.movies[0]}?api_key=95ad659b54a1464fdb415db2270f7402`)
-            // const lastSeriesWLprom = apiHandler.get(`/tv/${theUser.apilists.watchlist.series[0]}?api_key=95ad659b54a1464fdb415db2270f7402`)
-            // const lastSeriesLKprom = apiHandler.get(`/tv/${theUser.apilists.likes.series[0]}?api_key=95ad659b54a1464fdb415db2270f7402`)
-            // const lastSeriesSNprom = apiHandler.get(`/tv/${theUser.apilists.seen.series[0]}?api_key=95ad659b54a1464fdb415db2270f7402`)
-
-            // Promise.all([lastMovieWLprom, lastMovieLKprom, lastMovieSNprom, lastSeriesWLprom, lastSeriesLKprom, lastSeriesSNprom])
-            //     .then(response => res.render('user/user-profile', { theUser, lastMovieWL: response[0].data, lastMovieLK: response[1].data, lastMovieSN: response[2].data, lastSeriesWL: response[3].data, lastSeriesLK: response[4].data, lastSeriesSN: response[5].data, apiData: apiData(true), isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
-            //     .catch(err => next(new Error(err)))
-            
-
-
-
+            res.render('user/user-profile', { theUser, lastMovieWL, lastMovieLK, lastMovieSN, lastSeriesWL, lastSeriesLK, lastSeriesSN, seedsData: seedsData(true), isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) })
         })
         .catch(err => next(new Error(err)))
 })
@@ -181,15 +101,10 @@ router.post('/delete', (req, res, next) => {
 router.get('/watchlist', (req, res, next) => {
     User
         .findById(req.query.id)
-        .then(theUser => res.render('user/user-watchlist', { theUser, isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
+        .populate('seedslists.watchlist.movies')
+        .populate('seedslists.watchlist.series')
+        .then(theUser => res.render('user/user-watchlist', { theUser, seedsData: seedsData(true), isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
         .catch(err => next(err))
-
-    // User
-    //     .findById(req.query.id)
-    //     .populate('seedslists.watchlist.movies')
-    //     .populate('seedslists.watchlist.series')
-    //     .then(theUser => res.render('user/user-watchlist', { theUser, isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
-    //     .catch(err => next(err))
 })
 
 
@@ -198,16 +113,10 @@ router.get('/watchlist', (req, res, next) => {
 router.get('/seen', (req, res, next) => {
     User
         .findById(req.query.id)
-        .then(theUser => res.render('user/user-watchlist', { theUser, isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
+        .populate('seedslists.seen.movies')
+        .populate('seedslists.seen.series')
+        .then(theUser => res.render('user/user-seen', { theUser, seedsData: seedsData(true), isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
         .catch(err => next(err))
-
-
-    // User
-    //     .findById(req.query.id)
-    //     .populate('seedslists.seen.movies')
-    //     .populate('seedslists.seen.series')
-    //     .then(theUser => res.render('user/user-seen', { theUser, isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
-    //     .catch(err => next(err))
 })
 
 
@@ -216,17 +125,10 @@ router.get('/seen', (req, res, next) => {
 router.get('/likes', (req, res, next) => {
     User
         .findById(req.query.id)
-        .then(theUser => res.render('user/user-watchlist', { theUser, isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
+        .populate('seedslists.likes.movies')
+        .populate('seedslists.likes.series')
+        .then(theUser => res.render('user/user-likes', { theUser, seedsData: seedsData(true), isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
         .catch(err => next(err))
-
-
-
-    // User
-    //     .findById(req.query.id)
-    //     .populate('seedslists.likes.movies')
-    //     .populate('seedslists.likes.series')
-    //     .then(theUser => res.render('user/user-likes', { theUser, isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
-    //     .catch(err => next(err))
 })
 
 

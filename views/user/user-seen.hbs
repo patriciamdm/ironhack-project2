@@ -41,7 +41,7 @@
 
         {{#if seedsData}}
         <div class="col-md-6">
-            {{#each theUser.watchlist.movies}}
+            {{#each theUser.seedslists.seen.movies}}
             <div class="card">
                 <img class="card-img-top" src="https://image.tmdb.org/t/p/w300{{this.poster_path}}"
                     alt="{{this.title}} poster">
@@ -50,11 +50,11 @@
             {{/each}}
         </div>
         <div class="col-md-6">
-            {{#each theUser.watchlist.series}}
+            {{#each theUser.seedslists.seen.series}}
             <div class="card">
                 <img class="card-img-top" src="https://image.tmdb.org/t/p/w300{{this.poster_path}}"
-                    alt="{{this.title}} poster">
-                <h6 class="card-body">{{this.title}}</h6>
+                    alt="{{this.name}} poster">
+                <h6 class="card-body">{{this.name}}</h6>
             </div>
             {{/each}}
         </div>
