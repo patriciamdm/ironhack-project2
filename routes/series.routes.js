@@ -27,7 +27,6 @@ router.get('/', (req, res, next) => {
         .then(allSeries => res.render('data/series', { allSeries: allSeries.data.results, isLogged: isLogged(req), isNotLogged: isNotLogged(req) }))
         .catch(err => next(err))
 
-
     // Series
     //     .find()
     //     .sort({ popularity: -1 })
@@ -98,34 +97,67 @@ router.get('/:id', (req, res, next) => {
 // ADD SERIES TO USER'S LISTS
 
 router.post('/:id', (req, res, next) => {
-    const seriesWL = req.user.watchlist.series
-    const seriesSN = req.user.seen.series
-    const seriesLK = req.user.likes.series
+    
+    apiHandler
+        .get(`/tv/${req.params.id}?api_key=95ad659b54a1464fdb415db2270f7402`)
+        .then(theSeries => {
+            const seriesWL = req.user.apilists.watchlist.series
+            const seriesSN = req.user.apilists.seen.series
+            const seriesLK = req.user.apilists.likes.series
+            const newObj = { db_id: theSeries.data.id, name: theSeries.data.name, poster_path: theSeries.data.poster_path }
 
-    if (req.query.add === 'watchlist') {
-        let newList = [...seriesWL, req.params.id]
+            if (req.query.add === 'watchlist') {
+                let newList = [...seriesWL, newObj]
+                User
+                    .findByIdAndUpdate(req.user.id, { "apilists.watchlist.series": newList })
+                    .then(() => res.redirect('/series'))
+                    .catch(err => next(err))
+                
+            } else if (req.query.add === 'seen') {
+                let newList = [...seriesSN, newObj]
+                User
+                    .findByIdAndUpdate(req.user.id, { "apilists.seen.series": newList })
+                    .then(() => res.redirect('/series'))
+                    .catch(err => next(err))
+                
+            } else if (req.query.add === 'likes') {
+                let newList = [...seriesLK, newObj]
+                User
+                    .findByIdAndUpdate(req.user.id, { "apilists.likes.series": newList })
+                    .then(() => res.redirect('/series'))
+                    .catch(err => next(err))
+            }
+            console.log('LA SERIE:', theSeries, 'NUEVO OBJETO', newObj)
+        })
+        .catch(err => next(new Error(err)))
+    // const seriesWL = req.user.seedslists.watchlist.series
+    // const seriesSN = req.user.seedslists.seen.series
+    // const seriesLK = req.user.seedslists.likes.series
 
-        User
-            .findByIdAndUpdate(req.user.id, { "watchlist.series": newList })
-            .then(() => res.redirect('/series'))
-            .catch(err => next(err))
+    // if (req.query.add === 'watchlist') {
+    //     let newList = [...seriesWL, req.params.id]
+
+    //     User
+    //         .findByIdAndUpdate(req.user.id, { "seedslists.watchlist.series": newList })
+    //         .then(() => res.redirect('/series'))
+    //         .catch(err => next(err))
         
-    } else if (req.query.add === 'seen') {
-        let newList = [...seriesSN, req.params.id]
+    // } else if (req.query.add === 'seen') {
+    //     let newList = [...seriesSN, req.params.id]
 
-        User
-            .findByIdAndUpdate(req.user.id, { "seen.series": newList })
-            .then(() => res.redirect('/series'))
-            .catch(err => next(err))
+    //     User
+    //         .findByIdAndUpdate(req.user.id, { "seedslists.seen.series": newList })
+    //         .then(() => res.redirect('/series'))
+    //         .catch(err => next(err))
         
-    } else if (req.query.add === 'likes') {
-        let newList = [...seriesLK, req.params.id]
+    // } else if (req.query.add === 'likes') {
+    //     let newList = [...seriesLK, req.params.id]
 
-        User
-            .findByIdAndUpdate(req.user.id, { "likes.series": newList })
-            .then(() => res.redirect('/series'))
-            .catch(err => next(err))
-    }
+    //     User
+    //         .findByIdAndUpdate(req.user.id, { "seedslists.likes.series": newList })
+    //         .then(() => res.redirect('/series'))
+    //         .catch(err => next(err))
+    // }
 })
 
 

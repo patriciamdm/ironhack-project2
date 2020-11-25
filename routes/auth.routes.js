@@ -41,9 +41,8 @@ router.post('/signup', (req, res) => {
                 name,
                 about,
                 img,
-                watchlist: { movies: [], series: [] },
-                likes: { movies: [], series: [] },
-                seen: { movies: [], series: [] }
+                apilists: { watchlist: { movies: [], series: [] }, seen: { movies: [], series: [] }, likes: { movies: [], series: [] } },
+                seedslists: { watchlist: { movies: [], series: [] }, seen: { movies: [], series: [] }, likes: { movies: [], series: [] } }
             }
 
             User

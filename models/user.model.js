@@ -35,32 +35,72 @@ const userSch = new Schema({
         type: String,
         required: false,
     },
-    watchlist: {
-        movies: [{
-            type: Schema.Types.ObjectId,
-            ref: 'Movie'
-        }], series: [{
-            type: Schema.Types.ObjectId,
-            ref: 'Series'
-        }]
+    apilists: {
+        watchlist: {
+            movies: [{
+                db_id: String,
+                title: String,
+                poster_path: String
+            }],
+            series: [{
+                db_id: String,
+                name: String,
+                poster_path: String
+            }]
+        },
+        seen: { 
+            movies: [{
+                db_id: String,
+                title: String,
+                poster_path: String
+            }],
+            series: [{
+                db_id: String,
+                name: String,
+                poster_path: String
+            }]
+        },
+        likes: {
+            movies: [{
+                db_id: String,
+                title: String,
+                poster_path: String
+            }],
+            series: [{
+                db_id: String,
+                name: String,
+                poster_path: String
+            }]
+        }
     },
-    seen: {
-        movies: [{
-            type: Schema.Types.ObjectId,
-            ref: 'Movie'
-        }], series: [{
-            type: Schema.Types.ObjectId,
-            ref: 'Series'
-        }]
-    },
-    likes: {
-        movies: [{
-            type: Schema.Types.ObjectId,
-            ref: 'Movie'
-        }], series: [{
-            type: Schema.Types.ObjectId,
-            ref: 'Series'
-        }]
+    seedslists: {
+        watchlist: {
+            movies: [{
+                type: Schema.Types.ObjectId,
+                ref: 'Movie'
+            }], series: [{
+                type: Schema.Types.ObjectId,
+                ref: 'Series'
+            }]
+        },
+        seen: {
+            movies: [{
+                type: Schema.Types.ObjectId,
+                ref: 'Movie'
+            }], series: [{
+                type: Schema.Types.ObjectId,
+                ref: 'Series'
+            }]
+        },
+        likes: {
+            movies: [{
+                type: Schema.Types.ObjectId,
+                ref: 'Movie'
+            }], series: [{
+                type: Schema.Types.ObjectId,
+                ref: 'Series'
+            }]
+        }
     }
 }, { timestamps: true })
 

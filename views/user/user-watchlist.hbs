@@ -16,7 +16,8 @@
         <div class="col-md-6">
             {{#each theUser.watchlist.movies}}
             <div class="card">
-                <img class="card-img-top" src="https://image.tmdb.org/t/p/w300{{this.poster_path}}" alt="{{this.title}} poster">
+                <img class="card-img-top" src="https://image.tmdb.org/t/p/w300{{this.poster_path}}"
+                    alt="{{this.title}} poster">
                 <h6 class="card-body">{{this.title}}</h6>
             </div>
             {{/each}}
@@ -24,15 +25,12 @@
         <div class="col-md-6">
             {{#each theUser.watchlist.series}}
             <div class="card">
-                <img class="card-img-top" src="https://image.tmdb.org/t/p/w300{{this.poster_path}}" alt="{{this.title}} poster">
+                <img class="card-img-top" src="https://image.tmdb.org/t/p/w300{{this.poster_path}}"
+                    alt="{{this.title}} poster">
                 <h6 class="card-body">{{this.title}}</h6>
             </div>
             {{/each}}
-            </div>
+        </div>
         </div>
     </article>
 </section>
-
-
-
-
