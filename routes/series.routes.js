@@ -90,29 +90,66 @@ router.post('/:id', (req, res, next) => {
             const newObj = { db_id: theSeries.data.id, name: theSeries.data.name, poster_path: theSeries.data.poster_path }
 
             if (req.query.add === 'watchlist') {
-                let newList = [...seriesWL, newObj]
-                User
-                    .findByIdAndUpdate(req.user.id, { "apilists.watchlist.series": newList })
-                    .then(() => res.redirect('/series'))
-                    .catch(err => next(err))
 
+                let included = 0
+                seriesWL.forEach(elm => {
+                    if (elm.name.includes(newObj.name) === true) {
+                        included++
+                    }
+                })
+                if (included === 0) {
+                    let newList = [...seriesWL, newObj]
+                    User
+                        .findByIdAndUpdate(req.user.id, { "apilists.watchlist.series": newList })
+                        .then(() => res.redirect('/series'))
+                        .catch(err => next(err))
+                } else {
+
+                    res.redirect('/series')
+                }
             } else if (req.query.add === 'seen') {
-                let newList = [...seriesSN, newObj]
-                User
-                    .findByIdAndUpdate(req.user.id, { "apilists.seen.series": newList })
-                    .then(() => res.redirect('/series'))
-                    .catch(err => next(err))
 
+                let included = 0
+                seriesSN.forEach(elm => {
+                    if (elm.name.includes(newObj.name) === true) {
+                        included++
+                    }
+                })
+                if (included === 0) {
+                    let newList = [...seriesSN, newObj]
+                    User
+                        .findByIdAndUpdate(req.user.id, { "apilists.seen.series": newList })
+                        .then(() => res.redirect('/series'))
+                        .catch(err => next(err))
+                } else {
+
+                    res.redirect('/series')
+                }
             } else if (req.query.add === 'likes') {
-                let newList = [...seriesLK, newObj]
-                User
-                    .findByIdAndUpdate(req.user.id, { "apilists.likes.series": newList })
-                    .then(() => res.redirect('/series'))
-                    .catch(err => next(err))
+
+                let included = 0
+                seriesLK.forEach(elm => {
+                    if (elm.name.includes(newObj.name) === true) {
+                        included++
+                    }
+                })
+                if (included === 0) {
+                    let newList = [...seriesLK, newObj]
+                    User
+                        .findByIdAndUpdate(req.user.id, { "apilists.likes.series": newList })
+                        .then(() => res.redirect('/series'))
+                        .catch(err => next(err))
+                } else {
+
+                    res.redirect('/series')
+                }
             }
 
         })
         .catch(err => next(new Error(err)))
+
+
+
 })
 
 

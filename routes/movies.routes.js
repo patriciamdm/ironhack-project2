@@ -90,31 +90,65 @@ router.post('/:id', (req, res, next) => {
             const newObj = { db_id: theMovie.data.id, title: theMovie.data.title, poster_path: theMovie.data.poster_path }
 
             if (req.query.add === 'watchlist') {
-                let newList = [...moviesWL, newObj]
-                User
-                    .findByIdAndUpdate(req.user.id, { "apilists.watchlist.movies": newList })
-                    .then(() => res.redirect('/movies'))
-                    .catch(err => next(err))
+                let included = 0
+                moviesWL.forEach(elm => {
+                    if (elm.title.includes(newObj.title) === true) {
+                        included++
+                    }
+                })
+                if (included === 0) {
+
+                    let newList = [...moviesWL, newObj]
+                    User
+                        .findByIdAndUpdate(req.user.id, { "apilists.watchlist.movies": newList })
+                        .then(() => res.redirect('/movies'))
+                        .catch(err => next(err))
+                } else {
+                    console.log('Ya existe la película')
+                    res.redirect('/movies')
+                }
+
 
             } else if (req.query.add === 'seen') {
-                let newList = [...moviesSN, newObj]
-                User
-                    .findByIdAndUpdate(req.user.id, { "apilists.seen.movies": newList })
-                    .then(() => res.redirect('/movies'))
-                    .catch(err => next(err))
-
+                let included = 0
+                moviesSN.forEach(elm => {
+                    if (elm.title.includes(newObj.title) === true) {
+                        included++
+                    }
+                })
+                if (included === 0) {
+                    let newList = [...moviesSN, newObj]
+                    User
+                        .findByIdAndUpdate(req.user.id, { "apilists.seen.movies": newList })
+                        .then(() => res.redirect('/movies'))
+                        .catch(err => next(err))
+                } else {
+                    console.log('Ya existe la película')
+                    res.redirect('/movies')
+                }
             } else if (req.query.add === 'likes') {
-                let newList = [...moviesLK, newObj]
-                User
-                    .findByIdAndUpdate(req.user.id, { "apilists.likes.movies": newList })
-                    .then(() => res.redirect('/movies'))
-                    .catch(err => next(err))
+                let included = 0
+                moviesLK.forEach(elm => {
+                    if (elm.title.includes(newObj.title) === true) {
+                        included++
+                    }
+                })
+                if (included === 0) {
+                    let newList = [...moviesLK, newObj]
+                    User
+                        .findByIdAndUpdate(req.user.id, { "apilists.likes.movies": newList })
+                        .then(() => res.redirect('/movies'))
+                        .catch(err => next(err))
+                } else {
+                    console.log('Ya existe la película')
+                    res.redirect('/movies')
+                }
             }
         })
         .catch(err => next(new Error(err)))
 
-})
 
+})
 
 
 
