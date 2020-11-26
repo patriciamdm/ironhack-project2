@@ -65,8 +65,6 @@ router.post('/edit', (req, res, next) => {
 })
 
 
-
-
 // DELETE USER PAGE
 
 router.get('/delete', (req, res, next) => {
@@ -88,8 +86,6 @@ router.post('/delete', (req, res, next) => {
 })
 
 
-
-
 // USER'S WATCHLIST PAGE
 
 router.get('/watchlist', (req, res, next) => {
@@ -108,21 +104,21 @@ router.post('/watchlist/remove', (req, res, next) => {
     if (req.query.content == 'movies') {
         User
             .findById(req.user.id)
-            .then(theUser => theUser.seedslists.watchlist.movies.filter(elm => elm.id != req.query.id))
+            .then(theUser => theUser.seedslists.watchlist.movies.filter(elm => elm != req.query.id))
             .then(newList => User.findByIdAndUpdate(req.user.id, { "seedslists.watchlist.movies": newList }))
             .then(theUser => res.redirect(`/profile/watchlist?id=${theUser.id}`))
             .catch(err => next((err)))
-        
+
     } else if (req.query.content == 'series') {
         User
             .findById(req.user.id)
-            .then(theUser => theUser.seedslists.watchlist.series.filter(elm => elm.id != req.query.id))
+            .populate('seedslists.watchlists.series')
+            .then(theUser => theUser.seedslists.watchlist.series.filter(elm => elm != req.query.id))
             .then(newList => User.findByIdAndUpdate(req.user.id, { "seedslists.watchlist.series": newList }))
             .then(theUser => res.redirect(`/profile/watchlist?id=${theUser.id}`))
             .catch(err => next((err)))
     }
 })
-
 
 
 // USER'S SEEN LIST PAGE
@@ -143,21 +139,20 @@ router.post('/seen/remove', (req, res, next) => {
     if (req.query.content == 'movies') {
         User
             .findById(req.user.id)
-            .then(theUser => theUser.seedslists.seen.movies.filter(elm => elm.id != req.query.id))
+            .then(theUser => theUser.seedslists.seen.movies.filter(elm => elm != req.query.id))
             .then(newList => User.findByIdAndUpdate(req.user.id, { "seedslists.seen.movies": newList }))
             .then(theUser => res.redirect(`/profile/seen?id=${theUser.id}`))
             .catch(err => next((err)))
-        
+
     } else if (req.query.content == 'series') {
         User
             .findById(req.user.id)
-            .then(theUser => theUser.seedslists.seen.series.filter(elm => elm.id != req.query.id))
+            .then(theUser => theUser.seedslists.seen.series.filter(elm => elm != req.query.id))
             .then(newList => User.findByIdAndUpdate(req.user.id, { "seedslists.seen.series": newList }))
             .then(theUser => res.redirect(`/profile/seen?id=${theUser.id}`))
             .catch(err => next((err)))
     }
 })
-
 
 // USER'S LIKES LIST PAGE
 
@@ -177,22 +172,20 @@ router.post('/likes/remove', (req, res, next) => {
     if (req.query.content == 'movies') {
         User
             .findById(req.user.id)
-            .then(theUser => theUser.seedslists.likes.movies.filter(elm => elm.id != req.query.id))
+            .then(theUser => theUser.seedslists.likes.movies.filter(elm => elm != req.query.id))
             .then(newList => User.findByIdAndUpdate(req.user.id, { "seedslists.likes.movies": newList }))
             .then(theUser => res.redirect(`/profile/likes?id=${theUser.id}`))
             .catch(err => next((err)))
-        
+
     } else if (req.query.content == 'series') {
         User
             .findById(req.user.id)
-            .then(theUser => theUser.seedslists.likes.series.filter(elm => elm.id != req.query.id))
+            .then(theUser => theUser.seedslists.likes.series.filter(elm => elm != req.query.id))
             .then(newList => User.findByIdAndUpdate(req.user.id, { "seedslists.likes.series": newList }))
             .then(theUser => res.redirect(`/profile/likes?id=${theUser.id}`))
             .catch(err => next((err)))
     }
 })
-
-
 
 
 module.exports = router

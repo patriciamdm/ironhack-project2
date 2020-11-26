@@ -114,7 +114,7 @@ router.post('/watchlist/remove', (req, res, next) => {
             .then(newList => User.findByIdAndUpdate(req.user.id, { "apilists.watchlist.movies": newList }))
             .then(theUser => res.redirect(`/profile/watchlist?id=${theUser.id}`))
             .catch(err => next((err)))
-        
+
     } else if (req.query.content == 'series') {
         User
             .findById(req.user.id)
@@ -148,7 +148,7 @@ router.post('/seen/remove', (req, res, next) => {
             .then(newList => User.findByIdAndUpdate(req.user.id, { "apilists.seen.movies": newList }))
             .then(theUser => res.redirect(`/profile/seen?id=${theUser.id}`))
             .catch(err => next((err)))
-        
+
     } else if (req.query.content == 'series') {
         User
             .findById(req.user.id)
@@ -182,7 +182,7 @@ router.post('/likes/remove', (req, res, next) => {
             .then(newList => User.findByIdAndUpdate(req.user.id, { "apilists.likes.movies": newList }))
             .then(theUser => res.redirect(`/profile/likes?id=${theUser.id}`))
             .catch(err => next((err)))
-        
+
     } else if (req.query.content == 'series') {
         User
             .findById(req.user.id)
