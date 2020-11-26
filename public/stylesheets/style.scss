@@ -1,9 +1,15 @@
-$shadow: 5px 5px 8px #b3b3b3;
+$shadow: 5px 5px 8px #262f43d4;
 $border-radius: 5px;
+$btn-color: rgb(53, 115, 154);
+$btn-darker: rgb(29, 76, 104);
+$visual-height: 100vh;
+
+
 
 body {
   font-family: sans-serif;
   font-weight: 100;
+  color: white;
 }
 
 img {
@@ -13,16 +19,26 @@ img {
 }
 
 main {
-  margin: 100px 0;
+  padding: 100px 0;
+  min-height: $visual-height;
+  // background-image: url('../images/cinema_background.jpg');
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  background-color: rgb(5, 18, 50);
 }
 
 hr {
   margin: 20px 0;
+  border-color: rgba(211, 211, 211, 0.55);
 }
 
-.label-invalid {
-  color: #dc3545;
-  font-weight: 400;
+h1 {
+  font-size: 120px;
+  margin-bottom: 100px;
+}
+
+h2 {
+  text-align: center;
 }
 
 h5 {
@@ -33,9 +49,38 @@ a {
   color: gray;
 
   &:hover {
-    color: #17a2b8;
+    color: $btn-color;
     text-decoration: none;
   }
+}
+
+.label-invalid {
+  color: #dc3545;
+  font-weight: 400;
+}
+
+.hero {
+  margin: 100px 0 40px;
+
+  h2 {
+    font-size: 60px;
+    margin-bottom: 40px;
+  }
+}
+
+.carousel {
+  margin-top: 50px;
+}
+
+.title {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 500;
+  background-color: rgba(211, 211, 211, 0.55);
+  border-radius: $border-radius;
+  width: 100%;
+  padding: 10px 0 6px 0;
+  margin-bottom: 20px;
 }
 
 .data-card {
@@ -45,9 +90,7 @@ a {
   flex-direction: column;
   justify-content: space-between;
   
-  .btn {
-    margin: 10px 0;
-  }
+
   
   img {
     box-shadow: $shadow;
@@ -61,6 +104,7 @@ a {
   border-radius: $border-radius;
   
   h2 {
+    text-align: left;
     font-weight: 100;
     margin-bottom: 10px;
   }
@@ -96,9 +140,7 @@ a {
   flex-direction: column;
   justify-content: space-between;
   
-  .btn {
-    margin: 10px 0;
-  }
+
   
   img {
     box-shadow: $shadow;
@@ -190,4 +232,35 @@ a {
 .small-btn {
   height: 50px;
   width: 50px;
+}
+
+.btn-info {
+  border-color: $btn-color;
+  background-color: $btn-color;
+  margin: 10px 0;
+
+  &:hover {
+    background-color: $btn-darker;
+    border-color: $btn-darker;
+  }
+  
+  &:active:focus {
+    background-color: $btn-darker !important;
+    border-color: $btn-darker !important;
+  }
+}
+
+.navbar {
+  border-color: $btn-color;
+  background-color: $btn-color;
+
+  a {
+    color: white;
+  }
+}
+
+.user {
+  h2 {
+    text-align: left;
+  }
 }
