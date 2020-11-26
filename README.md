@@ -104,34 +104,35 @@ To access different kinds of information we have different routes provided by TM
 THE MOVIE DATA BASE: base URLs
 
 To access <b>movies</b>
-    - For a particular movie details: /movie/`<movie_id>`
-    - For a particular movie credits: /movie/`<movie_id>`/credits
+- For a particular movie details: /movie/`<movie_id>`
+- For a particular movie credits: /movie/`<movie_id>`/credits
 
 To access <b>series</b>
-    - For a particular series details: /tv/`<serie_id>`
-    - For a particular movie credits: /tv/`<serie_id>`/credits
+- For a particular series details: /tv/`<serie_id>`
+- For a particular movie credits: /tv/`<serie_id>`/credits
 
 To access <b>actors</b> and <b>directors</b>
-    - For a particular person's data: /person/`<person_id>`
-    - For a particular person's movies credits: /person/`<person_id>`/movie_credits
-    - For a particular person's series credits: /person/`<person_id>`/tv_credits
+- For a particular person's data: /person/`<person_id>`
+- For a particular person's movies credits: /person/`<person_id>`/movie_credits
+- For a particular person's series credits: /person/`<person_id>`/tv_credits
 
 To access <b>genres</b>
-    - For all movies possible genres: /genre/movie/list
-    - For all series possible genres: /genre/tv/list
+- For all movies possible genres: /genre/movie/list
+- For all series possible genres: /genre/tv/list
 
 To access <b>top ratings</b> (these lists update daily)
-    - For top rated movies: movie/top_rated
-    - For top rated series: tv/top_rated
+- For top rated movies: movie/top_rated
+- For top rated series: tv/top_rated
 
 To access <b>populars</b> (these lists update daily)
-    - For popular movies: movie/popular
-    - For popular series: tv/popular
+- For popular movies: movie/popular
+- For popular series: tv/popular
 
 To <b>discover</b> content by different type of data like average rating, number of votes, genres and certifications
-    - For movies: /discover/movie
-    - For series: /discover/tv
+- For movies: /discover/movie
+- For series: /discover/tv
 
 To access <b>images</b> a modified route is used, where the fist parameter refers to the size of the image you'd like to obtain and the second to path of the image you are looking for.
-    https://image.tmdb.org/t/p/`<w300>`/`<image_path>`
-
+```bash
+Link: https://image.tmdb.org/t/p/<w300>/<image_path>
+```
