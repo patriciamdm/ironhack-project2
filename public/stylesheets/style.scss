@@ -29,7 +29,6 @@ h5 {
   font-weight: 100;
 }
 
-
 a {
   color: gray;
 
@@ -38,11 +37,6 @@ a {
     text-decoration: none;
   }
 }
-
-// .user-contents{
-//   margin-top: 60px;
-// }
-
 
 .data-card {
   text-align: center;
@@ -181,6 +175,9 @@ a {
     font-size: 18px;
   }
   
+  .indiv-card {
+    margin-bottom: 40px;
+  }
 }
 
 .redirect {
@@ -188,4 +185,9 @@ a {
   margin: 0 20px 0 0;
   font-size: .9rem;
   font-weight: 500;
+}
+
+.small-btn {
+  height: 50px;
+  width: 50px;
 }

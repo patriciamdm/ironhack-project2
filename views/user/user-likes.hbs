@@ -28,7 +28,7 @@
 
                         <h6>{{this.title}}</h6>
                     </a>
-                    <form action="/" method="POST">
+                    <form action="/profile/likes/remove?content=movies&db_id={{this.db_id}}" method="POST">
                         <button type="submit" class="btn btn-danger btn-sm">Remove from list</button>
                     </form>
                 </div>
@@ -52,7 +52,7 @@
 
                         <h6>{{this.name}}</h6>
                     </a>
-                    <form action="/" method="POST">
+                    <form action="/profile/likes/remove?content=series&db_id={{this.db_id}}" method="POST">
                         <button type="submit" class="btn btn-danger btn-sm">Remove from list</button>
                     </form>
                 </div>
