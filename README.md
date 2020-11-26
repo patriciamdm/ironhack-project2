@@ -95,9 +95,10 @@ In `models` folder we have several mdeols to be used:
 
 We will be using the The Movies Data Base API.
 The base URL to access all the information in this API is this:
-    ```bash
+    ```
         https://api.themoviedb.org/3
     ```
+
 Also, at the end of every route you'd like to acces you have to include the API key in query format (`?api_key=`) with the number provided by TMDB.
 
 To access different kinds of information we have different routes provided by TMDB which should be added after the base URL and before the API key:
