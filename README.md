@@ -54,11 +54,11 @@ We will be working with stabisled endpoints, models and a 3rd party API for this
   | `/profile/delete?id=` | GET | Delete user's profile page  |
   | `/profile/delete?id=` | POST | Confirm user delete  |
   | `/profile/likes` | GET | User's liked content index  |
-  | `/profile/likes/remove?id=` | POST | Remove movie/serie from likes list  |
+  | `/profile/likes/remove?content=&id=` | POST | Remove movie/serie from likes list  |
   | `/profile/seen` | GET | User's seen content index  |
-  | `/profile/seen/remove?id=` | POST | Remove movie/serie from seen list  |
+  | `/profile/seen/remove?content=&id=` | POST | Remove movie/serie from seen list  |
   | `/profile/watchlist` | GET | User's watchlist index  |
-  | `/profile/watchlist/remove?id=` | POST | Remove movie/serie from watchlist  |
+  | `/profile/watchlist/remove?content=&id=` | POST | Remove movie/serie from watchlist  |
 
 
 ### Models
