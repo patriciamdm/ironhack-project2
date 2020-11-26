@@ -1,17 +1,11 @@
 const express = require('express')
 const router = express.Router()
 
-const axios = require('axios')
-
-const apiHandler = axios.create({
-    baseURL: "https://api.themoviedb.org/3"
-})
-
+const apiHandler = require('../public/javascripts/api-handler')
 
 
 const isLogged = (req) => req.isAuthenticated() === true
 const isNotLogged = (req) => req.isAuthenticated() === false
-
 
 
 //ACTORS
@@ -27,7 +21,6 @@ router.get('/', (req, res, next) => {
         .catch(err => next(new Error(err)))
 
 })
-
 
 //SEARCH
 router.post('/', (req, res, next) => {
@@ -49,7 +42,6 @@ router.post('/', (req, res, next) => {
 //ACTOR DETAILS
 
 router.get('/:id', (req, res, next) => {
-
 
     let thisActor
 
@@ -91,7 +83,6 @@ router.get('/:id', (req, res, next) => {
         })
         .catch(err => next(new Error(err)))
 })
-
 
 
 module.exports = router

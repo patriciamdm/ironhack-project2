@@ -3,15 +3,10 @@ const router = express.Router()
 
 const User = require('../models/user.model')
 
-const axios = require('axios')
-const apiHandler = axios.create({
-    baseURL: "https://api.themoviedb.org/3"
-})
-
+const apiHandler = require('../public/javascripts/api-handler')
 
 const isLogged = (req) => req.isAuthenticated() === true
 const isNotLogged = (req) => req.isAuthenticated() === false
-
 
 
 // ALL SERIES INDEX
@@ -22,7 +17,6 @@ router.get('/', (req, res, next) => {
         .get(`/tv/popular?api_key=95ad659b54a1464fdb415db2270f7402`)
         .then(allSeries => res.render('data/series', { allSeries: allSeries.data.results, isLogged: isLogged(req), isNotLogged: isNotLogged(req) }))
         .catch(err => next(new Error(err)))
-
 
 })
 
@@ -42,7 +36,6 @@ router.post('/', (req, res, next) => {
         .catch(err => next(new Error(err)))
 
 })
-
 
 
 

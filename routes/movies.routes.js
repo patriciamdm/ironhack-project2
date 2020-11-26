@@ -3,11 +3,7 @@ const router = express.Router()
 
 const User = require('../models/user.model')
 
-const axios = require('axios')
-const apiHandler = axios.create({
-    baseURL: "https://api.themoviedb.org/3"
-})
-
+const apiHandler = require('../public/javascripts/api-handler')
 
 const isLogged = (req) => req.isAuthenticated() === true
 const isNotLogged = (req) => req.isAuthenticated() === false
@@ -35,8 +31,8 @@ router.post('/', (req, res, next) => {
     apiHandler
         .get(`/search/movie?api_key=95ad659b54a1464fdb415db2270f7402&query=${searchCleaned}`)
         .then(search => {
-            const searchResults = search.data.results
 
+            const searchResults = search.data.results
             res.render('data/movies', { searchResults, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
         })
         .catch(err => next(new Error(err)))

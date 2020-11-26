@@ -1,15 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const Movie = require('../models/movie.model')
-const Series = require('../models/series.model.js')
-const Person = require('../models/person.model.js')
-const User = require('../models/user.model')
-const axios = require('axios')
-
-const apiHandler = axios.create({
-    baseURL: "https://api.themoviedb.org/3"
-})
+const apiHandler = require('../public/javascripts/api-handler')
 
 
 
@@ -20,7 +12,21 @@ const isNotLogged = (req) => req.isAuthenticated() === false
 
 // ENDPOINTS
 
-router.get('/', (req, res) => res.render('index', { isLogged: isLogged(req), isNotLogged: isNotLogged(req) }))
+router.get('/', (req, res) => {
+    let popularMovies
+
+    apiHandler
+        .get(`/movie/popular?api_key=95ad659b54a1464fdb415db2270f7402`)
+        .then(allMovies => popularMovies = allMovies.data.results)
+        .then(() => apiHandler.get(`/tv/popular?api_key=95ad659b54a1464fdb415db2270f7402`))
+        .then(popularSeries => {
+
+            const topPopularMovies = popularMovies.splice(0, 10)
+            res.render('index', { popularMovies: topPopularMovies, popularSeries, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
+        })
+        .catch(err => next(new Error(err)))
+
+})
 
 
 

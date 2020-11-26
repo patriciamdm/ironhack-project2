@@ -10,7 +10,6 @@ const isLogged = (req) => req.isAuthenticated() === true
 const isNotLogged = (req) => req.isAuthenticated() === false
 
 
-
 //DIRECTORS
 
 router.get('/', (req, res, next) => {
