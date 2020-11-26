@@ -68,19 +68,19 @@
             <hr>
             <div class="row justify-content-center">
                 {{#each theUser.seedslists.watchlist.movies}}
-                <div class="col-md-6">
-                    <a href="/movies/{{this.db_id}}">
+                <div class="col-md-6 indiv-card">
+                    <a href="/movies/{{this.id}}">
                         {{#if poster_path}}
                         <img src="https://image.tmdb.org/t/p/w300{{this.poster_path}}" alt="{{this.title}}">
                         {{/if}}
 
                         {{#unless poster_path}}
-                        <img src='/images/noimage.png' alt="{{this.titl}}">
+                        <img src='/images/noimage.png' alt="{{this.title}}">
                         {{/unless}}
 
-                        <h6>{{this.name}}</h6>
+                        <h6>{{this.title}}</h6>
                     </a>
-                    <form action="/" method="POST">
+                    <form action="/profile/watchlist/remove?content=movies&id={{this.id}}" method="POST">
                         <button type="submit" class="btn btn-danger btn-sm">Remove from list</button>
                     </form>
                 </div>
@@ -92,8 +92,8 @@
             <hr>
             <div class="row justify-content-center">
                 {{#each theUser.seedslists.watchlist.series}}
-                <div class="col-md-6">
-                    <a href="/movies/{{this.db_id}}">
+                <div class="col-md-6 indiv-card">
+                    <a href="/series/{{this.id}}">
                         {{#if poster_path}}
                         <img src="https://image.tmdb.org/t/p/w300{{this.poster_path}}" alt="{{this.name}}">
                         {{/if}}
@@ -104,7 +104,7 @@
 
                         <h6>{{this.name}}</h6>
                     </a>
-                    <form action="/" method="POST">
+                    <form action="/profile/watchlist/remove?content=series&id={{this.id}}" method="POST">
                         <button type="submit" class="btn btn-danger btn-sm">Remove from list</button>
                     </form>
                 </div>

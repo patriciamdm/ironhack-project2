@@ -1,6 +1,12 @@
 <div class="col-md-6">
     <a href="/movies/{{list.db_id}}">
-        <img src="https://image.tmdb.org/t/p/w300{{list.poster_path}}" alt="{{list.title}}">
+        {{#if list.poster_path}}
+        <img src='https://image.tmdb.org/t/p/w300{{list.poster_path}}' alt="{{list.title}}">
+        {{/if}}
+
+        {{#unless list.poster_path}}
+        <img src='/images/noimage.png' alt="{{list.title}}">
+        {{/unless}}
         <h6>{{list.title}}</h6>
     </a>
 </div>
