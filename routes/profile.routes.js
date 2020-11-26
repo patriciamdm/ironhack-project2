@@ -130,7 +130,7 @@ router.post('/edit', (req, res, next) => {
     const { name, email, about, img } = req.body
 
     User.findByIdAndUpdate(userId, { name, email, about, img })
-        .then(user => res.render('user/user-profile', { user, isLogged: isLogged(req) }))
+        .then(() => res.redirect('/profile'))
         .catch(err => next(new Error(err)))
 })
 
@@ -167,6 +167,25 @@ router.get('/watchlist', (req, res, next) => {
         .findById(req.query.id)
         .then(theUser => res.render('user/user-watchlist', { theUser, moviesWL: theUser.apilists.watchlist.movies, seriesWL: theUser.apilists.watchlist.series, apiData: apiData(true), isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
         .catch(err => next(new Error(err)))
+})
+
+router.post('/watchlist/remove', (req, res, next) => {
+    // const content = req.query.content
+    // User
+    //     .findById(req.user.id)
+    //     .then(theUser => {
+    //         if (content == 'series') {
+    //             User.find({db_id: req.query.db_id})
+    //             //theUser.apilists.watchlist.series.find({db_id: req.query.db_id})
+    //             .then(serie => console.log(serie))
+    //         } else if (content == 'movies') {
+                
+    //             //theUser.apilists.watchlist.movies.find({ db_id: req.query.db_id })
+    //             .then(movie => console.log(movie)) 
+    //         }
+    //         //.drop({ db_id: req.query.db_id })
+    //     })
+    //     .catch(err => next((err)))
 })
 
 

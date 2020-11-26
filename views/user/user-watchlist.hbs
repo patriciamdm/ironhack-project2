@@ -3,60 +3,113 @@
         <div class="col user">
             <h2>Welcome to your watchlist, {{theUser.name}}</h2>
             <br>
-            <a href="/profile/likes?id={{theUser.id}}" class="redirect">Likes</a>
-            <a href="/profile/seen?id={{theUser.id}}" class="redirect">Seen</a>
-            <a href="/profile" class="redirect">Profile</a>
-            <hr>
-            {{!-- <a href="">Show all</a>
-            <a href="">Show only movies</a>
-            <a href="">Show only series</a> --}}
+            <a href="/profile/likes?id={{theUser.id}}" class="redirect">Go to Likes</a>
+            <a href="/profile/seen?id={{theUser.id}}" class="redirect">Go to Seen</a>
+            <a href="/profile" class="redirect">Go back to Profile</a>
+            
         </div>
     </article>
     <article class="row">
 
         {{#if apiData}}
-        <div class="col-md-6">
-            {{#each moviesWL}}
-            <div class="card">
-                <a href="/movies/{{this.db_id}}">
-                    <img class="card-img-top" src="https://image.tmdb.org/t/p/w300{{this.poster_path}}"
-                        alt="{{this.title}} poster">
-                    <h6 class="card-body">{{this.title}}</h6>
-                </a>
+        <div class="col-md-6 list-column">
+            <h4>Movies</h4>
+            <hr>
+            <div class="row justify-content-center">
+                {{#each moviesWL}}
+                <div class="col-md-6">
+                    <a href="/movies/{{this.db_id}}">
+                        {{#if poster_path}}
+                        <img src="https://image.tmdb.org/t/p/w300{{this.poster_path}}" alt="{{this.title}}">
+                        {{/if}}
+                        
+                        {{#unless poster_path}}
+                        <img src='/images/noimage.png' alt="{{this.title}}">
+                        {{/unless}}
+
+                        <h6>{{this.title}}</h6>
+                    </a>
+                    <form action="/" method="POST">
+                        <button type="submit" class="btn btn-danger btn-sm">Remove from list</button>
+                    </form>
+                </div>
+                {{/each}}
             </div>
-            {{/each}}
         </div>
-        <div class="col-md-6">
-            {{#each seriesWL}}
-            <div class="card">
-                <a href="/tv/{{this.db_id}}">
-                    <img class="card-img-top" src="https://image.tmdb.org/t/p/w300{{this.poster_path}}"
-                        alt="{{this.name}} poster">
-                    <h6 class="card-body">{{this.name}}</h6>
-                </a>
+        <div class="col-md-6 list-column">
+            <h4>Series</h4>
+            <hr>
+            <div class="row justify-content-center">
+                {{#each seriesWL}}
+                <div class="col-md-6">
+                    <a href="/series/{{this.db_id}}">
+                        {{#if poster_path}}
+                        <img src="https://image.tmdb.org/t/p/w300{{this.poster_path}}" alt="{{this.name}}">
+                        {{/if}}
+                        
+                        {{#unless poster_path}}
+                        <img src='/images/noimage.png' alt="{{this.name}}">
+                        {{/unless}}
+                        
+                        <h6>{{this.name}}</h6>
+                    </a>
+                    <form action="/profile/watchlist/remove?content=series&db_id={{this.db_id}}" method="POST">
+                        <button type="submit" class="btn btn-danger btn-sm">Remove from list</button>
+                    </form>
+                </div>
+                {{/each}}
             </div>
-            {{/each}}
         </div>
         {{/if}}
 
         {{#if seedsData}}
-        <div class="col-md-6">
-            {{#each theUser.seedslists.watchlist.movies}}
-            <div class="card">
-                <img class="card-img-top" src="https://image.tmdb.org/t/p/w300{{this.poster_path}}"
-                    alt="{{this.title}} poster">
-                <h6 class="card-body">{{this.title}}</h6>
+        <div class="col-md-6 list-column">
+            <h4>Movies</h4>
+            <hr>
+            <div class="row justify-content-center">
+                {{#each theUser.seedslists.watchlist.movies}}
+                <div class="col-md-6">
+                    <a href="/movies/{{this.db_id}}">
+                        {{#if poster_path}}
+                        <img src="https://image.tmdb.org/t/p/w300{{this.poster_path}}" alt="{{this.title}}">
+                        {{/if}}
+                
+                        {{#unless poster_path}}
+                        <img src='/images/noimage.png' alt="{{this.titl}}">
+                        {{/unless}}
+                
+                        <h6>{{this.name}}</h6>
+                    </a>
+                    <form action="/" method="POST">
+                        <button type="submit" class="btn btn-danger btn-sm">Remove from list</button>
+                    </form>
+                </div>
+                {{/each}}
             </div>
-            {{/each}}
         </div>
-        <div class="col-md-6">
-            {{#each theUser.seedslists.watchlist.series}}
-            <div class="card">
-                <img class="card-img-top" src="https://image.tmdb.org/t/p/w300{{this.poster_path}}"
-                    alt="{{this.name}} poster">
-                <h6 class="card-body">{{this.name}}</h6>
+        <div class="col-md-6 list-column">
+            <h4>Series</h4>
+            <hr>
+            <div class="row justify-content-center">
+                {{#each theUser.seedslists.watchlist.series}}
+                <div class="col-md-6">
+                    <a href="/movies/{{this.db_id}}">
+                        {{#if poster_path}}
+                        <img src="https://image.tmdb.org/t/p/w300{{this.poster_path}}" alt="{{this.name}}">
+                        {{/if}}
+                
+                        {{#unless poster_path}}
+                        <img src='/images/noimage.png' alt="{{this.name}}">
+                        {{/unless}}
+                
+                        <h6>{{this.name}}</h6>
+                    </a>
+                    <form action="/" method="POST">
+                        <button type="submit" class="btn btn-danger btn-sm">Remove from list</button>
+                    </form>
+                </div>
+                {{/each}}
             </div>
-            {{/each}}
         </div>
         {{/if}}
 

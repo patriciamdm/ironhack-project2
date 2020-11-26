@@ -43,15 +43,6 @@ a {
 //   margin-top: 60px;
 // }
 
-// .user-columns {
-//   text-align: center;
-// }
-
-// .redirect {
-//   font-weight: 100;
-//   text-transform: uppercase;
-//   margin: 0 20px 0 0;
-// }
 
 .data-card {
   text-align: center;
@@ -59,11 +50,11 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
+  
   .btn {
     margin: 10px 0;
   }
-
+  
   img {
     box-shadow: $shadow;
     margin-bottom: 5px;
@@ -74,7 +65,7 @@ a {
   border: 1px solid #b3b3b3;
   padding: 15px 20px;
   border-radius: $border-radius;
-
+  
   h2 {
     font-weight: 100;
     margin-bottom: 10px;
@@ -82,15 +73,14 @@ a {
   
   h6 {
     font-weight: 100;
-    
     font-style: italic;
     margin-bottom: 20px;
   }
-
+  
   p {
     margin-right: 15px;
   }
-
+  
   .emphasis1 {
     display: flex;
     text-transform: uppercase;
@@ -101,7 +91,7 @@ a {
   .emphasis2 {
     display: flex;
   }
-  
+
 }
 
 .rel-data-card {
@@ -111,13 +101,91 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
+  
   .btn {
     margin: 10px 0;
   }
-
+  
   img {
     box-shadow: $shadow;
     margin-bottom: 5px;
   }
-} 
+}
+
+.user-details {
+//  margin-bottom: 40px;
+  img {
+    width: 170px;
+    height: 170px;
+    margin-right: 20px;
+  }
+
+  .user-info {
+    display: flex;
+    justify-content: left;
+    padding-right: 100px;
+  }
+  
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+}
+
+.user-add-btn {
+  margin-bottom: 40px;
+}
+
+.btn-add-new {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.user-columns {
+  text-align: center;
+  
+  p {
+    margin-bottom: 5px;
+    font-style: italic;
+  }
+  
+  img {
+    box-shadow: $shadow;
+    margin-bottom: 5px;
+  }
+  
+  h5 {
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+  
+  h6 {
+    margin-top: 10px;
+    font-weight: 100;
+  }
+}
+
+.list-column {
+  margin-top: 40px;
+  text-align: center;
+  
+  img {
+    box-shadow: $shadow;
+    margin-bottom: 5px;
+  }
+  
+  h6 {
+    margin-top: 10px;
+    font-weight: 100;
+    font-size: 18px;
+  }
+  
+}
+
+.redirect {
+  text-transform: uppercase;
+  margin: 0 20px 0 0;
+  font-size: .9rem;
+  font-weight: 500;
+}

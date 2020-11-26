@@ -1,48 +1,49 @@
 <section class="container">
 
     <article class="row justify-content-center">
-        <div class="col user">
-            {{!-- <figure>
-                <img src="{{user.img}}" alt="{{user.name}} profile picture">
-            </figure> --}}
+        <div class="col">
             <h2>Welcome {{theUser.name}}</h2>
             <hr>
         </div>
     </article>
 
-    <article class="row justify-content-center">
-        <div class="col-md-9">
-            <h6>{{theUser.email}}</h6>
-            <p>{{theUser.about}}</p>
+    <article class="row justify-content-center user-details">
+        <div class="col-md-10 user-info">
+            {{#if theUser.img}}
+            <figure>
+                <img src="{{theUser.img}}" alt="{{theUser.name}} profile picture">
+            </figure>
+            {{/if}}
+            <div>
+                <h6>{{theUser.email}}</h6>
+                <p>{{theUser.about}}</p>
+            </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2 buttons">
             <a href="/profile/edit?id={{theUser.id}}" class="btn btn-info btn-block">Edit profile</a>
-
             <a href="/profile/delete?id={{theUser.id}}" class="btn btn-danger btn-block">Delete account</a>
         </div>
     </article>
 
-    {{#if moviesListEmpty}}
-    <article class="row justify-content-right">
-        <div class="col-2">
-            <a href="/movies" class="btn btn-info btn-block">Add new movies</a>
+    <article class="row user-add-btn">
+        <div class="col btn-add-new">
+            {{#if moviesListEmpty}}
+            <a href="/movies" class="btn btn-info">Add new movies</a>
+            {{/if}}
+
+            {{#if seriesListEmpty}}
+            <a href="/series" class="btn btn-info">Add new series</a>
+            {{/if}}
         </div>
     </article>
-    {{/if}}
-    {{#if seriesListEmpty}}
-    <article class="row justify-content-rigth">
-        <div class="col-2">
-            <a href="/series" class="btn btn-info btn-block">Add new series</a>
-        </div>
-    </article>
-    {{/if}}
+
 
     <article class="row justify-content-center user-contents">
 
         {{#if seedsData}}
         <div class="col-md-4 user-columns">
             <a href="/profile/watchlist?id={{theUser.id}}">
-                <h6><i>Last added to</i></h6>
+                <p>Last added to</p>
                 <h5>Watchlist</h5>
             </a>
             <hr>
@@ -57,7 +58,7 @@
 
         <div class="col-md-4 user-columns">
             <a href="/profile/likes?id={{theUser.id}}">
-                <h6><i>Last added to</i></h6>
+                <p>Last added to</p>
                 <h5>Likes</h5>
             </a>
             <hr>
@@ -72,7 +73,7 @@
 
         <div class="col-md-4 user-columns">
             <a href="/profile/seen?id={{theUser.id}}">
-                <h6><i>Last added to</i></h6>
+                <p>Last added to</p>
                 <h5>Seen</h5>
             </a>
             <hr>
@@ -89,7 +90,7 @@
         {{#if apiData}}
         <div class="col-md-4 user-columns">
             <a href="/profile/watchlist?id={{theUser.id}}">
-                <h6><i>Last added to</i></h6>
+                <p>Last added to</p>
                 <h5>Watchlist</h5>
             </a>
             <hr>
@@ -104,7 +105,7 @@
 
         <div class="col-md-4 user-columns">
             <a href="/profile/likes?id={{theUser.id}}">
-                <h6><i>Last added to</i></h6>
+                <p>Last added to</p>
                 <h5>Likes</h5>
             </a>
             <hr>
@@ -119,7 +120,7 @@
 
         <div class="col-md-4 user-columns">
             <a href="/profile/seen?id={{theUser.id}}">
-                <h6><i>Last added to</i></h6>
+                <p>Last added to</p>
                 <h5>Seen</h5>
             </a>
             <hr>
