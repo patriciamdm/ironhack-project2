@@ -38,20 +38,27 @@ We will be working with stabisled endpoints, models and a 3rd party API for this
   | `/actors` | GET | All actors index  |
   | `/directors` | GET | All directors index  |
   | `/movies?id=` | GET | Movie details page  |
+  | `/movies?id=` | POST | Add movie to user's lists |
   | `/series?id=` | GET | Series details page  |
+  | `/series?id=` | POST | Add series to user's lists  |
   | `/actors?id=` | GET | Actor details page  |
   | `/directors?id=` | GET | Director details page  |
   | `/login` | GET | Log in form  |
   | `/login` | POST | Send log in form  |
   | `/signup` | GET | Sign up form  |
   | `/signup` | POST | Send sign up form  |
+  | `/logout` | GET | Send log out action  |
   | `/profile` | GET | User's profile  |
   | `/profile/edit?id=` | GET | Edit user's profile form  |
   | `/profile/edit?id=` | POST | Send edited user's profile form  |
-  | `/profile/delete?id=` | GET | Delete user's profile  |
+  | `/profile/delete?id=` | GET | Delete user's profile page  |
+  | `/profile/delete?id=` | POST | Confirm user delete  |
   | `/profile/likes` | GET | User's liked content index  |
+  | `/profile/likes/remove?id=` | POST | Remove movie/serie from likes list  |
   | `/profile/seen` | GET | User's seen content index  |
+  | `/profile/seen/remove?id=` | POST | Remove movie/serie from seen list  |
   | `/profile/watchlist` | GET | User's watchlist index  |
+  | `/profile/watchlist/remove?id=` | POST | Remove movie/serie from watchlist  |
 
 
 ### Models

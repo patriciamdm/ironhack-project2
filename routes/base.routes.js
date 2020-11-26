@@ -22,7 +22,8 @@ router.get('/', (req, res) => {
         .then(popularSeries => {
 
             const topPopularMovies = popularMovies.splice(0, 10)
-            res.render('index', { popularMovies: topPopularMovies, popularSeries, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
+            const topPopularSeries = popularSeries.data.results.splice(0, 10)
+            res.render('index', { popularMovies: topPopularMovies, popularSeries: topPopularSeries, isLogged: isLogged(req), isNotLogged: isNotLogged(req) })
         })
         .catch(err => next(new Error(err)))
 

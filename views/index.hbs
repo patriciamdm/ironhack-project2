@@ -26,15 +26,48 @@
 </section>
 
 <section class='container'>
+    <h4>Popular movies:</h4>
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="glide">
+            <div class="glide-movies">
                 <div class="glide__track" data-glide-el="track">
                     <ul class="glide__slides">
                         {{#each popularMovies}}
                         <li class="glide__slide"><a href="/movies/{{this.id}}"> <img
                                     src='https://image.tmdb.org/t/p/w300{{this.poster_path}}' alt="{{name}}"
-                                    style="width: 300px"></a>
+                                    style="width: 200px"></a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="glide__bullets" data-glide-el="controls[nav]">
+                    <button class="glide__bullet" data-glide-dir="=0"></button>
+                    <button class="glide__bullet" data-glide-dir="=1"></button>
+                    <button class="glide__bullet" data-glide-dir="=2"></button>
+                    <button class="glide__bullet" data-glide-dir="=3"></button>
+                    <button class="glide__bullet" data-glide-dir="=4"></button>
+                    <button class="glide__bullet" data-glide-dir="=5"></button>
+                    <button class="glide__bullet" data-glide-dir="=6"></button>
+                    <button class="glide__bullet" data-glide-dir="=7"></button>
+                    <button class="glide__bullet" data-glide-dir="=8"></button>
+                    <button class="glide__bullet" data-glide-dir="=9"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class='container'>
+    <h4>Popular series:</h4>
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="glide-series">
+                <div class="glide__track" data-glide-el="track">
+                    <ul class="glide__slides">
+                        {{#each popularSeries}}
+                        <li class="glide__slide"><a href="/series/{{this.id}}"> <img
+                                    src='https://image.tmdb.org/t/p/w300{{this.poster_path}}' alt="{{name}}"
+                                    style="width: 200px"></a>
                         </li>
                         {{/each}}
                     </ul>
@@ -60,11 +93,21 @@
     integrity="sha512-BXASbMmKLu+RC5TDnkupyhvrjiOQXILh/5zgIS8k5JAC71a73lNweVEg/X+9XJQ7GK22PH9WpztY3zqrji+xrQ=="
     crossorigin="anonymous"></script>
 
-<script>new Glide('.glide', {
+<script>new Glide('.glide-movies', {
         type: 'carousel',
-        autoplay: 3500,
+        autoplay: 4000,
         startAt: 0,
-        perView: 3,
+        perView: 5,
+        focusAt: 1,
+    }).mount()
+
+</script>
+
+<script>new Glide('.glide-series', {
+        type: 'carousel',
+        autoplay: 4000,
+        startAt: 0,
+        perView: 5,
         focusAt: 1,
     }).mount()
 
