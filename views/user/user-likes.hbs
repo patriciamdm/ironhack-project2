@@ -16,7 +16,7 @@
             <hr>
             <div class="row justify-content-center">
                 {{#each moviesLK}}
-                <div class="col-md-6">
+                <div class="col-md-6 indiv-card">
                     <a href="/movies/{{this.db_id}}">
                         {{#if poster_path}}
                         <img src="https://image.tmdb.org/t/p/w300{{this.poster_path}}" alt="{{this.title}}">
@@ -40,7 +40,7 @@
             <hr>
             <div class="row justify-content-center">
                 {{#each seriesLK}}
-                <div class="col-md-6">
+                <div class="col-md-6 indiv-card">
                     <a href="/movies/{{this.db_id}}">
                         {{#if poster_path}}
                         <img src="https://image.tmdb.org/t/p/w300{{this.poster_path}}" alt="{{this.name}}">
@@ -67,7 +67,7 @@
             <hr>
             <div class="row justify-content-center">
                 {{#each theUser.seedslists.likes.movies}}
-                <div class="col-md-6">
+                <div class="col-md-6 indiv-card">
                     <a href="/movies/{{this.db_id}}">
                         {{#if poster_path}}
                         <img src="https://image.tmdb.org/t/p/w300{{this.poster_path}}" alt="{{this.title}}">
@@ -91,7 +91,7 @@
             <hr>
             <div class="row justify-content-center">
                 {{#each theUser.seedslists.likes.series}}
-                <div class="col-md-6">
+                <div class="col-md-6 indiv-card">
                     <a href="/movies/{{this.db_id}}">
                         {{#if poster_path}}
                         <img src="https://image.tmdb.org/t/p/w300{{this.poster_path}}" alt="{{this.name}}">

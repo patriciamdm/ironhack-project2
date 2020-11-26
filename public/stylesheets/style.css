@@ -1,6 +1,7 @@
 body {
   font-family: sans-serif;
-  font-weight: 100; }
+  font-weight: 100;
+  color: white; }
 
 img {
   object-fit: cover;
@@ -8,14 +9,20 @@ img {
   border-radius: 5px; }
 
 main {
-  margin: 100px 0; }
+  padding: 100px 0;
+  min-height: 100vh;
+  background-color: #051232; }
 
 hr {
-  margin: 20px 0; }
+  margin: 20px 0;
+  border-color: rgba(211, 211, 211, 0.55); }
 
-.label-invalid {
-  color: #dc3545;
-  font-weight: 400; }
+h1 {
+  font-size: 120px;
+  margin-bottom: 100px; }
+
+h2 {
+  text-align: center; }
 
 h5 {
   font-weight: 100; }
@@ -23,8 +30,31 @@ h5 {
 a {
   color: gray; }
   a:hover {
-    color: #17a2b8;
+    color: #35739a;
     text-decoration: none; }
+
+.label-invalid {
+  color: #dc3545;
+  font-weight: 400; }
+
+.hero {
+  margin: 100px 0 40px; }
+  .hero h2 {
+    font-size: 60px;
+    margin-bottom: 40px; }
+
+.carousel {
+  margin-top: 50px; }
+
+.title {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 500;
+  background-color: rgba(211, 211, 211, 0.55);
+  border-radius: 5px;
+  width: 100%;
+  padding: 10px 0 6px 0;
+  margin-bottom: 20px; }
 
 .data-card {
   text-align: center;
@@ -32,10 +62,8 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-between; }
-  .data-card .btn {
-    margin: 10px 0; }
   .data-card img {
-    box-shadow: 5px 5px 8px #b3b3b3;
+    box-shadow: 5px 5px 8px #262f43d4;
     margin-bottom: 5px; }
 
 .details-card {
@@ -43,6 +71,7 @@ a {
   padding: 15px 20px;
   border-radius: 5px; }
   .details-card h2 {
+    text-align: left;
     font-weight: 100;
     margin-bottom: 10px; }
   .details-card h6 {
@@ -66,10 +95,8 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-between; }
-  .rel-data-card .btn {
-    margin: 10px 0; }
   .rel-data-card img {
-    box-shadow: 5px 5px 8px #b3b3b3;
+    box-shadow: 5px 5px 8px #262f43d4;
     margin-bottom: 5px; }
 
 .user-details img {
@@ -100,7 +127,7 @@ a {
     margin-bottom: 5px;
     font-style: italic; }
   .user-columns img {
-    box-shadow: 5px 5px 8px #b3b3b3;
+    box-shadow: 5px 5px 8px #262f43d4;
     margin-bottom: 5px; }
   .user-columns h5 {
     font-size: 18px;
@@ -113,7 +140,7 @@ a {
   margin-top: 40px;
   text-align: center; }
   .list-column img {
-    box-shadow: 5px 5px 8px #b3b3b3;
+    box-shadow: 5px 5px 8px #262f43d4;
     margin-bottom: 5px; }
   .list-column h6 {
     margin-top: 10px;
@@ -131,5 +158,25 @@ a {
 .small-btn {
   height: 50px;
   width: 50px; }
+
+.btn-info {
+  border-color: #35739a;
+  background-color: #35739a;
+  margin: 10px 0; }
+  .btn-info:hover {
+    background-color: #1d4c68;
+    border-color: #1d4c68; }
+  .btn-info:active:focus {
+    background-color: #1d4c68 !important;
+    border-color: #1d4c68 !important; }
+
+.navbar {
+  border-color: #35739a;
+  background-color: #35739a; }
+  .navbar a {
+    color: white; }
+
+.user h2 {
+  text-align: left; }
 
 /*# sourceMappingURL=style.css.map */

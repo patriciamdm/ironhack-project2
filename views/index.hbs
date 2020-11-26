@@ -2,89 +2,79 @@
 
     <article class="row justify-content-center">
 
-        <div class="col-md-10 text-center">
+        <div class="col text-center hero">
 
-            <h1>Welcome to {{siteTitle}}</h1>
-            <hr>
-            <h6>What would you like to do?</h6>
-            <br>
+            <h2>Welcome to</h2>
+            <h1>{{siteTitle}}</h1>
             <div class="buttons">
                 <a href="/movies" class="btn btn-info">See all movies</a>
                 <a href="/series" class="btn btn-info">See all TV series</a>
                 <a href="/actors" class="btn btn-info">See all actors</a>
                 <a href="/directors" class="btn btn-info">See all directors</a>
+                {{#if isLogged}}
+                <a href="/profile" class="btn btn-info">Go to my profile</a>
+                {{/if}}
             </div>
-
-            {{#if isLogged}}
-            <a href="/profile" class="btn btn-info">Go to my profile</a>
-            {{/if}}
-
+            <br>
+            <hr>
         </div>
-
     </article>
 
-</section>
-
-<section class='container'>
-    <h4>Popular movies:</h4>
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="glide-movies">
-                <div class="glide__track" data-glide-el="track">
-                    <ul class="glide__slides">
-                        {{#each popularMovies}}
-                        <li class="glide__slide"><a href="/movies/{{this.id}}"> <img
-                                    src='https://image.tmdb.org/t/p/w300{{this.poster_path}}' alt="{{name}}"
-                                    style="width: 200px"></a>
-                        </li>
-                        {{/each}}
-                    </ul>
-                </div>
-                <div class="glide__bullets" data-glide-el="controls[nav]">
-                    <button class="glide__bullet" data-glide-dir="=0"></button>
-                    <button class="glide__bullet" data-glide-dir="=1"></button>
-                    <button class="glide__bullet" data-glide-dir="=2"></button>
-                    <button class="glide__bullet" data-glide-dir="=3"></button>
-                    <button class="glide__bullet" data-glide-dir="=4"></button>
-                    <button class="glide__bullet" data-glide-dir="=5"></button>
-                    <button class="glide__bullet" data-glide-dir="=6"></button>
-                    <button class="glide__bullet" data-glide-dir="=7"></button>
-                    <button class="glide__bullet" data-glide-dir="=8"></button>
-                    <button class="glide__bullet" data-glide-dir="=9"></button>
-                </div>
+    <div class="row justify-content-center carousel">
+        <h5 class="title">Popular movies</h5>
+        <div class="col-md-12 glide-movies">
+            <div class="glide__track" data-glide-el="track">
+                <ul class="glide__slides">
+                    {{#each popularMovies}}
+                    <li class="glide__slide"><a href="/movies/{{this.id}}"> <img
+                                src='https://image.tmdb.org/t/p/w300{{this.poster_path}}' alt="{{name}}"
+                                style="width: 200px"></a>
+                    </li>
+                    {{/each}}
+                </ul>
             </div>
+            <div class="glide__bullets" data-glide-el="controls[nav]">
+                <button class="glide__bullet" data-glide-dir="=0"></button>
+                <button class="glide__bullet" data-glide-dir="=1"></button>
+                <button class="glide__bullet" data-glide-dir="=2"></button>
+                <button class="glide__bullet" data-glide-dir="=3"></button>
+                <button class="glide__bullet" data-glide-dir="=4"></button>
+                <button class="glide__bullet" data-glide-dir="=5"></button>
+                <button class="glide__bullet" data-glide-dir="=6"></button>
+                <button class="glide__bullet" data-glide-dir="=7"></button>
+                <button class="glide__bullet" data-glide-dir="=8"></button>
+                <button class="glide__bullet" data-glide-dir="=9"></button>
+            </div>
+
         </div>
     </div>
-</section>
 
-<section class='container'>
-    <h4>Popular series:</h4>
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="glide-series">
-                <div class="glide__track" data-glide-el="track">
-                    <ul class="glide__slides">
-                        {{#each popularSeries}}
-                        <li class="glide__slide"><a href="/series/{{this.id}}"> <img
-                                    src='https://image.tmdb.org/t/p/w300{{this.poster_path}}' alt="{{name}}"
-                                    style="width: 200px"></a>
-                        </li>
-                        {{/each}}
-                    </ul>
-                </div>
-                <div class="glide__bullets" data-glide-el="controls[nav]">
-                    <button class="glide__bullet" data-glide-dir="=0"></button>
-                    <button class="glide__bullet" data-glide-dir="=1"></button>
-                    <button class="glide__bullet" data-glide-dir="=2"></button>
-                    <button class="glide__bullet" data-glide-dir="=3"></button>
-                    <button class="glide__bullet" data-glide-dir="=4"></button>
-                    <button class="glide__bullet" data-glide-dir="=5"></button>
-                    <button class="glide__bullet" data-glide-dir="=6"></button>
-                    <button class="glide__bullet" data-glide-dir="=7"></button>
-                    <button class="glide__bullet" data-glide-dir="=8"></button>
-                    <button class="glide__bullet" data-glide-dir="=9"></button>
-                </div>
+    <div class="row justify-content-center carousel">
+        <h5 class="title">Popular series</h5>
+        <div class="col-md-12 glide-series">
+            <div class="glide__track" data-glide-el="track">
+                <ul class="glide__slides">
+                    {{#each popularSeries}}
+                    <li class="glide__slide"><a href="/series/{{this.id}}"> <img
+                                src='https://image.tmdb.org/t/p/w300{{this.poster_path}}' alt="{{name}}"
+                                style="width: 200px"></a>
+                    </li>
+                    {{/each}}
+                </ul>
             </div>
+            <div class="glide__bullets" data-glide-el="controls[nav]">
+                <button class="glide__bullet" data-glide-dir="=0"></button>
+                <button class="glide__bullet" data-glide-dir="=1"></button>
+                <button class="glide__bullet" data-glide-dir="=2"></button>
+                <button class="glide__bullet" data-glide-dir="=3"></button>
+                <button class="glide__bullet" data-glide-dir="=4"></button>
+                <button class="glide__bullet" data-glide-dir="=5"></button>
+                <button class="glide__bullet" data-glide-dir="=6"></button>
+                <button class="glide__bullet" data-glide-dir="=7"></button>
+                <button class="glide__bullet" data-glide-dir="=8"></button>
+                <button class="glide__bullet" data-glide-dir="=9"></button>
+            </div>
+
         </div>
     </div>
 </section>
