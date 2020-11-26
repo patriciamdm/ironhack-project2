@@ -4,12 +4,6 @@ const router = express.Router()
 const User = require('../models/user.model')
 
 
-const axios = require('axios')
-const apiHandler = axios.create({
-    baseURL: "https://api.themoviedb.org/3"
-})
-
-
 const isLogged = (req) => req.isAuthenticated() === true
 const isNotLogged = (req) => req.isAuthenticated() === false
 
@@ -66,7 +60,7 @@ router.post('/edit', (req, res, next) => {
     const { name, email, about, img } = req.body
 
     User.findByIdAndUpdate(userId, { name, email, about, img })
-        .then(user => res.render('user/user-profile', { user, isLogged: isLogged(req) }))
+        .then(() => res.redirect('/profile'))
         .catch(err => next(new Error(err)))
 })
 
@@ -107,6 +101,29 @@ router.get('/watchlist', (req, res, next) => {
         .catch(err => next(new Error(err)))
 })
 
+// DELETE ELEMENT FROM USER'S WATCHLIST
+
+router.post('/watchlist/remove', (req, res, next) => {
+
+    if (req.query.content == 'movies') {
+        User
+            .findById(req.user.id)
+            .then(theUser => theUser.seedslists.watchlist.movies.filter(elm => elm.id != req.query.id))
+            .then(newList => User.findByIdAndUpdate(req.user.id, { "seedslists.watchlist.movies": newList }))
+            .then(theUser => res.redirect(`/profile/watchlist?id=${theUser.id}`))
+            .catch(err => next((err)))
+        
+    } else if (req.query.content == 'series') {
+        User
+            .findById(req.user.id)
+            .then(theUser => theUser.seedslists.watchlist.series.filter(elm => elm.id != req.query.id))
+            .then(newList => User.findByIdAndUpdate(req.user.id, { "seedslists.watchlist.series": newList }))
+            .then(theUser => res.redirect(`/profile/watchlist?id=${theUser.id}`))
+            .catch(err => next((err)))
+    }
+})
+
+
 
 // USER'S SEEN LIST PAGE
 
@@ -119,6 +136,28 @@ router.get('/seen', (req, res, next) => {
         .catch(err => next(new Error(err)))
 })
 
+// DELETE ELEMENT FROM USER'S SEEN LIST
+
+router.post('/seen/remove', (req, res, next) => {
+
+    if (req.query.content == 'movies') {
+        User
+            .findById(req.user.id)
+            .then(theUser => theUser.seedslists.seen.movies.filter(elm => elm.id != req.query.id))
+            .then(newList => User.findByIdAndUpdate(req.user.id, { "seedslists.seen.movies": newList }))
+            .then(theUser => res.redirect(`/profile/seen?id=${theUser.id}`))
+            .catch(err => next((err)))
+        
+    } else if (req.query.content == 'series') {
+        User
+            .findById(req.user.id)
+            .then(theUser => theUser.seedslists.seen.series.filter(elm => elm.id != req.query.id))
+            .then(newList => User.findByIdAndUpdate(req.user.id, { "seedslists.seen.series": newList }))
+            .then(theUser => res.redirect(`/profile/seen?id=${theUser.id}`))
+            .catch(err => next((err)))
+    }
+})
+
 
 // USER'S LIKES LIST PAGE
 
@@ -129,6 +168,28 @@ router.get('/likes', (req, res, next) => {
         .populate('seedslists.likes.series')
         .then(theUser => res.render('user/user-likes', { theUser, seedsData: seedsData(true), isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
         .catch(err => next(new Error(err)))
+})
+
+// DELETE ELEMENT FROM USER'S LIKES LIST
+
+router.post('/likes/remove', (req, res, next) => {
+
+    if (req.query.content == 'movies') {
+        User
+            .findById(req.user.id)
+            .then(theUser => theUser.seedslists.likes.movies.filter(elm => elm.id != req.query.id))
+            .then(newList => User.findByIdAndUpdate(req.user.id, { "seedslists.likes.movies": newList }))
+            .then(theUser => res.redirect(`/profile/likes?id=${theUser.id}`))
+            .catch(err => next((err)))
+        
+    } else if (req.query.content == 'series') {
+        User
+            .findById(req.user.id)
+            .then(theUser => theUser.seedslists.likes.series.filter(elm => elm.id != req.query.id))
+            .then(newList => User.findByIdAndUpdate(req.user.id, { "seedslists.likes.series": newList }))
+            .then(theUser => res.redirect(`/profile/likes?id=${theUser.id}`))
+            .catch(err => next((err)))
+    }
 })
 
 
