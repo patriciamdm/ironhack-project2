@@ -6,7 +6,7 @@
             <a href="/profile/likes?id={{theUser.id}}" class="redirect">Go to Likes</a>
             <a href="/profile/seen?id={{theUser.id}}" class="redirect">Go to Seen</a>
             <a href="/profile" class="redirect">Go back to Profile</a>
-            
+
         </div>
     </article>
     <article class="row">
@@ -17,19 +17,19 @@
             <hr>
             <div class="row justify-content-center">
                 {{#each moviesWL}}
-                <div class="col-md-6">
+                <div class="col-md-6 indiv-card">
                     <a href="/movies/{{this.db_id}}">
                         {{#if poster_path}}
                         <img src="https://image.tmdb.org/t/p/w300{{this.poster_path}}" alt="{{this.title}}">
                         {{/if}}
-                        
+
                         {{#unless poster_path}}
                         <img src='/images/noimage.png' alt="{{this.title}}">
                         {{/unless}}
 
                         <h6>{{this.title}}</h6>
                     </a>
-                    <form action="/" method="POST">
+                    <form action="/profile/watchlist/remove?content=movies&db_id={{this.db_id}}" method="POST">
                         <button type="submit" class="btn btn-danger btn-sm">Remove from list</button>
                     </form>
                 </div>
@@ -41,16 +41,16 @@
             <hr>
             <div class="row justify-content-center">
                 {{#each seriesWL}}
-                <div class="col-md-6">
+                <div class="col-md-6 indiv-card">
                     <a href="/series/{{this.db_id}}">
                         {{#if poster_path}}
                         <img src="https://image.tmdb.org/t/p/w300{{this.poster_path}}" alt="{{this.name}}">
                         {{/if}}
-                        
+
                         {{#unless poster_path}}
                         <img src='/images/noimage.png' alt="{{this.name}}">
                         {{/unless}}
-                        
+
                         <h6>{{this.name}}</h6>
                     </a>
                     <form action="/profile/watchlist/remove?content=series&db_id={{this.db_id}}" method="POST">
@@ -73,11 +73,11 @@
                         {{#if poster_path}}
                         <img src="https://image.tmdb.org/t/p/w300{{this.poster_path}}" alt="{{this.title}}">
                         {{/if}}
-                
+
                         {{#unless poster_path}}
                         <img src='/images/noimage.png' alt="{{this.titl}}">
                         {{/unless}}
-                
+
                         <h6>{{this.name}}</h6>
                     </a>
                     <form action="/" method="POST">
@@ -97,11 +97,11 @@
                         {{#if poster_path}}
                         <img src="https://image.tmdb.org/t/p/w300{{this.poster_path}}" alt="{{this.name}}">
                         {{/if}}
-                
+
                         {{#unless poster_path}}
                         <img src='/images/noimage.png' alt="{{this.name}}">
                         {{/unless}}
-                
+
                         <h6>{{this.name}}</h6>
                     </a>
                     <form action="/" method="POST">

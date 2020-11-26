@@ -21,6 +21,9 @@ const seriesListEmpty = (req) => (req.user.apilists.watchlist.series.length === 
 const lastIndex = (array) => array.length - 1;
 
 
+
+
+
 // USER PROFILE PAGE
 
 router.get('/', (req, res, next) => {
@@ -166,27 +169,32 @@ router.get('/watchlist', (req, res, next) => {
     User
         .findById(req.query.id)
         .then(theUser => res.render('user/user-watchlist', { theUser, moviesWL: theUser.apilists.watchlist.movies, seriesWL: theUser.apilists.watchlist.series, apiData: apiData(true), isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
-        .catch(err => next(new Error(err)))
+        .catch(err => next((err)))
 })
 
+// DELETE ELEMENT FROM USER'S WATCHLIST
+
 router.post('/watchlist/remove', (req, res, next) => {
-    // const content = req.query.content
-    // User
-    //     .findById(req.user.id)
-    //     .then(theUser => {
-    //         if (content == 'series') {
-    //             User.find({db_id: req.query.db_id})
-    //             //theUser.apilists.watchlist.series.find({db_id: req.query.db_id})
-    //             .then(serie => console.log(serie))
-    //         } else if (content == 'movies') {
-                
-    //             //theUser.apilists.watchlist.movies.find({ db_id: req.query.db_id })
-    //             .then(movie => console.log(movie)) 
-    //         }
-    //         //.drop({ db_id: req.query.db_id })
-    //     })
-    //     .catch(err => next((err)))
+
+    if (req.query.content == 'movies') {
+        User
+            .findById(req.user.id)
+            .then(theUser => theUser.apilists.watchlist.movies.filter(elm => elm.db_id != req.query.db_id))
+            .then(newList => User.findByIdAndUpdate(req.user.id, { "apilists.watchlist.movies": newList }))
+            .then(theUser => res.redirect(`/profile/watchlist?id=${theUser.id}`))
+            .catch(err => next((err)))
+        
+    } else if (req.query.content == 'series') {
+        User
+            .findById(req.user.id)
+            .then(theUser => theUser.apilists.watchlist.series.filter(elm => elm.db_id != req.query.db_id))
+            .then(newList => User.findByIdAndUpdate(req.user.id, { "apilists.watchlist.series": newList }))
+            .then(theUser => res.redirect(`/profile/watchlist?id=${theUser.id}`))
+            .catch(err => next((err)))
+    }
 })
+
+
 
 
 // USER'S SEEN LIST PAGE
@@ -198,6 +206,30 @@ router.get('/seen', (req, res, next) => {
         .catch(err => next(new Error(err)))
 })
 
+// DELETE ELEMENT FROM USER'S SEEN LIST
+
+router.post('/seen/remove', (req, res, next) => {
+
+    if (req.query.content == 'movies') {
+        User
+            .findById(req.user.id)
+            .then(theUser => theUser.apilists.seen.movies.filter(elm => elm.db_id != req.query.db_id))
+            .then(newList => User.findByIdAndUpdate(req.user.id, { "apilists.seen.movies": newList }))
+            .then(theUser => res.redirect(`/profile/seen?id=${theUser.id}`))
+            .catch(err => next((err)))
+        
+    } else if (req.query.content == 'series') {
+        User
+            .findById(req.user.id)
+            .then(theUser => theUser.apilists.seen.series.filter(elm => elm.db_id != req.query.db_id))
+            .then(newList => User.findByIdAndUpdate(req.user.id, { "apilists.seen.series": newList }))
+            .then(theUser => res.redirect(`/profile/seen?id=${theUser.id}`))
+            .catch(err => next((err)))
+    }
+})
+
+
+
 
 // USER'S LIKES LIST PAGE
 
@@ -206,6 +238,28 @@ router.get('/likes', (req, res, next) => {
         .findById(req.query.id)
         .then(theUser => res.render('user/user-likes', { theUser, moviesLK: theUser.apilists.likes.movies, seriesLK: theUser.apilists.likes.series, apiData: apiData(true), isLogged: isLogged(req), moviesListEmpty: moviesListEmpty(req), seriesListEmpty: seriesListEmpty(req) }))
         .catch(err => next(new Error(err)))
+})
+
+// DELETE ELEMENT FROM USER'S LIKES LIST
+
+router.post('/likes/remove', (req, res, next) => {
+
+    if (req.query.content == 'movies') {
+        User
+            .findById(req.user.id)
+            .then(theUser => theUser.apilists.likes.movies.filter(elm => elm.db_id != req.query.db_id))
+            .then(newList => User.findByIdAndUpdate(req.user.id, { "apilists.likes.movies": newList }))
+            .then(theUser => res.redirect(`/profile/likes?id=${theUser.id}`))
+            .catch(err => next((err)))
+        
+    } else if (req.query.content == 'series') {
+        User
+            .findById(req.user.id)
+            .then(theUser => theUser.apilists.likes.series.filter(elm => elm.db_id != req.query.db_id))
+            .then(newList => User.findByIdAndUpdate(req.user.id, { "apilists.likes.series": newList }))
+            .then(theUser => res.redirect(`/profile/likes?id=${theUser.id}`))
+            .catch(err => next((err)))
+    }
 })
 
 
