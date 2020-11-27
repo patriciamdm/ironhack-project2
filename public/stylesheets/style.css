@@ -189,6 +189,10 @@ a {
     background-color: #1d4c68 !important;
     border-color: #1d4c68 !important; }
 
+.btn-danger {
+  margin: 10px 0;
+  font-weight: 100; }
+
 .small-btn {
   height: 50px;
   width: 50px; }
