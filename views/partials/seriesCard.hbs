@@ -1,15 +1,15 @@
 <div class="col-md-3 data-card">
 
     <figure class="card-img">
+        <a href="/series/{{this.id}}">
+            {{#if poster_path}}
+            <img src='https://image.tmdb.org/t/p/w300{{this.poster_path}}' alt="{{this.name}}">
+            {{/if}}
 
-        {{#if poster_path}}
-        <img src='https://image.tmdb.org/t/p/w300{{this.poster_path}}' alt="{{this.name}}">
-        {{/if}}
-
-        {{#unless poster_path}}
-        <img src='/images/noimage.png' alt="{{this.name}}">
-        {{/unless}}
-
+            {{#unless poster_path}}
+            <img src='/images/noimage.png' alt="{{this.name}}">
+            {{/unless}}
+        </a>
     </figure>
 
     <div class="card-text">
@@ -18,5 +18,5 @@
 
     </div>
 
-    <a href="/series/{{this.id}}" class="btn btn-info">Details</a>
+
 </div>

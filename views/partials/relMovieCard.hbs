@@ -1,20 +1,20 @@
 <div class="col-md-3 com-sm-6 rel-data-card">
 
     <figure class="card-img">
+        <a href="/movies/{{this.id}}">
+            {{#if this.poster_path}}
+            <img src='https://image.tmdb.org/t/p/w300{{this.poster_path}}' alt="{{this.title}}">
+            {{/if}}
 
-        {{#if this.poster_path}}
-        <img src='https://image.tmdb.org/t/p/w300{{this.poster_path}}' alt="{{this.title}}">
-        {{/if}}
-
-        {{#unless this.poster_path}}
-        <img src='/images/noimage.png' alt="{{this.title}}">
-        {{/unless}}
-
+            {{#unless this.poster_path}}
+            <img src='/images/noimage.png' alt="{{this.title}}">
+            {{/unless}}
+        </a>
     </figure>
 
     <div class="card-text">
         <h5>{{this.title}}</h5>
     </div>
 
-    <a href="/movies/{{this.id}}" class="btn btn-info">Details</a>
+
 </div>

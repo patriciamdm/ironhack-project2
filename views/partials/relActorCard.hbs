@@ -1,15 +1,15 @@
 <div class="col-md-3 com-sm-6 rel-data-card">
 
     <figure class="card-img">
+        <a href="/actors/{{this.id}}">
+            {{#if this.profile_path}}
+            <img src='https://image.tmdb.org/t/p/w300{{this.profile_path}}' alt="{{this.name}}">
+            {{/if}}
 
-        {{#if this.profile_path}}
-        <img src='https://image.tmdb.org/t/p/w300{{this.profile_path}}' alt="{{this.name}}">
-        {{/if}}
-
-        {{#unless profile_path}}
-        <img src='/images/personimg.png' alt="{{this.name}}">
-        {{/unless}}
-
+            {{#unless profile_path}}
+            <img src='/images/personimg.png' alt="{{this.name}}">
+            {{/unless}}
+        </a>
     </figure>
 
     <div class="card-text">
@@ -17,5 +17,5 @@
         <p>{{this.character}}</p>
     </div>
 
-    <a href="/actors/{{this.id}}" class="btn btn-info">Details</a>
+
 </div>

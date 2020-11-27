@@ -1,20 +1,20 @@
 <div class="col-md-3 data-card">
 
     <figure class="card-img">
+        <a href="/directors/{{this.id}}">
+            {{#if this.profile_path}}
+            <img src='https://image.tmdb.org/t/p/w300{{this.profile_path}}' alt="{{this.name}}">
+            {{/if}}
 
-        {{#if this.profile_path}}
-        <img src='https://image.tmdb.org/t/p/w300{{this.profile_path}}' alt="{{this.name}}">
-        {{/if}}
-
-        {{#unless profile_path}}
-        <img src='/images/personimg.png' alt="{{this.name}}">
-        {{/unless}}
-
+            {{#unless profile_path}}
+            <img src='/images/personimg.png' alt="{{this.name}}">
+            {{/unless}}
+        </a>
     </figure>
 
     <div class="card-text">
         <h5>{{this.name}}</h5>
     </div>
 
-    <a href="/directors/{{this.id}}" class="btn btn-info">Details</a>
+
 </div>
