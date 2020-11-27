@@ -6,6 +6,9 @@ $visual-height: 100vh;
 
 
 
+
+// GLOBAL STYLES
+
 body {
   font-family: sans-serif;
   font-weight: 100;
@@ -21,10 +24,33 @@ img {
 main {
   padding: 100px 0;
   min-height: $visual-height;
-  // background-image: url('../images/cinema_background.jpg');
-  // background-repeat: no-repeat;
-  // background-size: cover;
   background-color: rgb(5, 18, 50);
+}
+
+.navbar {
+  //border-bottom: 2px solid $btn-darker;
+  background-color: $btn-color;
+  box-shadow: 0 3px 3px $btn-darker;
+  width: 100%;
+  padding: 10px 20px;
+
+  a {
+    font-size: 13px;
+    font-weight: 100;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+
+    &:hover {
+      color: $btn-darker;
+    }
+  }
+
+  .navbar-brand {
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: lowercase;
+  }
 }
 
 hr {
@@ -59,18 +85,33 @@ a {
   font-weight: 400;
 }
 
+
+
+
+// HOMEPAGE
+
 .hero {
   margin: 100px 0 40px;
-
-  h2 {
-    font-size: 60px;
-    margin-bottom: 40px;
+  
+    h2 {
+      font-size: 60px;
+      margin-bottom: 40px;
+    }
+  
+  .btn {
+    margin-left: 5px;
+    margin-right: 5px;
   }
 }
 
 .carousel {
   margin-top: 50px;
 }
+
+
+
+
+// CONTENTS INDEX PAGES
 
 .title {
   text-transform: uppercase;
@@ -90,13 +131,13 @@ a {
   flex-direction: column;
   justify-content: space-between;
   
-
-  
   img {
     box-shadow: $shadow;
     margin-bottom: 5px;
   }
 }
+
+// Contents details pages
 
 .details-card {
   border: 1px solid #b3b3b3;
@@ -129,7 +170,6 @@ a {
   .emphasis2 {
     display: flex;
   }
-
 }
 
 .rel-data-card {
@@ -140,11 +180,20 @@ a {
   flex-direction: column;
   justify-content: space-between;
   
-
-  
   img {
     box-shadow: $shadow;
     margin-bottom: 5px;
+  }
+}
+
+
+
+
+// USER PROFILE PAGE
+
+.user {
+  h2 {
+    text-align: left;
   }
 }
 
@@ -169,13 +218,10 @@ a {
   }
 }
 
-.user-add-btn {
-  margin-bottom: 40px;
-}
-
 .btn-add-new {
   display: flex;
   justify-content: space-evenly;
+  margin: 20px 0 40px;
 }
 
 .user-columns {
@@ -202,6 +248,15 @@ a {
   }
 }
 
+// User's lists
+
+.redirect {
+  text-transform: uppercase;
+  margin: 0 20px 0 0;
+  font-size: .9rem;
+  font-weight: 500;
+}
+
 .list-column {
   margin-top: 40px;
   text-align: center;
@@ -222,22 +277,16 @@ a {
   }
 }
 
-.redirect {
-  text-transform: uppercase;
-  margin: 0 20px 0 0;
-  font-size: .9rem;
-  font-weight: 500;
-}
 
-.small-btn {
-  height: 50px;
-  width: 50px;
-}
+
+
+// BUTTONS
 
 .btn-info {
   border-color: $btn-color;
   background-color: $btn-color;
   margin: 10px 0;
+  font-weight: 100;
 
   &:hover {
     background-color: $btn-darker;
@@ -250,17 +299,7 @@ a {
   }
 }
 
-.navbar {
-  border-color: $btn-color;
-  background-color: $btn-color;
-
-  a {
-    color: white;
-  }
-}
-
-.user {
-  h2 {
-    text-align: left;
-  }
+.small-btn {
+  height: 50px;
+  width: 50px;
 }
