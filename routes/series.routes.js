@@ -62,7 +62,7 @@ router.get('/:id', (req, res, next) => {
             const date = thisSerie.first_air_date
             const serieDate = {
                 day: date.slice(8),
-                month: months[date.slice(5, 7)],
+                month: months[parseInt(date.slice(5, 7), 10)],
                 year: date.slice(0, 4)
             }
 
