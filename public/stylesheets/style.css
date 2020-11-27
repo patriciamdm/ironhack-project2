@@ -13,6 +13,24 @@ main {
   min-height: 100vh;
   background-color: #051232; }
 
+.navbar {
+  background-color: #35739a;
+  box-shadow: 0 3px 3px #1d4c68;
+  width: 100%;
+  padding: 10px 20px; }
+  .navbar a {
+    font-size: 13px;
+    font-weight: 100;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white; }
+    .navbar a:hover {
+      color: #1d4c68; }
+  .navbar .navbar-brand {
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: lowercase; }
+
 hr {
   margin: 20px 0;
   border-color: rgba(211, 211, 211, 0.55); }
@@ -42,6 +60,9 @@ a {
   .hero h2 {
     font-size: 60px;
     margin-bottom: 40px; }
+  .hero .btn {
+    margin-left: 5px;
+    margin-right: 5px; }
 
 .carousel {
   margin-top: 50px; }
@@ -99,6 +120,9 @@ a {
     box-shadow: 5px 5px 8px #262f43d4;
     margin-bottom: 5px; }
 
+.user h2 {
+  text-align: left; }
+
 .user-details img {
   width: 170px;
   height: 170px;
@@ -114,12 +138,10 @@ a {
   flex-direction: column;
   justify-content: space-evenly; }
 
-.user-add-btn {
-  margin-bottom: 40px; }
-
 .btn-add-new {
   display: flex;
-  justify-content: space-evenly; }
+  justify-content: space-evenly;
+  margin: 20px 0 40px; }
 
 .user-columns {
   text-align: center; }
@@ -136,6 +158,12 @@ a {
     margin-top: 10px;
     font-weight: 100; }
 
+.redirect {
+  text-transform: uppercase;
+  margin: 0 20px 0 0;
+  font-size: .9rem;
+  font-weight: 500; }
+
 .list-column {
   margin-top: 40px;
   text-align: center; }
@@ -149,20 +177,11 @@ a {
   .list-column .indiv-card {
     margin-bottom: 40px; }
 
-.redirect {
-  text-transform: uppercase;
-  margin: 0 20px 0 0;
-  font-size: .9rem;
-  font-weight: 500; }
-
-.small-btn {
-  height: 50px;
-  width: 50px; }
-
 .btn-info {
   border-color: #35739a;
   background-color: #35739a;
-  margin: 10px 0; }
+  margin: 10px 0;
+  font-weight: 100; }
   .btn-info:hover {
     background-color: #1d4c68;
     border-color: #1d4c68; }
@@ -170,13 +189,8 @@ a {
     background-color: #1d4c68 !important;
     border-color: #1d4c68 !important; }
 
-.navbar {
-  border-color: #35739a;
-  background-color: #35739a; }
-  .navbar a {
-    color: white; }
-
-.user h2 {
-  text-align: left; }
+.small-btn {
+  height: 50px;
+  width: 50px; }
 
 /*# sourceMappingURL=style.css.map */
