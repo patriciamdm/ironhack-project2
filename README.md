@@ -14,7 +14,7 @@ Jordi Boronat & Patricia Muñoz
 
 - Teacher: Germán Alvarez
 - TAs: Belen Olias, Enrique Montaño & Jon Arechalde
-- Project Manager: Unknown
+- Project Manager: Belen Olias
 
 #### Technologies used:
 
@@ -63,7 +63,7 @@ We will be working with stabisled endpoints, models and a 3rd party API for this
 
 ### Models
 
-In `models` folder we have several mdeols to be used:
+In `models` folder we have several models to be used:
 
 - The User with these properties:
 
