@@ -2,6 +2,8 @@
 
 # Ironhack Project #2 | bingewapp
 
+Visit the webpage at http://bingewapp.herokuapp.com
+
 ## Introduction
 
 Our web app is created to provide a place were the user can have all their favourite movies, series, actors and directors information in one place. They will be able to add content to their Watchlist, to their Favourites list as well as give ratings and comments and send email recomendations to their friends.
